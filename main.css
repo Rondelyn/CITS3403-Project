@@ -1,0 +1,22 @@
+.bg-colour {
+    background-color: rgb(72, 77, 109);
+}
+
+.pill {
+    border: none;
+    color: black;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    margin: 4px 2px;
+    cursor: pointer;
+    border-radius: 16px;
+}
+
+.pill:hover {
+    background-color: rgb(44, 54, 94);
+}
+
+body {
+    background-color: aliceblue;
+}
