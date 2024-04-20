@@ -1,0 +1,25 @@
+/* Controls the background colour of the navigation bar */
+.bg-colour {
+    background-color: rgb(72, 77, 109);
+}
+
+/* creates an invisible pill around the navigation bar buttons */
+.pill {
+    border: none;
+    color: black;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    margin: 4px 2px;
+    cursor: pointer;
+    border-radius: 16px;
+}
+
+/* changes the colour around the invisible pill on hover to highlight button */
+.pill:hover {
+    background-color: rgb(44, 54, 94);
+}
+
+body {
+    background-color: aliceblue;
+}
