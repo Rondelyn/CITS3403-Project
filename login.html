@@ -9,9 +9,21 @@
         <!--This is the bootstrap 5 style sheet. Make sure it is above all other style sheets-->
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
         <link rel="stylesheet" href="main.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+         
+        <style> 
+        
+        form{
+          width: fit-content;
+          margin: auto;
+          padding-top: 15%;
+
+        }
+        </style>
     </head>
     <body>
       <!--This is the navigation bar-->
+      
       <nav class="navbar navbar-expand-md navbar-dark fixed-top rounded-bottom bg-colour">
           <div class="container-fluid">
             <a class="navbar-brand">Logo</a>
@@ -36,10 +48,62 @@
             </div>
           </div>
         </nav>
+      <!--This is the form-->
+        <form id = 'login form'>
+          <!--This is the username box-->
+          <div class="enterusername">
+            <label for="InputUsername" class="form-label">Username</label>
+            <input type="Username" class="form-control" id="InputUsername">
+            
+          </div><br>
+          <!--This is the password box-->
+          <div class="enterpassword">
+            <label for="Password" class="form-label">Password</label>
+            <input type="password" class="form-control" id="Password">
+          </div>
 
+          <!--This is the check box to agree to the terms of service-->
+          <div class="agreeterms">
+            <input type="checkbox" class="form-check-input" id="termsandconditions" aria-describedby="termsconditions">
+            <label class="form-check-label" for="termsandconditions">I agree to the terms of use</label>
+            <div id="termsconditions" class="form-text">you agree to only post pg things to the website or you get removed</div>
+          </div>
+          <!--This is the submit buttion-->
+          <button type="submit button" name = 'submit' id = 'submit' class="btn btn-primary">login</button>
+        </form>
+        
+      <script>
+        $(document).ready(function(){ 
+          $('#submit').click(function(event){
+            event.preventDefault();
+            var username = $('#InputUsername').val();
+            var password = $('#Password').val();
+            var termsagreed = $('#termsandconditions').is(':checked');
 
+           
+            if (username === '' || password === ''){
+              alert("username or password is missing")
+              return;
+            }
+            
+            if (!termsagreed){
+              alert("agree to terms and conditions or else");
+              return;
+              
+            }
+            
+            alert("yay");
+            return;
+            
 
-      <!--This is the js used by bootstrap 5. Please keep this at the bottom before /body-->
+            
+          })
+        })
+      
+      </script>
+      
+      <!--This is the js used by bootstrap 5 and the ajax link. Please keep this at the bottom before /body-->
       <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+      <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     </body>
 </html>
