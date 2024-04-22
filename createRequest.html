@@ -1,27 +1,33 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
     <head>
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <title></title>
-        <meta name="description" content="">
+        <title>Temp Title</title>
+        <meta name="description" content="temporary desc.">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <!--This is the bootstrap 5 style sheet. Make sure it is above all other style sheets-->
+        <!--bootstrap icon link-->
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">       
+        <!--Bootstrap 5 link--> 
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+        <!--Link to custom css-->
         <link rel="stylesheet" href="main.css">
+        <!--Link to custom javascript-->
+        <script src="main.js"></script>
     </head>
     <body>
-      <!--This is the navigation bar-->
-      <nav class="navbar navbar-expand-md navbar-dark fixed-top rounded-bottom bg-colour">
+      <main>
+        <!--This is the navigation bar-->
+        <nav class="navbar navbar-expand-sm navbar-dark fixed-top rounded-bottom bg-colour">
           <div class="container-fluid">
-            <a class="navbar-brand">Logo</a>
+            <a class="navbar-brand"  id="logo">Logo</a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#collapsibleNavbar">
               <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse justify-content-end" id="collapsibleNavbar">
               <ul class="navbar-nav">
                 <li class="nav-item pill">
-                  <a class="nav-link" href="landingPg.html">Home</a>
+                  <a class="nav-link" href="landingPg.html"><i class="bi bi-house-fill"></i> Home</a>
                 </li>
                 <li class="nav-item pill">
                   <a class="nav-link" href="findRequest.html">Feed</a>
@@ -36,7 +42,21 @@
             </div>
           </div>
         </nav>
+        
+        <br>
 
+        <!--Content container that defines the white box area on site. Fills whole space on small devices-->
+        <div class="container-sm mt-5 mb-3 pt-1 pb-3 bodyFormat">
+          
+          
+
+        </div>
+
+        <!--temp footer-->
+        <footer class="m-1 text-muted end-0 d-flex justify-content-end">
+         <small>&copy; 2024</small> 
+        </footer>
+      </main>
       <!--This is the js used by bootstrap 5. Please keep this at the bottom before /body-->
       <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
     </body>
