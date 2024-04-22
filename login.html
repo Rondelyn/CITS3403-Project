@@ -10,18 +10,7 @@
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
         <link rel="stylesheet" href="main.css">
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
-         
-        <style> 
-        
-        form{
-          width: fit-content;
-          margin: auto;
-          padding-top: 15%;
-
-        }
-
-        
-        </style>
+        <script src="main.js"></script>
     </head>
     <body>
       <!--This is the navigation bar-->
@@ -80,12 +69,12 @@
         <br>
         <!--This is the button to go to the creat user page-->
         <div style="text-align: center">
-        <button type="toggle button"  name = 'create account' id = 'create' class="btn btn-outline-primary">havn't signed up yet?</button> 
+        <button onclick="showsignup()" type="toggle button"  name = 'create account' id = 'create' class="btn btn-outline-primary">havn't signed up yet?</button> 
         </div>
       </div>
 
       <!--This is the singup form-->
-      <div id = 'signup form' name = 'signup form' style.display="none">
+      <div id = 'signup form' name = 'signup form' style="display: none;">
         
         <form id = 'signup' >
           
@@ -117,7 +106,7 @@
         <br>
         <!--This is the button to go to the login user page-->
         <div style="text-align: center">
-        <button type="toggle button" name = 'haveaccount' id = 'haveaccount' class="btn btn-outline-primary"  >have an account?</button> 
+        <button onclick="showlogin()" type="toggle button" name = 'haveaccount' id = 'haveaccount' class="btn btn-outline-primary"  >have an account?</button> 
         </div>
       </div>
 
@@ -156,28 +145,6 @@
         
 
       </script>
-      
-
-      <!--switchs between forms-->
-      <script>
-
-      document.getElementById("login form").addEventListener("click", showsignup);
-      
-      function showsignup(){
-        document.getElementById('signup form').style.display="block";
-        document.getElementById('login form').style.display="none"; 
-      }
-
-      document.getElementById("signup form").addEventListener("click", showlogin);
-      
-      function showlogin(){
-        document.getElementById('login form').style.display="block";
-        document.getElementById("signup form").style.display="none"; 
-      }
-
-      </script>
-
-
       <!--This is the js used by bootstrap 5 and the ajax link. Please keep this at the bottom before /body-->
       <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
       <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
