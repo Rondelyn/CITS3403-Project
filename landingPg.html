@@ -6,22 +6,22 @@
         <title></title>
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <!--This is the bootstrap 5 style sheet. Make sure it is above all other style sheets-->
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">        
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
         <link rel="stylesheet" href="main.css">
     </head>
     <body>
       <!--This is the navigation bar-->
-      <nav class="navbar navbar-expand-md navbar-dark fixed-top rounded-bottom bg-colour">
+      <nav class="navbar navbar-expand-sm navbar-dark fixed-top rounded-bottom bg-colour">
           <div class="container-fluid">
-            <a class="navbar-brand">Logo</a>
+            <a class="navbar-brand" id="logo">Name of site</a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#collapsibleNavbar">
               <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse justify-content-end" id="collapsibleNavbar">
               <ul class="navbar-nav">
                 <li class="nav-item pill">
-                  <a class="nav-link disabled" href="landingPg.html">Home</a>
+                  <a class="nav-link disabled" href="landingPg.html"><i class="bi bi-house"></i> Home</a>
                 </li>
                 <li class="nav-item pill">
                   <a class="nav-link" href="findRequest.html">Feed</a>
@@ -36,6 +36,11 @@
             </div>
           </div>
       </nav>
+      <br>
+      <div class="container-sm mt-5 pt-1 pb-1 bodyFormat">
+          <h1>Some welcome message</h1>
+          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi iaculis mi fringilla mi gravida varius. Proin vel scelerisque ex. Vivamus nec posuere nulla. Nullam viverra dictum purus vel accumsan. Morbi elit velit, aliquet vitae laoreet eget, consectetur vestibulum libero. Ut urna lectus, sodales in eleifend at, sollicitudin et elit. Pellentesque tincidunt aliquet sem, ut pharetra est pellentesque id. Duis id tincidunt ligula, nec pretium sem. Nulla sagittis pulvinar iaculis. Ut et arcu id est semper laoreet vel vel enim. Duis accumsan tempor risus, non blandit risus venenatis dapibus.</p>
+      </div>
 
       <!--This is the js used by bootstrap 5. Please keep this at the bottom before /body-->
       <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>

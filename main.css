@@ -1,3 +1,14 @@
+
+#logo {
+    margin: 4px 2px;
+}
+
+.bodyFormat {
+    background-color: white;
+    border-color: ghostwhite;
+    border-radius: 10px;
+}
+
 /* Controls the background colour of the navigation bar */
 .bg-colour {
     background-color: rgb(72, 77, 109);
