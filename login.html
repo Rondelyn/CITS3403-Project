@@ -87,19 +87,20 @@
           <!--This is the password box-->
           <div class="create password">
             <label for="Password" class="form-label">Password</label>
-            <input type="password" class="form-control" id="Password">
+            <input type="Password" class="form-control" id="Password">
           </div>
 
           <!--This is the check box to agree to the terms of service-->
           <div class="agreeterms">
             <input type="checkbox" class="form-check-input" id="termsandconditions" aria-describedby="termsconditions">
             <label class="form-check-label" for="termsandconditions">I agree to the terms of use</label>
-            <div id="termsconditions" class="form-text">you agree to user condiditons</div>
+            <div id="termsandconditions" class="form-text">you agree to user condiditons</div>
           </div>
           <br>
           <!--This is the submit buttion-->
-          
-          <button type="create user" name = 'create account' id = 'create' class="btn btn-primary">sign up</button>          
+          <button type="submit button" name = 'submit' id = 'submit' class="btn btn-primary">sign up</button> 
+                   
+                 
           
 
         </form>
@@ -115,7 +116,7 @@
         
       <!--validats form inputs, retuns yay is for submits are ok. Need to add ajax-->
       <script>
-        
+
         $(document).ready(function(){ 
           $('#submit').click(function(event){
             event.preventDefault();
