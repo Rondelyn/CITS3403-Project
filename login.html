@@ -19,6 +19,8 @@
           padding-top: 15%;
 
         }
+
+        
         </style>
     </head>
     <body>
@@ -48,8 +50,10 @@
             </div>
           </div>
         </nav>
-      <!--This is the form-->
-        <form id = 'login form'>
+
+      <!--This is the login form-->
+      <div id = 'login form' name = 'login form'>
+        <form id = 'login'>
           <!--This is the username box-->
           <div class="enterusername">
             <label for="InputUsername" class="form-label">Username</label>
@@ -68,11 +72,61 @@
             <label class="form-check-label" for="termsandconditions">I agree to the terms of use</label>
             <div id="termsconditions" class="form-text">you agree to only post pg things to the website or you get removed</div>
           </div>
+          <br>
           <!--This is the submit buttion-->
-          <button type="submit button" name = 'submit' id = 'submit' class="btn btn-primary">login</button>
+          <button type="submit button" name = 'submit' id = 'submit' class="btn btn-primary">login</button>          
+
         </form>
+        <br>
+        <!--This is the button to go to the creat user page-->
+        <div style="text-align: center">
+        <button type="toggle button"  name = 'create account' id = 'create' class="btn btn-outline-primary">havn't signed up yet?</button> 
+        </div>
+      </div>
+
+      <!--This is the singup form-->
+      <div id = 'signup form' name = 'signup form' style.display="none">
         
+        <form id = 'signup' >
+          
+          <!--This is the username box-->
+          <div class="createusername">
+            <label for="InputUsername" class="form-label">create username</label>
+            <input type="Username" class="form-control" id="InputUsername">
+            
+          </div><br>
+          <!--This is the password box-->
+          <div class="create password">
+            <label for="Password" class="form-label">Password</label>
+            <input type="password" class="form-control" id="Password">
+          </div>
+
+          <!--This is the check box to agree to the terms of service-->
+          <div class="agreeterms">
+            <input type="checkbox" class="form-check-input" id="termsandconditions" aria-describedby="termsconditions">
+            <label class="form-check-label" for="termsandconditions">I agree to the terms of use</label>
+            <div id="termsconditions" class="form-text">you agree to user condiditons</div>
+          </div>
+          <br>
+          <!--This is the submit buttion-->
+          
+          <button type="create user" name = 'create account' id = 'create' class="btn btn-primary">sign up</button>          
+          
+
+        </form>
+        <br>
+        <!--This is the button to go to the login user page-->
+        <div style="text-align: center">
+        <button type="toggle button" name = 'haveaccount' id = 'haveaccount' class="btn btn-outline-primary"  >have an account?</button> 
+        </div>
+      </div>
+
+
+
+        
+      <!--validats form inputs, retuns yay is for submits are ok. Need to add ajax-->
       <script>
+        
         $(document).ready(function(){ 
           $('#submit').click(function(event){
             event.preventDefault();
@@ -99,9 +153,31 @@
             
           })
         })
-      
+        
+
       </script>
       
+
+      <!--switchs between forms-->
+      <script>
+
+      document.getElementById("login form").addEventListener("click", showsignup);
+      
+      function showsignup(){
+        document.getElementById('signup form').style.display="block";
+        document.getElementById('login form').style.display="none"; 
+      }
+
+      document.getElementById("signup form").addEventListener("click", showlogin);
+      
+      function showlogin(){
+        document.getElementById('login form').style.display="block";
+        document.getElementById("signup form").style.display="none"; 
+      }
+
+      </script>
+
+
       <!--This is the js used by bootstrap 5 and the ajax link. Please keep this at the bottom before /body-->
       <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
       <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
