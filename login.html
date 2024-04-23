@@ -63,7 +63,7 @@
           </div>
           <br>
           <!--This is the submit buttion-->
-          <button type="submit button" name = 'submit' id = 'submit' class="btn btn-primary">login</button>          
+          <button onclick = "validatelogin()" type="submit button" name = 'submit' id = 'submit' class="btn btn-primary">login</button>          
 
         </form>
         <br>
@@ -81,24 +81,24 @@
           <!--This is the username box-->
           <div class="createusername">
             <label for="InputUsername" class="form-label">create username</label>
-            <input type="Username" class="form-control" id="InputUsername">
+            <input type="Username" class="form-control" id="signInputUsername">
             
           </div><br>
           <!--This is the password box-->
           <div class="create password">
             <label for="Password" class="form-label">Password</label>
-            <input type="Password" class="form-control" id="Password">
+            <input type="Password" class="form-control" id="signPassword">
           </div>
 
           <!--This is the check box to agree to the terms of service-->
           <div class="agreeterms">
-            <input type="checkbox" class="form-check-input" id="termsandconditions" aria-describedby="termsconditions">
+            <input type="checkbox" class="form-check-input" id="signtermsandconditions" aria-describedby="termsconditions">
             <label class="form-check-label" for="termsandconditions">I agree to the terms of use</label>
-            <div id="termsandconditions" class="form-text">you agree to user condiditons</div>
+            <div id="signtermsandconditions" class="form-text">you agree to user condiditons</div>
           </div>
           <br>
           <!--This is the submit buttion-->
-          <button type="submit button" name = 'submit' id = 'submit' class="btn btn-primary">sign up</button> 
+          <button onclick = "validatesignup()" type="submit button" name = 'submit' id = 'submit' class="btn btn-primary">sign up</button> 
                    
                  
           
@@ -117,10 +117,9 @@
       <!--validats form inputs, retuns yay is for submits are ok. Need to add ajax-->
       <script>
 
-        $(document).ready(function(){ 
-          $('#submit').click(function(event){
-            event.preventDefault();
-            var username = $('#InputUsername').val();
+        function validatelogin(){
+          event.preventDefault();
+          var username = $('#InputUsername').val();
             var password = $('#Password').val();
             var termsagreed = $('#termsandconditions').is(':checked');
 
@@ -138,11 +137,37 @@
             
             alert("yay");
             return;
+        }
+
+        function validatesignup(){
+          event.preventDefault();
+          var username = $('#signInputUsername').val();
+            var password = $('#signPassword').val();
+            var termsagreed = $('#signtermsandconditions').is(':checked');
+
+           
+            if (username === '' || password === ''){
+              alert("username or password is missing")
+              return;
+            }
+
+            if (password.length <= 4){
+              alert("password must have more than 4 characters")
+              return;
+
+            }
             
 
+            if (!termsagreed){
+              alert("agree to terms and conditions or else");
+              return;
+              
+            }
             
-          })
-        })
+            showlogin();
+            return;
+        }
+
         
 
       </script>
