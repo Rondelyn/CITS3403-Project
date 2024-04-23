@@ -1,42 +1,104 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
     <head>
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <title></title>
-        <meta name="description" content="">
+        <title>Temp Title</title>
+        <meta name="description" content="temporary desc.">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <!--This is the bootstrap 5 style sheet. Make sure it is above all other style sheets-->
+        <!--bootstrap icon link-->
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">       
+        <!--Bootstrap 5 link--> 
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+        <!--Link to custom css-->
         <link rel="stylesheet" href="main.css">
+        <!--Link to custom javascript-->
         <script src="main.js"></script>
     </head>
     <body>
-      <!--This is the navigation bar-->
-      <nav class="navbar navbar-expand-md navbar-dark fixed-top rounded-bottom bg-colour">
-          <div class="container-fluid">
-            <a class="navbar-brand">Logo</a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#collapsibleNavbar">
-              <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse justify-content-end" id="collapsibleNavbar">
-              <ul class="navbar-nav">
-                <li class="nav-item pill">
-                  <a class="nav-link disabled" href="landingPg.html">Home</a>
-                </li>
-                <li class="nav-item pill">
-                  <a class="nav-link" href="findRequest.html">Feed</a>
-                </li>
-                <li class="nav-item pill">
-                  <a class="nav-link" href="createRequest.html">Post</a>
-                </li>    
-                <li class="nav-item pill">
-                  <a class="nav-link" href="login.html">Login</a>
-                </li> 
-              </ul>
+      <main>
+          <!--This is the navigation bar-->
+        <nav class="navbar navbar-expand-sm navbar-dark fixed-top rounded-bottom bg-colour">
+            <div class="container-fluid">
+              <a class="navbar-brand" id="logo">Name of site</a>
+              <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#collapsibleNavbar">
+                <span class="navbar-toggler-icon"></span>
+              </button>
+              <div class="collapse navbar-collapse justify-content-end" id="collapsibleNavbar">
+                <ul class="navbar-nav">
+                  <li class="nav-item pill">
+                    <a class="nav-link disabled" href="landingPg.html"><i class="bi bi-house"></i> Home</a>
+                  </li>
+                  <li class="nav-item pill">
+                    <a class="nav-link" href="findRequest.html">Feed</a>
+                  </li>
+                  <li class="nav-item pill">
+                    <a class="nav-link" href="createRequest.html">Post</a>
+                  </li>    
+                  <li class="nav-item pill">
+                    <a class="nav-link" href="login.html">Login</a>
+                  </li> 
+                </ul>
+              </div>
             </div>
+        </nav>
+        
+        <br>
+
+        <!--Content container that defines the white box area on site. Fills whole space on small devices-->
+        <div class="container-sm mt-5 mb-3 pt-1 pb-3 bodyFormat">
+          <!--Example Content-->
+          <h1>Some welcome message and intro</h1>
+          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi iaculis mi fringilla mi gravida varius. Proin vel scelerisque ex. Vivamus nec posuere nulla. Nullam viverra dictum purus vel accumsan. Morbi elit velit, aliquet vitae laoreet eget, consectetur vestibulum libero. Ut urna lectus, sodales in eleifend at, sollicitudin et elit. Pellentesque tincidunt aliquet sem, ut pharetra est pellentesque id. Duis id tincidunt ligula, nec pretium sem. Nulla sagittis pulvinar iaculis. Ut et arcu id est semper laoreet vel vel enim. Duis accumsan tempor risus, non blandit risus venenatis dapibus.</p>
+          <br>
+          <p>Donec sit amet eleifend massa. Cras mollis, urna vel fringilla euismod, orci lacus rhoncus odio, at euismod neque elit in metus. Proin aliquet eget tortor sit amet tristique. Duis maximus eu nisl in dignissim. Vivamus sodales, nibh id tincidunt varius, turpis nunc sodales elit, non imperdiet odio ipsum porta nunc. Mauris volutpat justo mauris, sit amet molestie purus molestie non. Vestibulum sed cursus enim. Curabitur gravida varius porttitor. Nunc varius sapien eu consectetur feugiat. Aliquam erat volutpat. Aenean ut vestibulum massa. Phasellus fermentum venenatis finibus.</p>
+          
+          <h2 class="d-flex justify-content-center">EG. Top 5 posts or something</h2>
+
+          <!--Slideshow container-->
+          <div id="examples" class="carousel carousel-dark slide mb-3">
+            <!--Slideshow bottom button tabs-->
+            <div class="carousel-indicators mx-auto">
+              <button type="button" data-bs-target="#examples" data-bs-slide-to="0" class="active"></button>
+              <button type="button" data-bs-target="#examples" data-bs-slide-to="1"></button>
+              <button type="button" data-bs-target="#examples" data-bs-slide-to="2"></button>
+              <button type="button" data-bs-target="#examples" data-bs-slide-to="3"></button>
+            </div>
+          
+            <!-- The slideshow/carousel -->
+            <div class="carousel-inner">
+              <div class="carousel-item active">
+                <img src="/example-imgs/img1.jpg" alt="Los Angeles" class="d-block mx-auto scaled-img img-thumbnail">
+              </div>
+              <div class="carousel-item">
+                <img src="example-imgs/img2.JPG" alt="Chicago" class="d-block mx-auto scaled-img img-thumbnail">
+              </div>
+              <div class="carousel-item">
+                <img src="/example-imgs/img3.jpg" alt="New York" class="d-block mx-auto scaled-img img-thumbnail">
+              </div>
+              <div class="carousel-item">
+                <img src="/example-imgs/img4.jpg" alt="New York" class="d-block mx-auto scaled-img img-thumbnail">
+              </div>
+            </div>
+          
+            <!-- Left and right controls/icons -->
+            <button class="carousel-control-prev" type="button" data-bs-target="#examples" data-bs-slide="prev">
+              <span class="carousel-control-prev-icon dark"></span>
+            </button>
+            <button class="carousel-control-next" type="button" data-bs-target="#examples" data-bs-slide="next">
+              <span class="carousel-control-next-icon"></span>
+            </button>
           </div>
-      </nav>
+
+          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi iaculis mi fringilla mi gravida varius. Proin vel scelerisque ex. Vivamus nec posuere nulla. Nullam viverra dictum purus vel accumsan. Morbi elit velit, aliquet vitae laoreet eget, consectetur vestibulum libero. Ut urna lectus, sodales in eleifend at, sollicitudin et elit. Pellentesque tincidunt aliquet sem, ut pharetra est pellentesque id. Duis id tincidunt ligula, nec pretium sem. Nulla sagittis pulvinar iaculis. Ut et arcu id est semper laoreet vel vel enim. Duis accumsan tempor risus, non blandit risus venenatis dapibus.</p>
+
+
+        </div>
+        <footer class="m-1 text-muted end-0 d-flex justify-content-end">
+         <small>&copy; 2024</small> 
+        </footer>
+      </main>
+      
 
       <!--This is the js used by bootstrap 5. Please keep this at the bottom before /body-->
       <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>

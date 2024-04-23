@@ -1,3 +1,16 @@
+
+/* this is to define the space taken up by the logo to keep the navbar at a fixed height */
+#logo {
+    margin: 4px 2px;
+}
+
+/* this is the main body container's styling */
+.bodyFormat {
+    background-color: white;
+    border-color: ghostwhite;
+    border-radius: 10px;
+}
+
 /* Controls the background colour of the navigation bar */
 .bg-colour {
     background-color: rgb(72, 77, 109);
@@ -19,6 +32,15 @@
 .pill:hover {
     background-color: rgb(44, 54, 94);
 }
+
+/* used to define the sizes of the images on the landing page's img gallery */
+.scaled-img {
+    border-radius: 3%;
+    height: 500px; 
+    object-fit: cover;
+}
+
+
 
 body {
     background-color: aliceblue;
