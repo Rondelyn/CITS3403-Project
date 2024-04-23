@@ -12,6 +12,7 @@
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
         <!--Link to custom css-->
         <link rel="stylesheet" href="main.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
         <!--Link to custom javascript-->
         <script src="main.js"></script>
     </head>
@@ -43,22 +44,78 @@
           </div>
         </nav>
 
+      <!--This is the login form-->
+      <div id = 'login form' name = 'login form'>
+        <form id = 'login'>
+          <!--This is the username box-->
+          <div class="enterusername">
+            <label for="InputUsername" class="form-label">Username</label>
+            <input type="Username" class="form-control" id="InputUsername">
+            
+          </div><br>
+          <!--This is the password box-->
+          <div class="enterpassword">
+            <label for="Password" class="form-label">Password</label>
+            <input type="password" class="form-control" id="Password">
+          </div>
+
+          <!--This is the check box to agree to the terms of service-->
+          <div class="agreeterms">
+            <input type="checkbox" class="form-check-input" id="termsandconditions" aria-describedby="termsconditions">
+            <label class="form-check-label" for="termsandconditions">I agree to the terms of use</label>
+            <div id="termsconditions" class="form-text">you agree to only post pg things to the website or you get removed</div>
+          </div>
+          <br>
+          <!--This is the submit buttion-->
+          <button onclick = "validatelogin()" type="submit button" name = 'submit' id = 'submit' class="btn btn-primary">login</button>          
+
+        </form>
         <br>
-
-        <!--Content container that defines the white box area on site. Fills whole space on small devices-->
-        <div class="container-sm mt-5 mb-3 pt-1 pb-3 bodyFormat">
-          
-          
-
+        <!--This is the button to go to the creat user page-->
+        <div style="text-align: center">
+        <button onclick="showsignup()" type="toggle button"  name = 'create account' id = 'create' class="btn btn-outline-primary">havn't signed up yet?</button> 
         </div>
+      </div>
 
-        <!--temp footer-->
-        <footer class="m-1 text-muted end-0 d-flex justify-content-end">
-         <small>&copy; 2024</small> 
-        </footer>
-      </main>
+      <!--This is the singup form-->
+      <div id = 'signup form' name = 'signup form' style="display: none;">
+        
+        <form id = 'signup' >
+          
+          <!--This is the username box-->
+          <div class="createusername">
+            <label for="InputUsername" class="form-label">create username</label>
+            <input type="Username" class="form-control" id="signInputUsername">
+            
+          </div><br>
+          <!--This is the password box-->
+          <div class="create password">
+            <label for="Password" class="form-label">Password</label>
+            <input type="Password" class="form-control" id="signPassword">
+          </div>
 
-      <!--This is the js used by bootstrap 5. Please keep this at the bottom before /body-->
+          <!--This is the check box to agree to the terms of service-->
+          <div class="agreeterms">
+            <input type="checkbox" class="form-check-input" id="signtermsandconditions" aria-describedby="termsconditions">
+            <label class="form-check-label" for="termsandconditions">I agree to the terms of use</label>
+            <div id="signtermsandconditions" class="form-text">you agree to user condiditons</div>
+          </div>
+          <br>
+          <!--This is the submit buttion-->
+          <button onclick = "validatesignup()" type="submit button" name = 'submit' id = 'submit' class="btn btn-primary">sign up</button> 
+                   
+                 
+          
+
+        </form>
+        <br>
+        <!--This is the button to go to the login user page-->
+        <div style="text-align: center">
+        <button onclick="showlogin()" type="toggle button" name = 'haveaccount' id = 'haveaccount' class="btn btn-outline-primary"  >have an account?</button> 
+        </div>
+      </div>
+      <!--This is the js used by bootstrap 5 and the ajax link. Please keep this at the bottom before /body-->
       <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+      <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     </body>
 </html>

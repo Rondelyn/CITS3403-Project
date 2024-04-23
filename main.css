@@ -45,3 +45,9 @@
 body {
     background-color: aliceblue;
 }
+
+form{
+    width: fit-content;
+    margin: auto;
+    padding-top: 15%;
+}
