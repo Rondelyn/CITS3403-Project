@@ -51,52 +51,67 @@
         <!--Content container that defines the white box area on site. Fills whole space on small devices-->
         <div class="container-sm mt-5 mb-3 pt-1 pb-3 bodyFormat">
 
-          <form>
-            <!--title of post-->
-            <div>
-              <label for= "postTitle">Title</label>
-              <input type ="text" id="postTitle">
-            </div>
-            
-            <!--uploading photos-->
-            <div class="mb-3">
-              <label for="imgUpload" class="form-label">upload images</label>
-              <input class="form-control" type="file" id="imgUpload" accept="image/*" multiple>
-            </div>
+            <h1>Create New Post</h1>
 
-            <div class = "upload-img">
-              <!-- image here -->
-            </div>
-        
-            <!--list of checkboxes-->
-            <div>
-              <label for = "TagList">Tag List</label>
-              <ul id = "TagList">
-                <li><input type="checkbox" id = "tag1"> checkbox 1</li>
-                <li><input type="checkbox" id = "tag2"> checkbox 2</li>
-                <li><input type="checkbox" id = "tag3"> checkbox 3</li>
-                <li><input type="checkbox" id = "tag4"> checkbox 4</li>
-              </ul>
-            </div>
+          <div id = "Request form">
+              <form id = "Request">
 
-            <input type="submit" value="Post">
+                <div class = "row">
+                  <div class = "col-sm-8">
+                    <!--title of post-->
+                    <div class = "requestTitle">
+                      <label for="title" class = "form-label">Post Title</label>
+                      <input type ="text" class="form-control" id="title">
+                    </div><br>
+              
+                    <!--uploading photos-->
+                    <div class="imgUploadInput">
+                      <label for="imgUpload" class="form-label">Upload Images</label>
+                      <input class="form-control" type="file" id="imgUpload" accept="image/*" multiple>
+                    </div>
 
+                    <div class = "upload-img">
+                      <!-- image here -->
+                    </div>   
+                  </div>
+
+                  <div class = "col-sm-4 tagListInput">     
+                    <!--list of checkboxes-->
+                    <label for = "tagList">Tag List</label>
+                    <p><i>Description: select categories to descibe outfit</i></p>
+                    <ul class = "list-group" id = "tagList">
+                      <li><input type="checkbox" id = "tag1"> checkbox 1</li>
+                      <li><input type="checkbox" id = "tag2"> checkbox 2</li>
+                      <li><input type="checkbox" id = "tag3"> checkbox 3</li>
+                      <li><input type="checkbox" id = "tag4"> checkbox 4</li>
+                    </ul>
+                    </div>
+                </div>
+                
+                <!--post button-->
+                <br>
+                <div class = "postButton">
+                  <input type="submit" class="btn btn-primary " value="Post">
+                </div>
           </form>
-
-          <script>$("#imgUpload").change(function () {
-            console.log("file changed")
-            imagePreview(this);
-          })
-
-          $(window).click(function(event){
-            if($(event.target).hasClass('remove-btn')){
-            $(event.target).parent().remove()
-          }
-        })
-        
-        </script>
-
         </div>
+          
+      <script>
+        //preview the images uploaded
+        $("#imgUpload").change(function () {
+        console.log("file changed")
+        imagePreview(this);
+        })
+
+        //remove images
+        $(window).click(function(event){
+        if($(event.target).hasClass('btn-close')){
+          $(event.target).parent().remove()
+        }
+        })  
+      </script>
+
+      </div>
 
         <!--temp footer-->
         <footer class="m-1 text-muted end-0 d-flex justify-content-end">

@@ -51,3 +51,32 @@ form{
     margin: auto;
     padding-top: 15%;
 }
+
+
+/* create Request styling */
+
+#tagList {
+    list-style-type: none;
+}
+
+h1{
+    text-align: center;
+}
+.upload-img .container {
+    position: relative;
+    width: 100%;
+  }
+  
+ .upload-img .container img {
+    width: 100%;
+    height: auto;
+    padding:4px;
+  }
+  
+ .upload-img .container .btn-close {
+    position: absolute;
+    top: 5px;
+    right: 30px;
+    
+  }
+
