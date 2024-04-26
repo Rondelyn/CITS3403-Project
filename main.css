@@ -69,11 +69,6 @@ body {
   box-sizing: border-box;
   font-family: "Poppins", sans-serif;
 }
-body {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
 .rating-box {
   position: relative;
   background: #fff;
