@@ -4,6 +4,10 @@
     margin: 4px 2px;
 }
 
+.lg-form {
+    max-width: 500px;
+}
+
 /* this is the main body container's styling */
 .bodyFormat {
     background-color: white;
@@ -45,14 +49,6 @@
 body {
     background-color: aliceblue;
 }
-
-form{
-    width: fit-content;
-    margin: auto;
-    padding-top: 15%;
-}
-
-
 
 /* feed css */
 .feed_images {
