@@ -62,3 +62,32 @@ function validatesignup(){
     showlogin();
     return;
 }
+
+
+function imagePreview(input){
+  let filesAmount = input.files.length;
+  $('upload-img').html("");
+
+  for(let i = 0; i < filesAmount; i++){
+  
+    let reader = new FileReader();
+    reader.onload = function(event){
+        let html = `
+            <div class = "container">
+                <img src = "${event.target.result}" class ="col img-fluid rounded">
+                <button type = "button" class = "btn-close">                 
+            </div>
+        `;
+        $(".upload-img").append(html);
+    }
+    reader.readAsDataURL(input.files[i]);
+  }
+
+  $('.upload-img').css('padding', "20px");
+}
+
+
+
+
+
+
