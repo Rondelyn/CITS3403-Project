@@ -4,6 +4,10 @@
     margin: 4px 2px;
 }
 
+.lg-form {
+    max-width: 500px;
+}
+
 /* this is the main body container's styling */
 .bodyFormat {
     background-color: white;
@@ -39,7 +43,6 @@
     height: 500px; 
     object-fit: cover;
 }
-
 
 
 body {
@@ -80,3 +83,50 @@ h1{
     
   }
 
+/* feed css */
+.feed_images {
+    object-fit: cover;
+    width: 530px;
+    height: 530px;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+
+/* Import Google font - Poppins */
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700&display=swap");
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Poppins", sans-serif;
+}
+.rating-box {
+  position: relative;
+  background: #fff;
+  padding: 25px 50px 35px;
+  border-radius: 25px;
+  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.05);
+}
+.rating-box header {
+  font-size: 22px;
+  color: #dadada;
+  font-weight: 500;
+  margin-bottom: 20px;
+  text-align: center;
+}
+.rating-box .stars {
+  display: flex;
+  align-items: center;
+  gap: 55px;
+}
+.stars i {
+  color: #0d0404;
+  font-size: 35px;
+  cursor: pointer;
+  transition: color 0.2s ease;
+}
+.stars i.active {
+  color: #ee0505;
+}
