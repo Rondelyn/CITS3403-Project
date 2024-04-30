@@ -67,8 +67,11 @@
         <div class="container-sm mt-5 mb-3 pt-1 pb-3 bodyFormat">
           <div class="feed"> 
             <!--trying to change feed branch-->
-            <p> @usename of user</p>
-            <img class = "feed_images"src="https://i.pinimg.com/originals/e2/5b/af/e25baf3b45328c069181aa7a2f723486.jpg"> <br>
+
+            {% for image in images%}
+            
+            <p> {{user_id}}</p>
+            <img class = "feed_images"src="{{image_url}}"> <br>
 
             <div class="rating-box">
               <header>Rate my fit !</header>
@@ -82,67 +85,8 @@
             </div>
 
             <br>
-
-            <p> @usename of user</p>
-            <img class = "feed_images"src="https://i.pinimg.com/originals/85/64/b8/8564b8ed9eb207042010c46ab0bdf973.jpg">
-
-            <div class="rating-box">
-              <header>Rate my fit !</header>
-              <div class="stars">
-                <i class="fa-solid fa-star"></i>
-                <i class="fa-solid fa-star"></i>
-                <i class="fa-solid fa-star"></i>
-                <i class="fa-solid fa-star"></i>
-                <i class="fa-solid fa-star"></i>
-              </div>
-            </div>
-
-
-
-            <p> @usename of user</p>
-            <img class="feed_images" src="https://i.pinimg.com/564x/04/f6/88/04f68836a0efb96d1c1c04e52b7aab86.jpg">
-
-            <div class="rating-box">
-              <header>Rate my fit !</header>
-              <div class="stars">
-                <i class="fa-solid fa-star"></i>
-                <i class="fa-solid fa-star"></i>
-                <i class="fa-solid fa-star"></i>
-                <i class="fa-solid fa-star"></i>
-                <i class="fa-solid fa-star"></i>
-              </div>
-            </div>
-
-            <p> @usename of user</p>
-            <img class="feed_images" src="https://i.pinimg.com/564x/16/ae/83/16ae832552ff673fc5496e623f562200.jpg">
-
-            <div class="rating-box">
-              <header>Rate my fit !</header>
-              <div class="stars">
-                <i class="fa-solid fa-star"></i>
-                <i class="fa-solid fa-star"></i>
-                <i class="fa-solid fa-star"></i>
-                <i class="fa-solid fa-star"></i>
-                <i class="fa-solid fa-star"></i>
-              </div>
-            </div>
-
-            <p> @usename of user</p>
-            <img class="feed_images" src="https://i.pinimg.com/736x/cf/1c/f6/cf1cf679e2720f6d3de6c9d3ba18162c.jpg">
-
-            <div class="rating-box">
-              <header>Rate my fit !</header>
-              <div class="stars">
-                <i class="fa-solid fa-star"></i>
-                <i class="fa-solid fa-star"></i>
-                <i class="fa-solid fa-star"></i>
-                <i class="fa-solid fa-star"></i>
-                <i class="fa-solid fa-star"></i>
-              </div>
-            </div>
-
-
-            
+            {% endfor %}
+           
 
           </div>
         </div>
