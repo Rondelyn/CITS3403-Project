@@ -86,11 +86,12 @@ h1{
 /* feed css */
 .feed_images {
     object-fit: cover;
-    width: 530px;
+    /*width: 530px;*/
     height: 530px;
     display: block;
     margin-left: auto;
     margin-right: auto;
+    border-radius: 1%;
   }
 
 
@@ -116,17 +117,24 @@ h1{
   margin-bottom: 20px;
   text-align: center;
 }
+
 .rating-box .stars {
   display: flex;
   align-items: center;
   gap: 55px;
 }
-.stars i {
+.rating-stars {
+  cursor: pointer;
+}
+
+.star {
   color: #0d0404;
   font-size: 35px;
   cursor: pointer;
   transition: color 0.2s ease;
 }
-.stars i.active {
-  color: #ee0505;
+
+
+.star.active {
+  color: red;
 }
