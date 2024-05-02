@@ -22,12 +22,12 @@ def loginform():
 #find request page/ posts
 @flaskApp.route("/findRequest")
 def posts():
-    return render_template("findRequest.html")
+    posts = image.query.all()
+    return render_template("findRequest.html", images=posts )
 
 #createResquest/ create post
 @flaskApp.route("/createRequest")
-def post():
-    posts = image.query.all()
-    return render_template("createRequest.html", images=posts)
+def images():   
+    return render_template("createRequest.html")
 
 

@@ -56,9 +56,7 @@
         
         <br>
 
-        
-
-
+      
 
 
 
@@ -68,10 +66,10 @@
           <div class="feed"> 
             <!--trying to change feed branch-->
 
-            {% for image in images%}
             
-            <p> {{user_id}}</p>
-            <img class = "feed_images"src="{{image_url}}"> <br>
+            {% for image in images%}
+            <p> {{image.user_id}} </p>
+            <img class = "feed_images"src="{{image.image_url}}"> <br>
 
             <div class="rating-box">
               <header>Rate my fit !</header>
@@ -86,7 +84,6 @@
 
             <br>
             {% endfor %}
-           
 
           </div>
         </div>
