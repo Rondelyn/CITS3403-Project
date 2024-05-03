@@ -87,7 +87,46 @@ function imagePreview(input){
 }
 
 
+function removeActiveStars(container) {
+  const stars = container.querySelectorAll(".star");
+  stars.forEach(function(star) {
+      star.classList.remove("active");
+  });
+}
+
+function lightUpPreviousStars(star) {
+  const stars = star.parentNode.querySelectorAll(".star");
+  let selected = false;
+  for (let i = stars.length - 1; i >= 0; i--) {
+      const s = stars[i];
+      if (s === star) {
+          selected = true;
+      }
+      if (selected) {
+          s.classList.add("active");
+      } else {
+          s.classList.remove("active");
+      }
+  }
+}
 
 
+document.addEventListener("DOMContentLoaded", function() {
+  const stars = document.querySelectorAll(".star");
 
+  stars.forEach(function(star) {
+      star.addEventListener("click", function() {
+          const value = this.getAttribute("data-value");
+          const imageId = this.closest(".rating-box").getAttribute("data-image-id");
 
+          // Send the rating to the server
+          // saveRating(imageId, value);
+
+          // Update UI
+          const container = this.closest(".stars");
+          removeActiveStars(container);
+          this.classList.add("active");
+          lightUpPreviousStars(this);
+      });
+  });
+}); 
