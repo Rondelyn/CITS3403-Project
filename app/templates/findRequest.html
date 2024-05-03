@@ -67,7 +67,7 @@
         <!--Content container that defines the white box area on site. Fills whole space on small devices-->
           <div class="feed"> 
             <!--trying to change feed branch-->
-
+            {% for image in images %}
             <div class="rating-box container-sm mb-3 pt-1 pb-3 bodyFormat">
               <p> {{image.user_id}}</p>
               <img class = "d-block mx-auto feed_images" src="{{image.image_url}}"> <br>
