@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title>Temp Title</title>
+        <meta name="description" content="temporary desc.">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <!--bootstrap icon link-->
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">       
+        <!--Bootstrap 5 link--> 
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+        <!--Link to custom css-->
+        <link rel="stylesheet" href="/static/main.css">
+
+
+        <!-- links for the rating box  -->
+
+        <!-- Fontawesome CDN Link -->
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css" />
+       <script src="/static/script.js" defer></script>
+
+
+
+        <!--Link to custom javascript-->
+        <script src="/static/main.js"></script>
+    </head>
+    <body>
+        <!--This is the navigation bar-->
+        <nav class="navbar navbar-expand-sm navbar-dark fixed-top rounded-bottom bg-colour">
+          <div class="container-fluid">
+            <a class="navbar-brand" id="logo">Logo</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#collapsibleNavbar">
+              <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse justify-content-end" id="collapsibleNavbar">
+              <ul class="navbar-nav">
+                <li class="nav-item pill">
+                  <a class="nav-link" href="landingPg"><i class="bi bi-house-fill"></i> Home</a>
+                </li>
+                <li class="nav-item pill">
+                  <a class="nav-link disabled" href="findRequest">Feed</a>
+                </li>
+                <li class="nav-item pill">
+                  <a class="nav-link" href="createRequest">Post</a>
+                </li>    
+                <li class="nav-item pill">
+                  <a class="nav-link" href="login">Login</a>
+                </li> 
+              </ul>
+            </div>
+          </div>
+        </nav>  
+          
+      <main>    
+        
+        <!-- These are used for spacing beneath navbar-->
+        <br>  
+        <div class="container-sm mb-5"></div>
+        
+
+
+
+
+
+
+
+        <!--Content container that defines the white box area on site. Fills whole space on small devices-->
+          <div class="feed"> 
+            <!--trying to change feed branch-->
+
+            <div class="rating-box container-sm mb-3 pt-1 pb-3 bodyFormat">
+              <p> {{image.user_id}}</p>
+              <img class = "d-block mx-auto feed_images" src="{{image.image_url}}"> <br>
+
+
+            
+              <header>Rate my fit !</header>
+              <div class="stars container-sm justify-content-center pb-2">
+                <span class="star" data-value="1"><i class="fas fa-star"></i></span>
+                <span class="star" data-value="2"><i class="fas fa-star"></i></span>
+                <span class="star" data-value="3"><i class="fas fa-star"></i></span>
+                <span class="star" data-value="4"><i class="fas fa-star"></i></span>
+                <span class="star" data-value="5"><i class="fas fa-star"></i></span>
+              </div>
+            </div>
+
+
+            <br>
+            {% endfor %}
+
+
+          </div>
+        </div>
+
+      </main>
+      <!--temp footer-->
+      <footer class="m-1 text-muted end-0 d-flex justify-content-end">
+        <small>&copy; 2024</small> 
+      </footer>
+      <!--This is the js used by bootstrap 5. Please keep this at the bottom before /body-->
+      <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+    </body>
+    <script>
+      document.addEventListener("DOMContentLoaded", function() {
+            const stars = document.querySelectorAll(".star");
+
+            stars.forEach(function(star) {
+                star.addEventListener("click", function() {
+                    const value = this.getAttribute("data-value");
+                    const imageId = this.closest(".rating-box").getAttribute("data-image-id");
+
+                    // Send the rating to the server
+                    // saveRating(imageId, value);
+
+                    // Update UI
+                    const container = this.closest(".stars");
+                    removeActiveStars(container);
+                    this.classList.add("active");
+                    lightUpPreviousStars(this);
+                });
+            });
+        });
+
+        function removeActiveStars(container) {
+            const stars = container.querySelectorAll(".star");
+            stars.forEach(function(star) {
+                star.classList.remove("active");
+            });
+        }
+
+        function lightUpPreviousStars(star) {
+            const stars = star.parentNode.querySelectorAll(".star");
+            let selected = false;
+            for (let i = stars.length - 1; i >= 0; i--) {
+                const s = stars[i];
+                if (s === star) {
+                    selected = true;
+                }
+                if (selected) {
+                    s.classList.add("active");
+                } else {
+                    s.classList.remove("active");
+                }
+            }
+        }
+    </script>
+</html>
