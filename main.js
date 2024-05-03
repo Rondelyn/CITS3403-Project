@@ -1,16 +1,16 @@
-/* Used to toggle the login page to the signup view */
+// Used to toggle the login page to the signup view 
 function showsignup(){
     document.getElementById('signup form').style.display="block";
     document.getElementById('login form').style.display="none"; 
 }
   
-/* Used to toggle the login page to the login view */
+// Used to toggle the login page to the login view 
 function showlogin(){
     document.getElementById('login form').style.display="block";
     document.getElementById("signup form").style.display="none"; 
 }
 
-/* Function to validate login criteria */
+// Function to validate login criteria
 function validatelogin(){
   event.preventDefault();
   var username = $('#InputUsername').val();
@@ -33,7 +33,7 @@ function validatelogin(){
     return;
 }
 
-/* Function to validate signup criteria */
+// Function to validate signup criteria 
 function validatesignup(){
   event.preventDefault();
   var username = $('#signInputUsername').val();
@@ -86,7 +86,7 @@ function imagePreview(input){
   $('.upload-img').css('padding', "20px");
 }
 
-
+// Used to remove stars
 function removeActiveStars(container) {
   const stars = container.querySelectorAll(".star");
   stars.forEach(function(star) {
@@ -94,6 +94,7 @@ function removeActiveStars(container) {
   });
 }
 
+// Used to light up stars behind the selected star
 function lightUpPreviousStars(star) {
   const stars = star.parentNode.querySelectorAll(".star");
   let selected = false;
@@ -111,6 +112,7 @@ function lightUpPreviousStars(star) {
 }
 
 
+// Used to define star rating behaviours and call the other functions
 document.addEventListener("DOMContentLoaded", function() {
   const stars = document.querySelectorAll(".star");
 
