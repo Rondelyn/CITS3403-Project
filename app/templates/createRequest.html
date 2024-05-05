@@ -56,25 +56,26 @@
             <h1>Create New Post</h1>
 
           <div id = "Request form">
-              <form id = "Request">
+              <form id = "Request" action ="/submit" method="post">
+                {{ form.hidden_tag() }}
 
                 <div class = "row">
                   <div class = "col-sm-8">
                     <!--title of post-->
-                    <div class = "requestTitle">
-                      <label for="title" class = "form-label">Post Title</label>
-                      <input type ="text" class="form-control" id="title">
-                    </div><br>
-              
-                    <!--uploading photos-->
-                    <div class="imgUploadInput">
-                      <label for="imgUpload" class="form-label">Upload Images</label>
-                      <input class="form-control" type="file" id="imgUpload" accept="image/*" multiple>
-                    </div>
+                    
+                    {{ form.title.label}}
+                    {{ form.title (class="form-control")}}
 
-                    <div class = "upload-img">
-                      <!-- image here -->
-                    </div>   
+                    <br>
+
+
+                    <!--uploading photos-->
+                    {{ form.image.label (class="form-label")}}
+                    {{ form.image (class="form-control")}}
+
+                    <br>
+                    <div class = "upload-img"> </div>
+                    
                   </div>
 
                   <div class = "col-sm-4 tagListInput">     
@@ -92,10 +93,12 @@
                 
                 <!--post button-->
                 <br>
-                <div class = "postButton">
-                  <input type="submit" class="btn btn-primary " value="Post">
-                </div>
+                {{ form.submit() }}
+
           </form>
+          
+
+
         </div>
           
       <script>

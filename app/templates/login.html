@@ -47,34 +47,45 @@
 
         <br>
 
+
+
         <!--Content container that defines the white box area on site. Fills whole space on small devices-->
         <div class="container-sm mt-5 mb-3 pt-1 pb-3 bodyFormat">
+        {% with messages = get_flashed_messages() %}
+          {% if messages %}
+          <ul>
+            {% for message in messages %}
+              <li> {{ message }} </li>
+            {% endfor %}
+          </ul>
+          {% endif %}
+        {% endwith %}
 
           <!--This is the login form-->
           <div id = 'login form' name = 'login form'>
-            <form id = 'login' class="container-sm p-3 mb-0 m-auto lg-form">
+            <form id = 'login' class="container-sm p-3 mb-0 m-auto lg-form" action ="/submitlogin" method="post">
+              {{ form.hidden_tag() }}
+              <div>
               <!--This is the username box-->
-              <div class="enterusername">
-                <label for="InputUsername" class="form-label">Username</label>
-                <input type="Username" class="form-control lg-form" id="InputUsername">
+              {{ form.username.label (class="form-label")}}
+              {{ form.username (class="form-control")}}
                 
               </div><br>
+              <div>
               <!--This is the password box-->
-              <div class="enterpassword">
-                <label for="Password" class="form-label">Password</label>
-                <input type="password" class="form-control lg-form" id="Password">
-              </div>
+              {{ form.password.label (class="form-label")}}
+              {{ form.password (class="form-control")}}
+              </div><br>
 
               <!--This is the check box to agree to the terms of service-->
-              <div class="agreeterms">
-                <input type="checkbox" class="form-check-input" id="termsandconditions" aria-describedby="termsconditions">
-                <label class="form-check-label" for="termsandconditions">I agree to the terms of use</label>
-                <div id="termsconditions" class="form-text">You agree to only post pg things to the website or you get removed</div>
+              <div>
+              {{ form.checkbox.label (class="form-label")}}
+              {{ form.checkbox (class="form-check-input")}}
               </div>
               <br>
               <!--This is the submit buttion-->
-              <button onclick = "validatelogin()" type="submit button" name = 'log-submit' id = 'log-submit' class="btn btn-primary container-sm">Login</button>          
-
+              {{ form.submitlogin()}}
+              
             </form>
             <!--This is the button to go to the creat user page-->
             <p class="text-center">Haven't signed up yet? <b onclick="showsignup()" role="button">Create an account</b></p>
@@ -82,29 +93,30 @@
 
           <!--This is the singup form-->
           <div id = 'signup form' name = 'signup form' style="display: none;">
-            <form id = 'signup' class="container-sm p-3 mb-0 m-auto lg-form">
-              
-              <!--This is the username box-->
-              <div class="createusername">
-                <label for="InputUsername" class="form-label">Create username</label>
-                <input type="Username" class="form-control" id="signInputUsername">
-                
-              </div><br>
-              <!--This is the password box-->
-              <div class="create password">
-                <label for="Password" class="form-label">Password</label>
-                <input type="Password" class="form-control" id="signPassword">
-              </div>
+            <form id = 'signup' class="container-sm p-3 mb-0 m-auto lg-form" action ="/createuser" method="post">
 
-              <!--This is the check box to agree to the terms of service-->
-              <div class="agreeterms">
-                <input type="checkbox" class="form-check-input" id="signtermsandconditions" aria-describedby="termsconditions">
-                <label class="form-check-label" for="termsandconditions">I agree to the terms of use</label>
-                <div id="signtermsandconditions" class="form-text">You agree to user condiditons</div>
-              </div>
-              <br>
-              <!--This is the submit buttion-->
-              <button onclick = "validatesignup()" type="submit button" name = 'sign-submit' id = 'sign-submit' class="btn btn-primary container-sm">Sign up</button> 
+              <p class="text-center">Create Username and Password</p>
+              <div>
+                
+                <!--This is the username box-->
+                {{ form.username.label (class="form-label")}}
+                {{ form.username (class="form-control")}}
+                  
+                </div><br>
+                <div>
+                <!--This is the password box-->
+                {{ form.password.label (class="form-label")}}
+                {{ form.password (class="form-control")}}
+                </div><br>
+  
+                <!--This is the check box to agree to the terms of service-->
+                <div>
+                {{ form.checkbox.label (class="form-label")}}
+                {{ form.checkbox }}
+                </div>
+                <br>
+                <!--This is the submit buttion-->
+                {{ form.createuser()}}
                 
             </form>
             <!--This is the button to go to the login user page-->

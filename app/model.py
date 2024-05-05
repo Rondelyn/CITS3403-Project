@@ -18,5 +18,8 @@ class user(db.Model):
     user_id = db.Column(db.String(10), primary_key=True)
     user_password = db.Column(db.String (10), nullable=False)
 
+    def __repr__(self) -> str:
+        return f'<image {self.user_id} {self.user_password}>'    
+
     images = db.relationship(image)
 
