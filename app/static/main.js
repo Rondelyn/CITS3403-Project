@@ -39,10 +39,14 @@ document.addEventListener('DOMContentLoaded', function() {
   const storedColor = localStorage.getItem('backgroundColor');
 
   document.body.style.backgroundColor = storedColor || '#f0f8ff';
+  
+  if (colorPicker) {
+    // Only access the 'value' property if the element exists
+    colorPicker.value = storedColor || '#f0f8ff';
+    colorPicker.addEventListener('input', handleColorPickerChange);
+    colorPicker.addEventListener('input', handleColorPickerChange);
+  }
 
-  colorPicker.value = storedColor || '#f0f8ff';
-
-  colorPicker.addEventListener('input', handleColorPickerChange);
 });
 
 // Gets called whenever the value in colour picker changes and sets that value to the new stored background colour 
@@ -89,18 +93,22 @@ function redirectToSignup() {
 
 // This function determines the view of the login page
 document.addEventListener("DOMContentLoaded", function() {
-  var signup = document.body.getAttribute("data-signup");
-  
-  function showSignupForm() {
-      if (signup === 'true') {
-          showSignup();
-      } else {
-          showLogin();
+  // Check if the current page URL contains "login.html"
+  if (window.location.pathname.includes("login")) {
+      var signup = document.body.getAttribute("data-signup");
+
+      function showSignupForm() {
+          if (signup === 'true') {
+              showSignup();
+          } else {
+              showLogin();
+          }
       }
+
+      showSignupForm();
   }
-  
-  showSignupForm();
 });
+
 
 
 
