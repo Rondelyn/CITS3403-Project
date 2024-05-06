@@ -4,6 +4,12 @@
     margin: 4px 2px;
 }
 
+/* create Request styling */
+#tagList {
+  list-style-type: none;
+}
+
+/* login form width control */
 .lg-form {
     max-width: 500px;
 }
@@ -17,7 +23,7 @@
 
 /* Controls the background colour of the navigation bar */
 .bg-colour {
-    background-color: rgb(72, 77, 109);
+    background-color: rgb(34, 34, 34);
 }
 
 /* creates an invisible pill around the navigation bar buttons */
@@ -34,7 +40,24 @@
 
 /* changes the colour around the invisible pill on hover to highlight button */
 .pill:hover {
-    background-color: rgb(44, 54, 94);
+    background-color: rgb(51, 51, 51);
+}
+
+/* a tage that makes non-bold tag texts bolded */
+.bold-link {
+  font-weight: bold;
+  text-decoration: none;
+}
+
+/* feed css */
+.feed_images {
+  object-fit: cover;
+  /*width: 530px;*/
+  height: 530px;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  border-radius: 1%;
 }
 
 /* used to define the sizes of the images on the landing page's img gallery */
@@ -44,65 +67,24 @@
     object-fit: cover;
 }
 
-
-body {
-    background-color: aliceblue;
-}
-
-form{
-    width: fit-content;
-    margin: auto;
-    padding-top: 15%;
-}
-
-
-/* create Request styling */
-
-#tagList {
-    list-style-type: none;
-}
-
-h1{
-    text-align: center;
-}
 .upload-img .container {
-    position: relative;
-    width: 100%;
-  }
-  
- .upload-img .container img {
-    width: 100%;
-    height: auto;
-    padding:4px;
-  }
-  
- .upload-img .container .btn-close {
-    position: absolute;
-    top: 5px;
-    right: 30px;
-    
-  }
-
-/* feed css */
-.feed_images {
-    object-fit: cover;
-    /*width: 530px;*/
-    height: 530px;
-    display: block;
-    margin-left: auto;
-    margin-right: auto;
-    border-radius: 1%;
-  }
-
-
-/* Import Google font - Poppins */
-@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700&display=swap");
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-  font-family: "Poppins", sans-serif;
+  position: relative;
+  width: 100%;
 }
+
+.upload-img .container img {
+  width: 100%;
+  height: auto;
+  padding:4px;
+}
+
+.upload-img .container .btn-close {
+  position: absolute;
+  top: 5px;
+  right: 30px;
+  
+}
+
 .rating-box {
   position: relative;
   background: #fff;
@@ -137,4 +119,27 @@ h1{
 
 .star.active {
   color: red;
+}
+
+body {
+    background-color: aliceblue;
+}
+
+form{
+    width: fit-content;
+    margin: auto;
+    padding-top: 15%;
+}
+
+h1{
+    text-align: center;
+}
+
+/* Import Google font - Poppins */
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700&display=swap");
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Poppins", sans-serif;
 }
