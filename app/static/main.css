@@ -121,11 +121,8 @@
   color: red;
 }
 
-body {
-    background-color: aliceblue;
-}
 
-form{
+.postcss{
     width: fit-content;
     margin: auto;
     padding-top: 15%;

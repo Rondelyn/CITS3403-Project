@@ -33,6 +33,25 @@ function validatelogin(){
     return;
 }
 
+// An event listener that takes place upon page load and sets the background of the page to the stored value otherwise sets it to alice blue by default 
+document.addEventListener('DOMContentLoaded', function() {
+  const colorPicker = document.getElementById('myColor');
+  const storedColor = localStorage.getItem('backgroundColor');
+
+  document.body.style.backgroundColor = storedColor || '#f0f8ff';
+
+  colorPicker.value = storedColor || '#f0f8ff';
+
+  colorPicker.addEventListener('input', handleColorPickerChange);
+});
+
+// Gets called whenever the value in colour picker changes and sets that value to the new stored background colour 
+function handleColorPickerChange(event) {
+  const selectedColor = event.target.value;
+  document.body.style.backgroundColor = selectedColor;
+  localStorage.setItem('backgroundColor', selectedColor);
+}
+
 // Function to validate signup criteria 
 function validatesignup(){
   event.preventDefault();
@@ -142,10 +161,6 @@ document.addEventListener("DOMContentLoaded", function() {
           const value = this.getAttribute("data-value");
           const imageId = this.closest(".rating-box").getAttribute("data-image-id");
 
-          // Send the rating to the server
-          // saveRating(imageId, value);
-
-          // Update UI
           const container = this.closest(".stars");
           removeActiveStars(container);
           this.classList.add("active");
