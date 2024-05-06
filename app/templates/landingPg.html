@@ -1,100 +1,101 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="utf-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <title>Rate My Fit - Home</title>
-        <meta name="description" content="temporary desc.">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <!--bootstrap icon link-->
-        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">       
-        <!--Bootstrap 5 link--> 
-        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
-        <!--Link to custom css-->
-        <link rel="stylesheet" href="/static/main.css">
-        <!--Link to custom javascript-->
-        <script src="/static/main.js"></script>
-    </head>
-    <body>
-          <!--This is the navigation bar-->
-        <nav class="navbar navbar-expand-sm navbar-dark fixed-top rounded-bottom bg-colour">
-            <div class="container-fluid">
-              <a class="navbar-brand" id="logo">Rate My Fit</a>
-              <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#collapsibleNavbar">
-                <span class="navbar-toggler-icon"></span>
-              </button>
-              <div class="collapse navbar-collapse justify-content-end" id="collapsibleNavbar">
-                <ul class="navbar-nav">
-                  <li class="nav-item pill">
-                    <a class="nav-link disabled" href="landingPg"><i class="bi bi-house"></i> Home</a>
-                  </li>
-                  <li class="nav-item pill">
-                    <a class="nav-link" href="findRequest">Feed</a>
-                  </li>
-                  <li class="nav-item pill">
-                    <a class="nav-link" href="createRequest">Post</a>
-                  </li>    
-                  <li class="nav-item pill">
-                    <a class="nav-link" href="login">Login</a>
-                  </li> 
-                </ul>
-              </div>
-            </div>
-        </nav>
-        
-      <main>
-        
-        <br>
-
-        <!--Content container that defines the white box area on site. Fills whole space on small devices-->
-        <div class="container-sm mt-5 mb-3 pt-1 pb-3 bodyFormat">
-          <!--Example Content-->
-          <h1>Rate My Fit!</h1>
-          <p>Welcome to Rate My Fit, a website where you can have fun posting casual images of your outfits or go view other people's outfits and give them a rating!</p>
-          <br>
-          <p>Interested? Login or signup and take part! Rate My Fit is a great community filled with many supportive and lively users, we'd love to have you join us!</p>          
-          <h2 class="d-flex justify-content-center">Top 5 Posts of All Time!</h2>
-
-          <!--Slideshow container-->
-          <div id="examples" class="carousel carousel-dark slide mb-3">
-            <!--Slideshow bottom button tabs-->
-            <div class="carousel-indicators mx-auto">
-                {% for i in range(top_images|length) %}
-                    <button type="button" data-bs-target="#examples" data-bs-slide-to="{{ i }}" {% if loop.first %} class="active" {% endif %}></button>
-                {% endfor %}
-            </div>
-        
-            <!-- The slideshow/carousel -->
-            <div class="carousel-inner">
-                {% for img in top_images %}
-                    <div class="carousel-item {% if loop.first %} active {% endif %}">
-                        <img src="{{ img.image_url }}" alt="Image {{ loop.index }}" class="d-block mx-auto scaled-img img-thumbnail">
-                    </div>
-                {% endfor %}
-            </div>
-        
-            <!-- Left and right controls/icons -->
-            <button class="carousel-control-prev" type="button" data-bs-target="#examples" data-bs-slide="prev">
-                <span class="carousel-control-prev-icon dark"></span>
-            </button>
-            <button class="carousel-control-next" type="button" data-bs-target="#examples" data-bs-slide="next">
-                <span class="carousel-control-next-icon"></span>
-            </button>
+  <head>
+      <meta charset="utf-8">
+      <meta http-equiv="X-UA-Compatible" content="IE=edge">
+      <title>Rate My Fit - Home</title>
+      <meta name="description" content="temporary desc.">
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+      <!--bootstrap icon link-->
+      <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">       
+      <!--Bootstrap 5 link--> 
+      <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+      <!--Link to custom css-->
+      <link rel="stylesheet" href="/static/main.css">
+      <!--Link to custom javascript-->
+      <script src="/static/main.js"></script>
+  </head>
+  <body class="d-flex flex-column min-vh-100">
+    <!--This is the navigation bar-->
+    <nav class="navbar navbar-expand-sm navbar-dark fixed-top rounded-bottom bg-colour">
+      <div class="container-fluid">
+        <a class="navbar-brand" id="logo">Rate My Fit</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#collapsibleNavbar">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse justify-content-end" id="collapsibleNavbar">
+          <ul class="navbar-nav">
+            <li class="nav-item pill">
+              <a class="nav-link disabled" href="landingPg"><i class="bi bi-house"></i> Home</a>
+            </li>
+            <li class="nav-item pill">
+              <a class="nav-link" href="findRequest">Feed</a>
+            </li>
+            <li class="nav-item pill">
+              <a class="nav-link" href="createRequest">Post</a>
+            </li>    
+            <li class="nav-item pill">
+              <a class="nav-link" href="login">Login</a>
+            </li> 
+          </ul>
         </div>
-        
-        
-
-        <p>These are our top 5 posts of all time! Post something now</p>
-
-        </div>
-      </main>
-
-      <footer class="m-1 text-muted end-0 d-flex justify-content-end">
-        <small>&copy; 2024</small> 
-      </footer>
+      </div>
+    </nav>
       
+    <main class="flex-grow-1">
+      
+      <br>
 
-      <!--This is the js used by bootstrap 5. Please keep this at the bottom before /body-->
-      <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
-    </body>
+      <!--Content container that defines the white box area on site. Fills whole space on small devices-->
+      <div class="container-sm mt-5 mb-3 pt-1 pb-3 bodyFormat">
+        <!--Example Content-->
+        <h1>Rate My Fit!</h1>
+        <p>Welcome to Rate My Fit, where fashion meets fun! Whether you're a style icon or just getting started on your fashion journey, this is the perfect place to showcase your outfits and get inspired by others.</p>
+        <p>Our community is filled with fashion enthusiasts from around the world who are passionate about sharing their unique sense of style. Join us today and become part of a lively and supportive community!</p>
+        <h2 class="d-flex justify-content-center">Top 5 Posts of All Time!</h2>
+
+        <!--Slideshow container-->
+        <div id="examples" class="carousel carousel-dark slide mb-3">
+          <!--Slideshow bottom button tabs-->
+          <div class="carousel-indicators mx-auto">
+              {% for i in range(top_images|length) %}
+                  <button type="button" data-bs-target="#examples" data-bs-slide-to="{{ i }}" {% if loop.first %} class="active" {% endif %}></button>
+              {% endfor %}
+          </div>
+      
+          <!-- The slideshow/carousel -->
+          <div class="carousel-inner">
+              {% for img in top_images %}
+                  <div class="carousel-item {% if loop.first %} active {% endif %}">
+                      <img src="{{ img.image_url }}" alt="Image {{ loop.index }}" class="d-block mx-auto scaled-img img-thumbnail">
+                  </div>
+              {% endfor %}
+          </div>
+      
+          <!-- Left and right controls/icons -->
+          <button class="carousel-control-prev" type="button" data-bs-target="#examples" data-bs-slide="prev">
+              <span class="carousel-control-prev-icon dark"></span>
+          </button>
+          <button class="carousel-control-next" type="button" data-bs-target="#examples" data-bs-slide="next">
+              <span class="carousel-control-next-icon"></span>
+          </button>
+        </div>
+        
+        
+
+        <p>Interested? <a role="button" class="bold-link" onclick="redirectToSignup()">Sign Up</a> or <a role="button" class="bold-link" href="/login">log in</a> and join the fashion revolution at Rate My Fit!</p>
+
+      </div>
+    </main>
+
+    
+    <footer class="footer mt-auto py-3 d-flex justify-content-end">
+      <small>&copy; 2024</small> 
+    </footer>
+    
+    
+
+    <!--This is the js used by bootstrap 5. Please keep this at the bottom before /body-->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+  </body>
 </html>

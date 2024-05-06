@@ -18,7 +18,9 @@ def home():
 #login page
 @flaskApp.route("/login")
 def loginform():
-    return render_template("login.html")
+    signup = request.args.get('signup', default='false') 
+    return render_template("login.html", signup=signup)
+
 
 #find request page/ posts
 @flaskApp.route("/findRequest")

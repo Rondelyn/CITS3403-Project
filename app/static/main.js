@@ -1,11 +1,11 @@
 // Used to toggle the login page to the signup view 
-function showsignup(){
+function showSignup(){
     document.getElementById('signup form').style.display="block";
     document.getElementById('login form').style.display="none"; 
 }
   
 // Used to toggle the login page to the login view 
-function showlogin(){
+function showLogin(){
     document.getElementById('login form').style.display="block";
     document.getElementById("signup form").style.display="none"; 
 }
@@ -59,9 +59,30 @@ function validatesignup(){
       
     }
     
-    showlogin();
+    showLogin();
     return;
 }
+
+// this function is called to redirect to the signup view of the login page
+function redirectToSignup() {
+  window.location.href = "/login?signup=true"; 
+}
+
+// This function determines the view of the login page
+document.addEventListener("DOMContentLoaded", function() {
+  var signup = document.body.getAttribute("data-signup");
+  
+  function showSignupForm() {
+      if (signup === 'true') {
+          showSignup();
+      } else {
+          showLogin();
+      }
+  }
+  
+  showSignupForm();
+});
+
 
 
 function imagePreview(input){

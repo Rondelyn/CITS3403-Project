@@ -1,127 +1,127 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="utf-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <title>Temp Title</title>
-        <meta name="description" content="temporary desc.">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <!--bootstrap icon link-->
-        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">       
-        <!--Bootstrap 5 link--> 
-        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
-        <!--Link to custom css-->
-        <link rel="stylesheet" href="/static/main.css">
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
-        <!--Link to custom javascript-->
-        <script src="/static/main.js"></script>
-    </head>
-    <body>
-        <!--This is the navigation bar-->
-        <nav class="navbar navbar-expand-sm navbar-dark fixed-top rounded-bottom bg-colour">
-          <div class="container-fluid">
-            <a class="navbar-brand"  id="logo">Rate My Fit</a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#collapsibleNavbar">
-              <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse justify-content-end" id="collapsibleNavbar">
-              <ul class="navbar-nav">
-                <li class="nav-item pill">
-                  <a class="nav-link" href="landingPg"><i class="bi bi-house-fill"></i> Home</a>
-                </li>
-                <li class="nav-item pill">
-                  <a class="nav-link" href="findRequest">Feed</a>
-                </li>
-                <li class="nav-item pill">
-                  <a class="nav-link" href="createRequest">Post</a>
-                </li>    
-                <li class="nav-item pill">
-                  <a class="nav-link disabled" href="login">Login</a>
-                </li> 
-              </ul>
-            </div>
-          </div>
-        </nav>
-
-      <main>
-
-        <br>
-
-        <!--Content container that defines the white box area on site. Fills whole space on small devices-->
-        <div class="container-sm mt-5 mb-3 pt-1 pb-3 bodyFormat">
-
-          <!--This is the login form-->
-          <div id = 'login form' name = 'login form'>
-            <form id = 'login' class="container-sm p-3 mb-0 m-auto lg-form">
-              <!--This is the username box-->
-              <div class="enterusername">
-                <label for="InputUsername" class="form-label">Username</label>
-                <input type="Username" class="form-control lg-form" id="InputUsername">
-                
-              </div><br>
-              <!--This is the password box-->
-              <div class="enterpassword">
-                <label for="Password" class="form-label">Password</label>
-                <input type="password" class="form-control lg-form" id="Password">
-              </div>
-
-              <!--This is the check box to agree to the terms of service-->
-              <div class="agreeterms">
-                <input type="checkbox" class="form-check-input" id="termsandconditions" aria-describedby="termsconditions">
-                <label class="form-check-label" for="termsandconditions">I agree to the terms of use</label>
-                <div id="termsconditions" class="form-text">You agree to only post pg things to the website or you get removed</div>
-              </div>
-              <br>
-              <!--This is the submit buttion-->
-              <button onclick = "validatelogin()" type="submit button" name = 'log-submit' id = 'log-submit' class="btn btn-primary container-sm">Login</button>          
-
-            </form>
-            <!--This is the button to go to the creat user page-->
-            <p class="text-center">Haven't signed up yet? <b onclick="showsignup()" role="button">Create an account</b></p>
-          </div>
-
-          <!--This is the singup form-->
-          <div id = 'signup form' name = 'signup form' style="display: none;">
-            <form id = 'signup' class="container-sm p-3 mb-0 m-auto lg-form">
-              
-              <!--This is the username box-->
-              <div class="createusername">
-                <label for="InputUsername" class="form-label">Create username</label>
-                <input type="Username" class="form-control" id="signInputUsername">
-                
-              </div><br>
-              <!--This is the password box-->
-              <div class="create password">
-                <label for="Password" class="form-label">Password</label>
-                <input type="Password" class="form-control" id="signPassword">
-              </div>
-
-              <!--This is the check box to agree to the terms of service-->
-              <div class="agreeterms">
-                <input type="checkbox" class="form-check-input" id="signtermsandconditions" aria-describedby="termsconditions">
-                <label class="form-check-label" for="termsandconditions">I agree to the terms of use</label>
-                <div id="signtermsandconditions" class="form-text">You agree to user condiditons</div>
-              </div>
-              <br>
-              <!--This is the submit buttion-->
-              <button onclick = "validatesignup()" type="submit button" name = 'sign-submit' id = 'sign-submit' class="btn btn-primary container-sm">Sign up</button> 
-                
-            </form>
-            <!--This is the button to go to the login user page-->
-            <p class="text-center">Already a member? <b onclick="showlogin()" role="button">Login</b></p>
-          </div>
+  <head>
+      <meta charset="utf-8">
+      <meta http-equiv="X-UA-Compatible" content="IE=edge">
+      <title>Rate My Fit - Login</title>
+      <meta name="description" content="temporary desc.">
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+      <!--bootstrap icon link-->
+      <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">       
+      <!--Bootstrap 5 link--> 
+      <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+      <!--Link to custom css-->
+      <link rel="stylesheet" href="/static/main.css">
+      <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+      <!--Link to custom javascript-->
+      <script src="/static/main.js"></script>      
+  </head>
+  <body class="d-flex flex-column min-vh-100" data-signup="{{ signup }}">
+    <!--This is the navigation bar-->
+    <nav class="navbar navbar-expand-sm navbar-dark fixed-top rounded-bottom bg-colour">
+      <div class="container-fluid">
+        <a class="navbar-brand"  id="logo">Rate My Fit</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#collapsibleNavbar">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse justify-content-end" id="collapsibleNavbar">
+          <ul class="navbar-nav">
+            <li class="nav-item pill">
+              <a class="nav-link" href="landingPg"><i class="bi bi-house-fill"></i> Home</a>
+            </li>
+            <li class="nav-item pill">
+              <a class="nav-link" href="findRequest">Feed</a>
+            </li>
+            <li class="nav-item pill">
+              <a class="nav-link" href="createRequest">Post</a>
+            </li>    
+            <li class="nav-item pill">
+              <a class="nav-link disabled" href="login">Login</a>
+            </li> 
+          </ul>
         </div>
-      </main>
+      </div>
+    </nav>
+
+    <main class="flex-grow-1">
+
+      <br>
+
+      <!--Content container that defines the white box area on site. Fills whole space on small devices-->
+      <div class="container-sm mt-5 mb-3 pt-1 pb-3 bodyFormat">
+
+        <!--This is the login form-->
+        <div id = 'login form' name = 'login form'>
+          <form id = 'login' class="container-sm p-3 mb-0 m-auto lg-form">
+            <!--This is the username box-->
+            <div class="enterusername">
+              <label for="InputUsername" class="form-label">Username</label>
+              <input type="Username" class="form-control lg-form" id="InputUsername">
+              
+            </div><br>
+            <!--This is the password box-->
+            <div class="enterpassword">
+              <label for="Password" class="form-label">Password</label>
+              <input type="password" class="form-control lg-form" id="Password">
+            </div>
+
+            <!--This is the check box to agree to the terms of service-->
+            <div class="agreeterms">
+              <input type="checkbox" class="form-check-input" id="termsandconditions" aria-describedby="termsconditions">
+              <label class="form-check-label" for="termsandconditions">I agree to the terms of use</label>
+              <div id="termsconditions" class="form-text">You agree to only post pg things to the website or you get removed</div>
+            </div>
+            <br>
+            <!--This is the submit buttion-->
+            <button onclick = "validatelogin()" type="submit button" name = 'log-submit' id = 'log-submit' class="btn btn-primary container-sm">Login</button>          
+
+          </form>
+          <!--This is the button to go to the creat user page-->
+          <p class="text-center">Haven't signed up yet? <b onclick="showSignup()" role="button">Create an account</b></p>
+        </div>
+
+        <!--This is the singup form-->
+        <div id = 'signup form' name = 'signup form'>
+          <form id = 'signup' class="container-sm p-3 mb-0 m-auto lg-form">
+            
+            <!--This is the username box-->
+            <div class="createusername">
+              <label for="InputUsername" class="form-label">Create username</label>
+              <input type="Username" class="form-control" id="signInputUsername">
+              
+            </div><br>
+            <!--This is the password box-->
+            <div class="create password">
+              <label for="Password" class="form-label">Password</label>
+              <input type="Password" class="form-control" id="signPassword">
+            </div>
+
+            <!--This is the check box to agree to the terms of service-->
+            <div class="agreeterms">
+              <input type="checkbox" class="form-check-input" id="signtermsandconditions" aria-describedby="termsconditions">
+              <label class="form-check-label" for="termsandconditions">I agree to the terms of use</label>
+              <div id="signtermsandconditions" class="form-text">You agree to user condiditons</div>
+            </div>
+            <br>
+            <!--This is the submit buttion-->
+            <button onclick = "validatesignup()" type="submit button" name = 'sign-submit' id = 'sign-submit' class="btn btn-primary container-sm">Sign up</button> 
+              
+          </form>
+          <!--This is the button to go to the login user page-->
+          <p class="text-center">Already a member? <b onclick="showLogin()" role="button">Login</b></p>
+        </div>
+      </div>
+    </main>
 
 
-      <!--temp footer-->
-      <footer class="m-1 text-muted end-0 d-flex justify-content-end">
+    <!--temp footer-->
+    <footer class="footer mt-auto py-3 d-flex justify-content-end">
       <small>&copy; 2024</small> 
-      </footer>
+    </footer>
 
-      
-      <!--This is the js used by bootstrap 5 and the ajax link. Please keep this at the bottom before /body-->
-      <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
-      <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    </body>
+    
+    <!--This is the js used by bootstrap 5 and the ajax link. Please keep this at the bottom before /body-->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  </body>  
 </html>
