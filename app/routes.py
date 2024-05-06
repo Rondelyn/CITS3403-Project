@@ -1,7 +1,8 @@
 
 #improting required classes
-from flask import render_template, redirect, request, url_for
+from flask import Flask, render_template, redirect, request, url_for
 from app import flaskApp
+from flask_sqlalchemy import SQLAlchemy
 from app.model import image, user
 
 
@@ -15,9 +16,17 @@ def home():
     return render_template("landingPg.html")
 
 #login page
-@flaskApp.route("/login")
+@flaskApp.route("/login", methods=['GET','POST'])
 def loginform():
-    return render_template("login.html")
+    form = loginform()
+    return render_template("login.html", form = form)
+
+
+@flaskApp.route("/register", methods=['GET','POST'])
+def loginform():
+    form = loginform()
+    return render_template("login.html", form = form)
+
 
 #find request page/ posts
 @flaskApp.route("/findRequest")

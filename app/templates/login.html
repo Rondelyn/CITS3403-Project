@@ -52,7 +52,13 @@
 
           <!--This is the login form-->
           <div id = 'login form' name = 'login form'>
-            <form id = 'login' class="container-sm p-3 mb-0 m-auto lg-form">
+            <form id = 'login' method="POST" action="" class="container-sm p-3 mb-0 m-auto lg-form">
+              {{ form.hidden_tag() }}
+              {{ form.user_id}}
+              {{ form.user_password }}
+
+
+              
               <!--This is the username box-->
               <div class="enterusername">
                 <label for="InputUsername" class="form-label">Username</label>
@@ -79,6 +85,11 @@
             <!--This is the button to go to the creat user page-->
             <p class="text-center">Haven't signed up yet? <b onclick="showsignup()" role="button">Create an account</b></p>
           </div>
+
+
+
+
+
 
           <!--This is the singup form-->
           <div id = 'signup form' name = 'signup form' style="display: none;">
