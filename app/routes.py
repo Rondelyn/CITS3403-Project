@@ -1,7 +1,7 @@
 
 #improting required classes
 from flask import render_template, redirect, request, url_for
-from app import flaskApp
+from app import flaskApp, db
 from app.model import image, user
 
 
@@ -12,7 +12,8 @@ from app.model import image, user
 @flaskApp.route("/")    
 @flaskApp.route("/landingPg")
 def home():
-    return render_template("landingPg.html")
+    top_images = image.query.order_by(image.image_likes.desc()).limit(5).all()
+    return render_template("landingPg.html", top_images=top_images)
 
 #login page
 @flaskApp.route("/login")

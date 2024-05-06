@@ -3,7 +3,7 @@
     <head>
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <title>Temp Title</title>
+        <title>Rate My Fit - Home</title>
         <meta name="description" content="temporary desc.">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <!--bootstrap icon link-->
@@ -49,53 +49,42 @@
         <!--Content container that defines the white box area on site. Fills whole space on small devices-->
         <div class="container-sm mt-5 mb-3 pt-1 pb-3 bodyFormat">
           <!--Example Content-->
-          <h1>Some welcome message and intro</h1>
-          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi iaculis mi fringilla mi gravida varius. Proin vel scelerisque ex. Vivamus nec posuere nulla. Nullam viverra dictum purus vel accumsan. Morbi elit velit, aliquet vitae laoreet eget, consectetur vestibulum libero. Ut urna lectus, sodales in eleifend at, sollicitudin et elit. Pellentesque tincidunt aliquet sem, ut pharetra est pellentesque id. Duis id tincidunt ligula, nec pretium sem. Nulla sagittis pulvinar iaculis. Ut et arcu id est semper laoreet vel vel enim. Duis accumsan tempor risus, non blandit risus venenatis dapibus.</p>
+          <h1>Rate My Fit!</h1>
+          <p>Welcome to Rate My Fit, a website where you can have fun posting casual images of your outfits or go view other people's outfits and give them a rating!</p>
           <br>
-          <p>Donec sit amet eleifend massa. Cras mollis, urna vel fringilla euismod, orci lacus rhoncus odio, at euismod neque elit in metus. Proin aliquet eget tortor sit amet tristique. Duis maximus eu nisl in dignissim. Vivamus sodales, nibh id tincidunt varius, turpis nunc sodales elit, non imperdiet odio ipsum porta nunc. Mauris volutpat justo mauris, sit amet molestie purus molestie non. Vestibulum sed cursus enim. Curabitur gravida varius porttitor. Nunc varius sapien eu consectetur feugiat. Aliquam erat volutpat. Aenean ut vestibulum massa. Phasellus fermentum venenatis finibus.</p>
-          
-          <h2 class="d-flex justify-content-center">EG. Top 5 posts or something</h2>
+          <p>Interested? Login or signup and take part! Rate My Fit is a great community filled with many supportive and lively users, we'd love to have you join us!</p>          
+          <h2 class="d-flex justify-content-center">Top 5 Posts of All Time!</h2>
 
           <!--Slideshow container-->
           <div id="examples" class="carousel carousel-dark slide mb-3">
             <!--Slideshow bottom button tabs-->
             <div class="carousel-indicators mx-auto">
-              <button type="button" data-bs-target="#examples" data-bs-slide-to="0" class="active"></button>
-              <button type="button" data-bs-target="#examples" data-bs-slide-to="1"></button>
-              <button type="button" data-bs-target="#examples" data-bs-slide-to="2"></button>
-              <button type="button" data-bs-target="#examples" data-bs-slide-to="3"></button>
+                {% for i in range(top_images|length) %}
+                    <button type="button" data-bs-target="#examples" data-bs-slide-to="{{ i }}" {% if loop.first %} class="active" {% endif %}></button>
+                {% endfor %}
             </div>
-          
+        
             <!-- The slideshow/carousel -->
             <div class="carousel-inner">
-              
-
-              <div class="carousel-item active">
-                <img src="/static/example-imgs/img1.jpg" alt="Los Angeles" class="d-block mx-auto scaled-img img-thumbnail">
-              </div>
-              <div class="carousel-item">
-                <img src="/static/example-imgs/img2.JPG" alt="Chicago" class="d-block mx-auto scaled-img img-thumbnail">
-              </div>
-              <div class="carousel-item">
-                <img src="/static/example-imgs/img3.jpg" alt="New York" class="d-block mx-auto scaled-img img-thumbnail">
-              </div>
-              <div class="carousel-item">
-                <img src="/static/example-imgs/img4.jpg" alt="New York" class="d-block mx-auto scaled-img img-thumbnail">
-              </div>
-              
+                {% for img in top_images %}
+                    <div class="carousel-item {% if loop.first %} active {% endif %}">
+                        <img src="{{ img.image_url }}" alt="Image {{ loop.index }}" class="d-block mx-auto scaled-img img-thumbnail">
+                    </div>
+                {% endfor %}
             </div>
-          
+        
             <!-- Left and right controls/icons -->
             <button class="carousel-control-prev" type="button" data-bs-target="#examples" data-bs-slide="prev">
-              <span class="carousel-control-prev-icon dark"></span>
+                <span class="carousel-control-prev-icon dark"></span>
             </button>
             <button class="carousel-control-next" type="button" data-bs-target="#examples" data-bs-slide="next">
-              <span class="carousel-control-next-icon"></span>
+                <span class="carousel-control-next-icon"></span>
             </button>
-          </div>
+        </div>
+        
+        
 
-          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi iaculis mi fringilla mi gravida varius. Proin vel scelerisque ex. Vivamus nec posuere nulla. Nullam viverra dictum purus vel accumsan. Morbi elit velit, aliquet vitae laoreet eget, consectetur vestibulum libero. Ut urna lectus, sodales in eleifend at, sollicitudin et elit. Pellentesque tincidunt aliquet sem, ut pharetra est pellentesque id. Duis id tincidunt ligula, nec pretium sem. Nulla sagittis pulvinar iaculis. Ut et arcu id est semper laoreet vel vel enim. Duis accumsan tempor risus, non blandit risus venenatis dapibus.</p>
-
+        <p>These are our top 5 posts of all time! Post something now</p>
 
         </div>
       </main>
