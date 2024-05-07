@@ -1,11 +1,18 @@
 
 #improting required classes
 from flask import render_template, redirect, request, url_for, flash
-from app import flaskApp
+from app import flaskApp, db
 from app.model import image, user
 from app.forms import Createpost, Createlogin
+import os
+
+import os
 
 
+
+from flask import Flask
+import os
+app = Flask(__name__)
 
 
 #createing server connection to web pages so that you can click though them 
@@ -38,47 +45,34 @@ def images():
 
 
 #adding submit point for posts
+def save_image(picture_file):
+    picture = picture_file.filename
+    picture_path = os.path.join(app.root_path, 'static/image_uploads', picture)
+    picture_file.save(picture_path)
+    return picture
+
 
 @flaskApp.route('/submit', methods=['POST'])
 def submit():
-    
     form = Createpost()
-    print(request.form)
+    #validation
     if form.validate_on_submit():
-        
-        return render_template('createRequest.html', form=form)
-
-    print("submitted")
-    print(request.form)
-    return redirect(location=url_for("posts"))
-
-##submite form for the login 
-@flaskApp.route('/submitlogin',  methods=['GET', 'POST'])
-def submitlogin():
-    print("fail")
-    form = Createlogin()
-    print("foorm")
-    print(request.form)
-    if form.validate_on_submit():
-        print("fail1")
-        return render_template('login.html', form=form)
-
-    
-    username = find_user(form.username.data)
+            url = form.image.data
+            categoriy = form.catagories.data
+            image_file = save_image(form.image.data)
+            image_file = save_image(form.image.data)
+                
+            new_image  = image(image_url= image_file, image_catagroy= "fit", user_id="johdsn", image_id=9291110, image_likes=0)
+            db.session.add(new_image)
+            db.session.commit()
     
 
-    if not (username):
-        print("fail2")
-        return render_template('login.html', form=form)
+            return redirect(location=url_for("posts"))
+
     
-    password = find_userpassword(form.password.data)
+    return render_template('createRequest.html', form=form) 
 
-    if not (password):
-        print("fail2")
-        return render_template('login.html', form=form)    
 
-    print("nope")
-    return redirect(location=url_for("posts"))
 
 ##submite form for the create new user
 @flaskApp.route('/createuser',  methods=['GET', 'POST'])
@@ -86,11 +80,47 @@ def createuser():
     form = Createlogin()
     
     if form.validate_on_submit():
-        
         return render_template('createRequest.html', form=form)
 
+    username = str(form.username.data)
+    username_exists = find_user_exists(username) #None
     
-    return redirect(location=url_for("loginform"))
+    if (username_exists): #If it exists 
+        return render_template('login.html', form=form)
+    
+    #else it adds the perseon to  the db and sends them to the posts page 
+    password = str(form.password.data)
+    newuser = user(user_id=username, user_password=password)
+    
+    db.session.add(newuser)
+    db.session.commit()
+    
+    return redirect(location=url_for("posts"))
+
+
+##submite form for the login 
+@flaskApp.route('/submitlogin',  methods=['GET', 'POST'])
+def submitlogin():
+    form = Createlogin()
+    
+    if form.validate_on_submit():
+        
+        return render_template('login.html', form=form)
+
+    
+    username = find_user(form.username.data)
+    password = find_userpassword(form.password.data)
+
+    if not (username):
+        return render_template('login.html', form=form)
+
+    if not (password):
+        return render_template('login.html', form=form)    
+
+    
+    return redirect(location=url_for("posts"))
+
+
 
 #check the database for the user id and password
 def find_user(user_id:str):
@@ -105,5 +135,15 @@ def find_userpassword(user_password:str):
     user1password = user.query.get(user_password)
     if not user1password:
         flash(f'password incorrect {user_password}', 'error')
-    print(user.query.all())
+    
     return user1password
+
+
+def find_user_exists(user_id:str):
+    username_not_exist = user.query.get(user_id) #will ne none if db it donsn't contain that user
+    
+    if username_not_exist: #if user i.e "user" exists willl be called
+        flash(f'Username already exists: {user_id}', 'error')
+    return username_not_exist #returns a None
+
+

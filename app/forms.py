@@ -1,4 +1,4 @@
-from wtforms import StringField, SubmitField, BooleanField
+from wtforms import StringField, SubmitField, BooleanField, SelectField
 from flask_wtf import FlaskForm
 from wtforms.validators import DataRequired
 from flask_wtf.file import FileField, FileRequired, FileAllowed
@@ -6,8 +6,9 @@ from flask_wtf.file import FileField, FileRequired, FileAllowed
 
 class Createpost(FlaskForm):
     title = StringField("Post Title", render_kw = {'id': 'title'}, validators = [DataRequired()])
-    image = FileField('Upload Image', render_kw = {'id': "imgUpload"}, validators=[FileRequired('File missing')])
+    image = FileField('Upload Image', render_kw = {'id': "imgUpload"}, validators=[FileRequired('File missing'), FileAllowed(['jpg','png'])])
     submit = SubmitField("Create post")
+    catagories = SelectField("Category", choices = ['Woman', 'Men', 'Unisex' 'Dogs', 'Cats', 'Pigs', 'Other'])
 
 
 class Createlogin(FlaskForm):

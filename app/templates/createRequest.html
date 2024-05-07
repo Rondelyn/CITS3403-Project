@@ -56,7 +56,7 @@
             <h1>Create New Post</h1>
 
           <div id = "Request form">
-              <form id = "Request" action ="/submit" method="post">
+              <form id = "Request" action ="/submit" method="post" enctype="multipart/form-data">
                 {{ form.hidden_tag() }}
 
                 <div class = "row">
@@ -77,23 +77,18 @@
                     <div class = "upload-img"> </div>
                     
                   </div>
-
-                  <div class = "col-sm-4 tagListInput">     
+                  
+                  <div class = "col-sm-4 tagListInput">  
+                    <br>   
                     <!--list of checkboxes-->
-                    <label for = "tagList">Tag List</label>
-                    <p><i>Description: select categories to descibe outfit</i></p>
-                    <ul class = "list-group" id = "tagList">
-                      <li><input type="checkbox" id = "tag1"> checkbox 1</li>
-                      <li><input type="checkbox" id = "tag2"> checkbox 2</li>
-                      <li><input type="checkbox" id = "tag3"> checkbox 3</li>
-                      <li><input type="checkbox" id = "tag4"> checkbox 4</li>
-                    </ul>
+                    {{ form.catagories.lable}}
+                    {{ form.catagories (class="form-control")}}
                     </div>
                 </div>
                 
                 <!--post button-->
                 <br>
-                {{ form.submit() }}
+                {{ form.submit(class="btn btn-primary") }}
 
           </form>
           
