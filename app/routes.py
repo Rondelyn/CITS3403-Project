@@ -18,7 +18,8 @@ app = Flask(__name__)
 @flaskApp.route("/")    
 @flaskApp.route("/landingPg")
 def home():
-    return render_template("landingPg.html")
+    top_images = image.query.order_by(image.image_likes.desc()).limit(5).all()
+    return render_template("landingPg.html", top_images=top_images)
 
 #login page
 @flaskApp.route("/login")
