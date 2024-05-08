@@ -4,15 +4,13 @@ from flask import render_template, redirect, request, url_for, flash
 from app import flaskApp, db
 from app.model import image, user
 from app.forms import Createpost, Createlogin
+
+#requred for the image upload
 import os
-
-import os
-
-
-
 from flask import Flask
-import os
 app = Flask(__name__)
+
+
 
 
 #createing server connection to web pages so that you can click though them 
@@ -51,22 +49,18 @@ def save_image(picture_file):
     picture_file.save(picture_path)
     return picture
 
-
-@flaskApp.route('/submit', methods=['POST'])
+#allows users to submit there posts
+@flaskApp.route('/submit', methods=['POST', 'Get'])
 def submit():
     form = Createpost()
     #validation
     if form.validate_on_submit():
-            url = form.image.data
+            
             categoriy = form.catagories.data
             image_file = save_image(form.image.data)
-            image_file = save_image(form.image.data)
-                
-            new_image  = image(image_url= image_file, image_catagroy= "fit", user_id="johdsn", image_id=9291110, image_likes=0)
+            new_image  = image(image_url= image_file, image_catagroy= categoriy, user_id="johdsn", image_id=935525, image_likes=0)
             db.session.add(new_image)
             db.session.commit()
-    
-
             return redirect(location=url_for("posts"))
 
     
