@@ -53,23 +53,15 @@
           <!--This is the login form-->
           <div id = 'login form' name = 'login form'>
             <form id = 'login' method="POST" action="" class="container-sm p-3 mb-0 m-auto lg-form">
+
               {{ form.hidden_tag() }}
-              {{ form.user_id}}
+              {{ form.username }}
               {{ form.user_password }}
+              {{ form.submit }}
+          
 
 
-              
-              <!--This is the username box-->
-              <div class="enterusername">
-                <label for="InputUsername" class="form-label">Username</label>
-                <input type="Username" class="form-control lg-form" id="InputUsername">
-                
-              </div><br>
-              <!--This is the password box-->
-              <div class="enterpassword">
-                <label for="Password" class="form-label">Password</label>
-                <input type="password" class="form-control lg-form" id="Password">
-              </div>
+            
 
               <!--This is the check box to agree to the terms of service-->
               <div class="agreeterms">
@@ -79,47 +71,24 @@
               </div>
               <br>
               <!--This is the submit buttion-->
-              <button onclick = "validatelogin()" type="submit button" name = 'log-submit' id = 'log-submit' class="btn btn-primary container-sm">Login</button>          
+              <!-- <button onclick = "validatelogin()" type="submit button" name = 'log-submit' id = 'log-submit' class="btn btn-primary container-sm">Login</button>  -->        
 
             </form>
             <!--This is the button to go to the creat user page-->
-            <p class="text-center">Haven't signed up yet? <b onclick="showsignup()" role="button">Create an account</b></p>
+            <a href="{{ url_for('register') }}">Don't have an account? Sign Up</a>
           </div>
 
 
 
 
-
-
-          <!--This is the singup form-->
-          <div id = 'signup form' name = 'signup form' style="display: none;">
-            <form id = 'signup' class="container-sm p-3 mb-0 m-auto lg-form">
-              
-              <!--This is the username box-->
-              <div class="createusername">
-                <label for="InputUsername" class="form-label">Create username</label>
-                <input type="Username" class="form-control" id="signInputUsername">
-                
-              </div><br>
-              <!--This is the password box-->
-              <div class="create password">
-                <label for="Password" class="form-label">Password</label>
-                <input type="Password" class="form-control" id="signPassword">
-              </div>
-
-              <!--This is the check box to agree to the terms of service-->
-              <div class="agreeterms">
-                <input type="checkbox" class="form-check-input" id="signtermsandconditions" aria-describedby="termsconditions">
-                <label class="form-check-label" for="termsandconditions">I agree to the terms of use</label>
-                <div id="signtermsandconditions" class="form-text">You agree to user condiditons</div>
-              </div>
+        
               <br>
               <!--This is the submit buttion-->
-              <button onclick = "validatesignup()" type="submit button" name = 'sign-submit' id = 'sign-submit' class="btn btn-primary container-sm">Sign up</button> 
+              <!--<button onclick = "validatesignup()" type="submit button" name = 'sign-submit' id = 'sign-submit' class="btn btn-primary container-sm">Sign up</button> -->
                 
             </form>
             <!--This is the button to go to the login user page-->
-            <p class="text-center">Already a member? <b onclick="showlogin()" role="button">Login</b></p>
+            <!--<p class="text-center">Already a member? <b onclick="showlogin()" role="button">Login</b></p>-->
           </div>
         </div>
       </main>

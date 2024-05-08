@@ -9,9 +9,8 @@ image4  = image(image_url= "https://i.pinimg.com/564x/16/ae/83/16ae832552ff673fc
 image5  = image(image_url= "https://i.pinimg.com/736x/cf/1c/f6/cf1cf679e2720f6d3de6c9d3ba18162c.jpg", image_catagroy= "fit", user_id="john", image_id=5, image_likes=0)
 
 
-user1 = user(user_id="001", user_password="1234")
 
-db.session.add_all([image1,image2,image3,image4,image5,user1])
+db.session.add_all([image1,image2,image3,image4,image5])
 db.session.commit()
 
 

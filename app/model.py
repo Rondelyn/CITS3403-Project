@@ -1,18 +1,24 @@
 
 from typing import List
 
-from flask_login import UserMixin
+from flask_login import UserMixin, login_user, LoginManager, login_required, logout_user, current_user
 from app import db
 from flask_wtf import FlaskForm
 from wtforms import StringField, PasswordField, SubmitField
 from wtforms.validators import InputRequired, Length, ValidationError
+from flask import Flask
+from app.config import Config
+from flask_sqlalchemy import SQLAlchemy
+from flask_migrate import Migrate
+
+id
 
 
 #table with post data
 class image(db.Model):
     image_url = db.Column(db.String, nullable=False)
     image_catagroy = db.Column(db.String, nullable=False)
-    user_id = db.Column(db.String(10), db.ForeignKey('user.user_id'), nullable=False)
+    user_id = db.Column(db.String(10), db.ForeignKey('user.id'), nullable=False)
     image_id = db.Column(db.Integer, primary_key=True)
     image_likes = db.Column(db.Integer)
 
@@ -21,7 +27,7 @@ class image(db.Model):
 
 #table with user data
 class user(db.Model,UserMixin):
-    user_id = db.Column(db.String(10), primary_key=True)
+    id = db.Column(db.String(10), primary_key=True)
     username = db.Column(db.String(20),nullable = False, unique = True)
     user_password = db.Column(db.String (80), nullable=False)
 
@@ -46,6 +52,7 @@ class RegisterForm(FlaskForm):
                 'That username already exists. Please choose a different one.')
 
 
+
 class LoginForm(FlaskForm):
     username = StringField(validators=[
                            InputRequired(), Length(min=4, max=20)], render_kw={"placeholder": "Username"})
@@ -54,3 +61,4 @@ class LoginForm(FlaskForm):
                              InputRequired(), Length(min=8, max=20)], render_kw={"placeholder": "Password"})
 
     submit = SubmitField('Login')
+
