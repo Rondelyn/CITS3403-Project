@@ -8,7 +8,7 @@ class Createpost(FlaskForm):
     title = StringField("Post Title", render_kw = {'id': 'title'}, validators = [DataRequired()])
     image = FileField('Upload Image', render_kw = {'id': "imgUpload"}, validators=[FileRequired('File missing'), FileAllowed(['jpg','png'])])
     submit = SubmitField("Create post")
-    catagories = SelectField("Category", choices = ['Woman', 'Men', 'Unisex' 'Dogs', 'Cats', 'Pigs', 'Other'])
+    catagories = SelectField("Category", choices = ['Woman', 'Men', 'Unisex', 'Dogs', 'Cats', 'Pigs', 'Other'])
 
 
 class Createlogin(FlaskForm):

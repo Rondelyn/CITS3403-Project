@@ -58,7 +58,8 @@ def submit():
             
             categoriy = form.catagories.data
             image_file = save_image(form.image.data)
-            new_image  = image(image_url= image_file, image_catagroy= categoriy, user_id="johdsn", image_id=935525, image_likes=0)
+            comment = form.title.data
+            new_image  = image(image_url= image_file, image_catagroy= categoriy, user_id="johdsn", image_likes=0, title= comment) #need to change the hard code of the user_id to the user id once logged in
             db.session.add(new_image)
             db.session.commit()
             return redirect(location=url_for("posts"))

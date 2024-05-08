@@ -6,19 +6,17 @@ from werkzeug.security import generate_password_hash, check_password_hash
 
 #table with post data
 class image(db.Model):
-    image_url = db.Column(db.String, nullable=False) #add defult = 'default.jpg'?
+    image_url = db.Column(db.String, nullable=False, primary_key=True) #dont want images with the same link name
     image_catagroy = db.Column(db.String, nullable=False)
     user_id = db.Column(db.String(10), db.ForeignKey('user.user_id'), nullable=False)
-    image_id = db.Column(db.Integer, primary_key=True)
     image_likes = db.Column(db.Integer)
+    title = db.Column(db.String)
 
     
 
     def __repr__(self) -> str:
-        return f'<image {self.user_id} {self.image_id}{self.image_catagroy}>'
-    
-    def downgrade():
-        image.drop_column('image_id')
+        return f'<image {self.user_id} {self.image_id} {self.image_catagroy} {self.image_id}>'
+
     
 
 
@@ -31,12 +29,4 @@ class user(db.Model):
     def __repr__(self) -> str:
         return f'<image {self.user_id} {self.user_password}>'    
 
-    #adding sercurity 
-    def set_password( self, password):
-        self.password_hask = generate_password_hash(password)
 
-    def check_password(self, password):
-        return check_password_hash(self.password_hash, password)
-    
-#run flask db migrate to migarate these sercituy changes, has not been done yet 
-#(if you do this please remove the comment. Also (this is why i havn't done it) but create a git tag perhaps? cause we need evidence of a db migrate) 
