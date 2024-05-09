@@ -55,6 +55,16 @@
 
       <h1>Create New Post</h1>
 
+      {% with messages = get_flashed_messages() %}
+      {% if messages %}
+      <ul>
+        {% for message in messages %}
+          <li> {{ message }} </li>
+        {% endfor %}
+      </ul>
+      {% endif %}
+    {% endwith %}
+
           <div id = "Request form">
               <form id = "Request" action ="/submit" method="post" enctype="multipart/form-data">
                 {{ form.hidden_tag() }}
@@ -81,8 +91,8 @@
                   <div class = "col-sm-4 tagListInput">  
                     <br>   
                     <!--list of checkboxes-->
-                    {{ form.catagories.lable}}
-                    {{ form.catagories (class="form-control")}}
+                    {{ form.categories.label(class_="form-label") }}
+                    {{ form.categories(class_="list-group") }}
                     </div>
                 </div>
                 

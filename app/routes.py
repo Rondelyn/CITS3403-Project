@@ -3,7 +3,7 @@
 from flask import render_template, redirect, request, url_for, flash
 from app import flaskApp, db
 from app.model import image, user
-from app.forms import Createpost, Createlogin
+from app.forms import Createpost, Createlogin, catergoryFilter
 
 #requred for the image upload
 import os
@@ -30,8 +30,27 @@ def loginform():
 #find request page/ posts
 @flaskApp.route("/findRequest")
 def posts():
-    posts = image.query.all()
-    return render_template("findRequest.html", images=posts )
+    form = catergoryFilter()
+    filters = 'Women'
+    posts =image.query.filter(image.image_catagroy.contains(filters))
+    #posts = image.query.all()
+    return render_template("findRequest.html", images=posts, form = form)
+
+
+    
+@flaskApp.route('/submitfilter', methods = ['POST', 'GET'])
+def submitfilter():
+    form = catergoryFilter() 
+    
+    if form.validate_on_submit():       
+        filters= form.filter.data
+        posts =image.query.filter(image.image_catagroy.contains(filters))
+                
+        return render_template("findRequest.html", images=posts, form = form)
+    
+    else:
+        posts = image.query.all()
+        return render_template("findRequest.html", images=posts, form = form)
 
 
 
@@ -55,16 +74,20 @@ def save_image(picture_file):
 def submit():
     form = Createpost()
     #validation
+
     if form.validate_on_submit():
             
-            categoriy = form.catagories.data
+            categoriy =  ' '.join(form.categories.data)
+            print(categoriy)
             image_file = save_image(form.image.data)
             comment = form.title.data
             new_image  = image(image_url= image_file, image_catagroy= categoriy, user_id="johdsn", image_likes=0, title= comment) #need to change the hard code of the user_id to the user id once logged in
             db.session.add(new_image)
             db.session.commit()
             return redirect(location=url_for("posts"))
-
+        
+    else:
+        flash("You must submit an image", 'error')
     
     return render_template('createRequest.html', form=form) 
 
