@@ -12,3 +12,5 @@ db = SQLAlchemy(flaskApp)
 migrate = Migrate(flaskApp, db)
 
 from app import routes, model
+
+

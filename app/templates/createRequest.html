@@ -55,48 +55,46 @@
 
       <h1>Create New Post</h1>
 
-      <div id = "Request form" class="m-auto">
-        <form id = "Request">
+          <div id = "Request form">
+              <form id = "Request" action ="/submit" method="post" enctype="multipart/form-data">
+                {{ form.hidden_tag() }}
 
-          <div class = "row">
-            <div class = "col-sm-8">
-              <!--title of post-->
-              <div class = "requestTitle">
-                <label for="title" class = "form-label">Post Title</label>
-                <input type ="text" class="form-control" id="title">
-              </div><br>
-        
-              <!--uploading photos-->
-              <div class="imgUploadInput">
-                <label for="imgUpload" class="form-label">Upload Images</label>
-                <input class="form-control" type="file" id="imgUpload" accept="image/*" multiple>
-              </div>
+                <div class = "row">
+                  <div class = "col-sm-8">
+                    <!--title of post-->
+                    
+                    {{ form.title.label}}
+                    {{ form.title (class="form-control")}}
 
-              <div class = "upload-img">
-                <!-- image here -->
-              </div>   
-            </div>
+                    <br>
 
-            <div class = "col-sm-4 tagListInput">     
-              <!--list of checkboxes-->
-              <label for = "tagList">Tag List</label>
-              <p><i>Description: select categories to descibe outfit</i></p>
-              <ul class = "list-group" id = "tagList">
-                <li><input type="checkbox" id = "tag1"> checkbox 1</li>
-                <li><input type="checkbox" id = "tag2"> checkbox 2</li>
-                <li><input type="checkbox" id = "tag3"> checkbox 3</li>
-                <li><input type="checkbox" id = "tag4"> checkbox 4</li>
-              </ul>
-              </div>
-          </div>
+
+                    <!--uploading photos-->
+                    {{ form.image.label (class="form-label")}}
+                    {{ form.image (class="form-control")}}
+
+                    <br>
+                    <div class = "upload-img"> </div>
+                    
+                  </div>
+                  
+                  <div class = "col-sm-4 tagListInput">  
+                    <br>   
+                    <!--list of checkboxes-->
+                    {{ form.catagories.lable}}
+                    {{ form.catagories (class="form-control")}}
+                    </div>
+                </div>
+                
+                <!--post button-->
+                <br>
+                {{ form.submit(class="btn btn-primary") }}
+
+          </form>
           
-          <!--post button-->
-          <br>
-          <div class = "postButton">
-            <input type="submit" class="btn btn-primary " value="Post">
-          </div>
-        </form>
-      </div>
+
+
+        </div>
           
           <script>
             //preview the images uploaded
