@@ -131,6 +131,12 @@ form{
     padding-top: 15%;
 }
 
+#Requeststar{
+  width: fit-content;
+  margin: auto;
+  padding-top: 2.5%;
+}
+
 h1{
     text-align: center;
 }

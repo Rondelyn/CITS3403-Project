@@ -67,20 +67,36 @@
             <!--trying to change feed branch-->
             {% for image in images %}            
             <div class="rating-box container-sm mb-3 pt-1 pb-3 bodyFormat">
-              <p> {{image.user_id}}</p>
-              <img class = "d-block mx-auto feed_images" src="/static/image_uploads/{{image.image_url}}"> <br>
+              <p> Posted by: {{image.user_id}}</p>
+              <img class = "d-block mx-auto feed_images" src="/static/image_uploads/{{image.image_url}}">
 
+               
 
-            
-              <header>Rate my fit !</header>
+              <header>
+                <form id = "{{image.image_url}}" action ="/submitstar/{{image.image_url}}" method="post">
+                  {{ form.hidden_tag() }}
+                  
+                  {{ form.star(class="btn btn-primary")}}
+                  {{ form.starvalue}}
+                  
+                </form>
+                
+              </header>
               <div class="stars container-sm justify-content-center pb-2">
                 <span class="star" data-value="1"><i class="fas fa-star"></i></span>
                 <span class="star" data-value="2"><i class="fas fa-star"></i></span>
                 <span class="star" data-value="3"><i class="fas fa-star"></i></span>
                 <span class="star" data-value="4"><i class="fas fa-star"></i></span>
-                <span class="star" data-value="5"><i class="fas fa-star"></i></span>
+                <span class="star" data-value="5"><i class="fas fa-star"></i></span> 
+                
               </div>
               {{ image.title }}
+              
+                
+              
+
+
+              
             </div>
 
 

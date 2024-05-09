@@ -9,6 +9,12 @@ class Createpost(FlaskForm):
     image = FileField('Upload Image', render_kw = {'id': "imgUpload"}, validators=[FileRequired('File missing'), FileAllowed(['jpg','png'])])
     submit = SubmitField("Create post")
     catagories = SelectField("Category", choices = ['Woman', 'Men', 'Unisex', 'Dogs', 'Cats', 'Pigs', 'Other'])
+    
+    
+    #submite stars 
+    star = SubmitField("submit rating", render_kw={"onclick": "getrating()"})
+    starvalue = SelectField("Category", choices = ['1', '2', '3', '4', '5'])
+
 
 
 class Createlogin(FlaskForm):
@@ -17,6 +23,8 @@ class Createlogin(FlaskForm):
     checkbox = BooleanField(label='You agree not to post silly things', render_kw={'checked': False}, validators = [DataRequired()])
     createuser = SubmitField("Create user",render_kw = {'id': 'sign-submite'},  validators = [DataRequired()])
     submitlogin = SubmitField("login",render_kw = {'id': 'sign-submite'},  validators = [DataRequired()])
+
+
 
 
     

@@ -30,8 +30,26 @@ def loginform():
 #find request page/ posts
 @flaskApp.route("/findRequest")
 def posts():
+    form = Createpost()
     posts = image.query.all()
-    return render_template("findRequest.html", images=posts )
+    return render_template("findRequest.html", images=posts, form = form )
+
+##adds star rating to db
+@flaskApp.route("/submitstar/<post>", methods = ["post", "get"])
+def addstarvalue(post):
+    ## only works when button is clicked 
+    form = Createpost()
+    print(form.starvalue.data)
+    rating = int(form.starvalue.data)
+    post_id = post
+    
+    rowd = image.query.filter_by(image_url = post_id)
+    row = image.query.get(post_id)
+    row.image_likes += rating
+    print(row)
+    
+    db.session.commit()
+    return redirect(location=url_for("posts"))
 
 
 
