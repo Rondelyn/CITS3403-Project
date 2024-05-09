@@ -41,7 +41,8 @@ def loginform():
         if the_user:
             if bcrypt.check_password_hash(the_user.user_password, form.user_password.data):
                 login_user(the_user)
-                return render_template("findRequest.html", images=posts )
+                return redirect(('/findRequest'))
+
 
     
     return render_template("login.html", form=form)
@@ -49,8 +50,10 @@ def loginform():
 
 #find request page/ posts
 @flaskApp.route("/findRequest" , methods=['GET','POST'])
-@login_required
-def posts():
+#@login_required
+def posts(): 
+    if not current_user.is_authenticated:
+        return redirect("/login")
     posts = image.query.all()
     return render_template("findRequest.html", images=posts )
 
@@ -59,6 +62,12 @@ def posts():
 def images():   
     return render_template("createRequest.html")
 
+@flaskApp.route('/logout', methods=['GET', 'POST'])
+@login_required
+def logout():
+    logout_user()
+    return redirect('/login')
+
 
 @ flaskApp.route('/register', methods=['GET', 'POST'])
 def register():
@@ -66,11 +75,12 @@ def register():
 
     if form.validate_on_submit():
         hashed_password = bcrypt.generate_password_hash(form.user_password.data)
-        new_user = user(username=form.username.data, user_password=hashed_password)
+        new_user = user(id=form.id.data, username=form.username.data, user_password=hashed_password)
         db.session.add(new_user)
         db.session.commit()
         return render_template("login.html", form=form)
     
     return render_template('register.html', form=form)
+
 
 

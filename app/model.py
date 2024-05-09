@@ -11,7 +11,7 @@ from app.config import Config
 from flask_sqlalchemy import SQLAlchemy
 from flask_migrate import Migrate
 
-id
+
 
 
 #table with post data
@@ -33,8 +33,12 @@ class user(db.Model,UserMixin):
 
     images = db.relationship(image)
 
+    def is_authenticated(self):
+        return self.authenticated
+
 #gets info from user 
 class RegisterForm(FlaskForm):
+    id = StringField(validators=[InputRequired(), Length(min=4, max=20)], render_kw={"placeholder": "id"})
     username = StringField(validators=[InputRequired(), Length(min=4, max=20)], render_kw={"placeholder": "Username"})
 
     user_password = PasswordField(validators=[
