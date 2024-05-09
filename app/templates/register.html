@@ -54,13 +54,14 @@
           <div id = 'login form' name = 'login form'>
             <form id = 'login' method="POST" action="" class="container-sm p-3 mb-0 m-auto lg-form">
 
+                <p> Sign Up </p>
+
                 {{ form.hidden_tag() }}
-                {{ form.id }}
+                {{ form.id (class="form-control")}} <br>
         
-                {{ form.username }}
-                {{ form.user_password }}
-                {{ form.submit }}
-          
+                {{ form.username (class="form-control")}} <br>
+                {{ form.user_password (class="form-control")}} <br>
+                {{ form.submit(class="btn btn-primary") }} <br>        
 
 
             

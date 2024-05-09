@@ -52,12 +52,15 @@
 
           <!--This is the login form-->
           <div id = 'login form' name = 'login form'>
-            <form id = 'login' method="POST" action="" class="container-sm p-3 mb-0 m-auto lg-form">
 
+            
+            <form id = 'login' method="POST" action="" class="container-sm p-3 mb-0 m-auto lg-form">
+              <p> Login </p>
+              
               {{ form.hidden_tag() }}
-              {{ form.username }}
-              {{ form.user_password }}
-              {{ form.submit }}
+              {{ form.username (class="form-control") }} <br>
+              {{ form.user_password  (class="form-control")}} <br>
+              {{ form.submit(class="btn btn-primary") }}
           
 
 
