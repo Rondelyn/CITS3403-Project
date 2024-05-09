@@ -73,13 +73,15 @@
                
 
               <header>
+                <div id = "Request_rating">
                 <form id = "{{image.image_url}}" action ="/submitstar/{{image.image_url}}" method="post">
                   {{ form.hidden_tag() }}
                   
                   {{ form.star(class="btn btn-primary")}}
                   {{ form.starvalue}}
-                  
+                  </b>
                 </form>
+              </div>
                 
               </header>
               <div class="stars container-sm justify-content-center pb-2">
