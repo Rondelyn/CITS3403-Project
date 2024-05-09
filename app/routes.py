@@ -31,20 +31,17 @@ def loginform():
 @flaskApp.route("/findRequest")
 def posts():
     form = catergoryFilter()
-    filters = 'Women'
-    posts =image.query.filter(image.image_catagroy.contains(filters))
-    #posts = image.query.all()
+    posts = image.query.all()
     return render_template("findRequest.html", images=posts, form = form)
 
 
     
-@flaskApp.route('/submitfilter', methods = ['POST', 'GET'])
+@flaskApp.route('/submitfilter', methods = ['POST'])
 def submitfilter():
     form = catergoryFilter() 
-    
-    if form.validate_on_submit():       
-        filters= form.filter.data
-        posts =image.query.filter(image.image_catagroy.contains(filters))
+    if form.validate_on_submit():
+        filterSelected = form.filter.data
+        posts =image.query.filter(image.image_catagroy.contains(filterSelected))
                 
         return render_template("findRequest.html", images=posts, form = form)
     

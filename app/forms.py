@@ -4,7 +4,7 @@ from wtforms.validators import DataRequired
 from flask_wtf.file import FileField, FileRequired, FileAllowed
 from wtforms import widgets, SelectMultipleField, SelectField
 
-
+ 
 class MultiCheckboxField(SelectMultipleField):
     widget = widgets.ListWidget(prefix_label=False)
     option_widget = widgets.CheckboxInput()
@@ -25,7 +25,7 @@ class Createpost(FlaskForm):
                                              ('CyberPunk', 'CyberPunk'),
                                              ('Dogs', 'Dogs'),
                                              ('Cats', 'Cats')],
-                                    render_kw = {'class':'no_bullets'}
+                                    render_kw = {'class':'form-check-input me-1'}
                                     )
                                              
 

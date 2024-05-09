@@ -55,10 +55,18 @@
         <br>  
         <div class="container-sm mb-5"></div>
         
+        <!--the form to select a filter for the feed images-->
+        <form id="Request" action = "/submitfilter", method = "post">
         {{ form.filter.label(class_="form-label") }}
         {{ form.filter}}
         {{ form.submitfilter(class="btn btn-primary") }}
+        {{ form.csrf_token }}
+        </form>
 
+        <!--button to remove filters-->
+        <button class="btn btn-primary">
+          Clear Filter
+        </button>
 
         <!--Content container that defines the white box area on site. Fills whole space on small devices-->
           <div class="feed"> 
