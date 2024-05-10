@@ -28,9 +28,6 @@ class Createpost(FlaskForm):
                                     render_kw = {'class':'form-check-input me-1'}
                                     )
                                                  
-    #submite stars 
-    star = SubmitField("submit rating", render_kw={"onclick": "getrating()"})
-    starvalue = SelectField("Category", choices = ['1', '2', '3', '4', '5'])
 
 
 class catergoryFilter(FlaskForm):
@@ -47,6 +44,9 @@ class catergoryFilter(FlaskForm):
                                              ('CyberPunk', 'CyberPunk'),
                                              ('Dogs', 'Dogs'),
                                              ('Cats', 'Cats')], )
+        #submite stars 
+    star = SubmitField("submit rating", render_kw={"onclick": "getrating()"})
+    starvalue = SelectField("Category", choices = ['1', '2', '3', '4', '5'])
     
     
 
