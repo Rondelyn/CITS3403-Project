@@ -43,61 +43,67 @@
           </div>
         </nav>
 
-    <main class="flex-grow-1">
+      <main>
 
-
+        <br>
 
         <!--Content container that defines the white box area on site. Fills whole space on small devices-->
         <div class="container-sm mt-5 mb-3 pt-1 pb-3 bodyFormat">
-        {% with messages = get_flashed_messages() %}
-          {% if messages %}
-          <ul>
-            {% for message in messages %}
-              <li> {{ message }} </li>
-            {% endfor %}
-          </ul>
-          {% endif %}
-        {% endwith %}
 
           <!--This is the login form-->
           <div id = 'login form' name = 'login form'>
-
             <form id = 'login' method="POST" action="" class="container-sm p-3 mb-0 m-auto lg-form">
-              <p> Login </p>
-              
-              {{ form.hidden_tag() }}
-              {{ form.id (class="form-control") }} <br>
-              {{ form.user_password  (class="form-control")}} <br>
-              {{ form.submit(class="btn btn-primary") }}
-          
+
+                <p> Sign Up </p>
+
+                {{ form.hidden_tag() }}
+                {{ form.id (class="form-control")}} <br>
+                   <br>
+                {{ form.user_password (class="form-control")}} <br>
+                {{ form.submit(class="btn btn-primary") }} <br>        
 
 
             
 
+              <!--This is the check box to agree to the terms of service-->
+              <div class="agreeterms">
+                <input type="checkbox" class="form-check-input" id="termsandconditions" aria-describedby="termsconditions">
+                <label class="form-check-label" for="termsandconditions">I agree to the terms of use</label>
+                <div id="termsconditions" class="form-text">You agree to only post pg things to the website or you get removed</div>
+              </div>
               <br>
               <!--This is the submit buttion-->
+              <!-- <button onclick = "validatelogin()" type="submit button" name = 'log-submit' id = 'log-submit' class="btn btn-primary container-sm">Login</button>  -->        
 
             </form>
             <!--This is the button to go to the creat user page-->
-            <a href="{{ url_for('register') }}">Don't have an account? Sign Up</a>
+            <a class="nav-link" href="login">Already have an account? Login</a>
           </div>
 
-         <br>
 
+
+
+        
+              <br>
+              <!--This is the submit buttion-->
+              <!--<button onclick = "validatesignup()" type="submit button" name = 'sign-submit' id = 'sign-submit' class="btn btn-primary container-sm">Sign up</button> -->
                 
             </form>
             <!--This is the button to go to the login user page-->
             <!--<p class="text-center">Already a member? <b onclick="showlogin()" role="button">Login</b></p>-->
           </div>
+        </div>
+      </main>
 
-    <!--temp footer-->
-    <footer class="footer mt-auto py-3 d-flex justify-content-end">
+
+      <!--temp footer-->
+      <footer class="m-1 text-muted end-0 d-flex justify-content-end">
       <small>&copy; 2024</small> 
-    </footer>
+      </footer>
 
-    
-    <!--This is the js used by bootstrap 5 and the ajax link. Please keep this at the bottom before /body-->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-  </body>  
+      
+      <!--This is the js used by bootstrap 5 and the ajax link. Please keep this at the bottom before /body-->
+      <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+      <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    </body>
 </html>
