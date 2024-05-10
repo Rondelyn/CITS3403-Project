@@ -71,6 +71,10 @@ document.addEventListener("DOMContentLoaded", function() {
           // Send the rating to the server
           // saveRating(imageId, value);
 
+          function getrating(){
+            return Int16Array(value)
+          }
+
           // Update UI
           const container = this.closest(".stars");
           removeActiveStars(container);
@@ -79,5 +83,6 @@ document.addEventListener("DOMContentLoaded", function() {
       });
   });
 }); 
+
 
 

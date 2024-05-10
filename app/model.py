@@ -15,7 +15,7 @@ class image(db.Model):
     
 
     def __repr__(self) -> str:
-        return f'<image {self.user_id} {self.image_id} {self.image_catagroy} {self.image_id}>'
+        return f'<image {self.user_id} {self.image_url} {self.image_catagroy} {self.image_likes} >'
 
     
 

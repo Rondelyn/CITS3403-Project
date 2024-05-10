@@ -27,7 +27,11 @@ class Createpost(FlaskForm):
                                              ('Cats', 'Cats')],
                                     render_kw = {'class':'form-check-input me-1'}
                                     )
-                                             
+                                                 
+    #submite stars 
+    star = SubmitField("submit rating", render_kw={"onclick": "getrating()"})
+    starvalue = SelectField("Category", choices = ['1', '2', '3', '4', '5'])
+
 
 class catergoryFilter(FlaskForm):
     submitfilter = SubmitField("Filter Posts")
@@ -52,6 +56,8 @@ class Createlogin(FlaskForm):
     checkbox = BooleanField(label='You agree not to post silly things', render_kw={'checked': False}, validators = [DataRequired()])
     createuser = SubmitField("Create user",render_kw = {'id': 'sign-submite'},  validators = [DataRequired()])
     submitlogin = SubmitField("login",render_kw = {'id': 'sign-submite'},  validators = [DataRequired()])
+
+
 
 
     
