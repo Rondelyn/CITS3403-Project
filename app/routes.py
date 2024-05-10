@@ -11,7 +11,6 @@ from app.model import *
 from flask_login import UserMixin, login_user, LoginManager, login_required, logout_user, current_user
 
 
-
 bcrypt = Bcrypt(flaskApp)
 
 login_manager = LoginManager()
@@ -21,7 +20,7 @@ login_manager.login_view = 'login'
 
 @login_manager.user_loader
 def load_user(user_id):
-    return user.query.get(int(user_id))
+    return user.query.get((user_id))
 
 
 
@@ -37,7 +36,7 @@ def home():
 def loginform():
     form = LoginForm()
     if form.validate_on_submit():
-        the_user = user.query.filter_by(username=form.username.data).first()
+        the_user = user.query.filter_by(id=form.id.data).first()
         if the_user:
             if bcrypt.check_password_hash(the_user.user_password, form.user_password.data):
                 login_user(the_user)
@@ -60,7 +59,9 @@ def posts():
 #createResquest/ create post
 @flaskApp.route("/createRequest")
 def images():   
-    return render_template("createRequest.html")
+        if not current_user.is_authenticated:
+            return redirect("/login")
+        return render_template("createRequest.html")
 
 @flaskApp.route('/logout', methods=['GET', 'POST'])
 @login_required
@@ -75,10 +76,10 @@ def register():
 
     if form.validate_on_submit():
         hashed_password = bcrypt.generate_password_hash(form.user_password.data)
-        new_user = user(id=form.id.data, username=form.username.data, user_password=hashed_password)
+        new_user = user(id=form.id.data, user_password=hashed_password)
         db.session.add(new_user)
         db.session.commit()
-        return render_template("login.html", form=form)
+        return render_template("findRequest.html", form=form)
     
     return render_template('register.html', form=form)
 

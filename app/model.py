@@ -27,8 +27,8 @@ class image(db.Model):
 
 #table with user data
 class user(db.Model,UserMixin):
-    id = db.Column(db.String(10), primary_key=True)
-    username = db.Column(db.String(20),nullable = False, unique = True)
+    id = db.Column(db.String(10), primary_key=True, nullable = False, unique = True )
+    #id = db.Column(db.String(20),nullable = False, unique = True)
     user_password = db.Column(db.String (80), nullable=False)
 
     images = db.relationship(image)
@@ -38,8 +38,8 @@ class user(db.Model,UserMixin):
 
 #gets info from user 
 class RegisterForm(FlaskForm):
-    id = StringField(validators=[InputRequired(), Length(min=4, max=20)], render_kw={"placeholder": "id"})
-    username = StringField(validators=[InputRequired(), Length(min=4, max=20)], render_kw={"placeholder": "Username"})
+    id = StringField(validators=[InputRequired(), Length(min=4, max=20)], render_kw={"placeholder": "Username"})
+    #id = StringField(validators=[InputRequired(), Length(min=4, max=20)], render_kw={"placeholder": "id"})
 
     user_password = PasswordField(validators=[
                              InputRequired(), Length(min=8, max=20)], render_kw={"placeholder": "Password"})
@@ -47,18 +47,18 @@ class RegisterForm(FlaskForm):
     submit = SubmitField('Register')
 
 
-    #checks if there are any username that are the same 
-    def validate_username(self, username):
-        existing_user_username = user.query.filter_by(
-            username=username.data).first()
-        if existing_user_username:
+    #checks if there are any id that are the same 
+    def validate_id(self, id):
+        existing_user_id = user.query.filter_by(
+            id=id.data).first()
+        if existing_user_id:
             raise ValidationError(
-                'That username already exists. Please choose a different one.')
+                'That Username already exists. Please choose a different one.')
 
 
 
 class LoginForm(FlaskForm):
-    username = StringField(validators=[
+    id = StringField(validators=[
                            InputRequired(), Length(min=4, max=20)], render_kw={"placeholder": "Username"})
 
     user_password = PasswordField(validators=[
