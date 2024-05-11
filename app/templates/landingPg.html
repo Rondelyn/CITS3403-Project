@@ -67,7 +67,7 @@
           <div class="carousel-inner">
               {% for img in top_images %}
                   <div class="carousel-item {% if loop.first %} active {% endif %}">
-                      <img src="{{ img.image_url }}" alt="Image {{ loop.index }}" class="d-block mx-auto scaled-img img-thumbnail">
+                      <img src="/static/image_uploads/{{ img.image_url }}" alt="Image {{ loop.index }}" class="d-block mx-auto scaled-img img-thumbnail">
                   </div>
               {% endfor %}
           </div>

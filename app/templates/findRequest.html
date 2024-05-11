@@ -53,16 +53,41 @@
         
         <!-- These are used for spacing beneath navbar-->
         <br>  
+         
         <div class="container-sm mb-5"></div>
-        
-
-
-
-
-
 
 
         <!--Content container that defines the white box area on site. Fills whole space on small devices-->
+          
+            <div class="rating-box container-sm mb-3 pt-1 pb-3 bodyFormat">
+             
+        
+              <div class="container-sm mb-5"></div>
+              <!--the form to select a filter for the feed images-->
+              <form id="Request" action = "/submitfilter", method = "post">
+
+                {{ form.csrf_token }}
+                {{ form.hidden_tag() }}
+                {{ form.submitfilter(class="btn btn-primary") }}
+                {{ form.csrf_token }}
+                {{ form.filter.label(class_="form-label") }}
+                {{ form.filter}}
+
+
+                </form>
+                <br>
+        
+                <!--button to remove filters-->
+                <div class="col-md-12 text-center">
+                <button class="btn btn-primary">
+                  Clear Filter
+                </button>
+                <a href="{{url_for('logout')}}">Press here to logout</a>
+                
+                </div>
+                <br>
+              </div>
+            
           <div class="feed"> 
             <!--trying to change feed branch-->
             {% for image in images %}            

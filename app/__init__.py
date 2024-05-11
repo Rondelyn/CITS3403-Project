@@ -9,8 +9,9 @@ from flask_migrate import Migrate
 flaskApp = Flask(__name__)
 flaskApp.config.from_object(Config)
 db = SQLAlchemy(flaskApp)
-migrate = Migrate(flaskApp, db)
+migrate = Migrate(flaskApp, db, render_as_batch= True)
 
 from app import routes, model
+
 
 
