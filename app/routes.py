@@ -1,27 +1,9 @@
 
-
-    #improting required classes
-from flask import Flask, render_template, redirect, request, url_for, flash
+#improting required classes
+from flask import render_template, redirect, request, url_for, flash
 from app import flaskApp, db
-from flask_sqlalchemy import SQLAlchemy
-from app.model import image, user, LoginForm, RegisterForm
-from flask_bcrypt import Bcrypt
-from app import db
-from app.model import *
-from flask_login import UserMixin, login_user, LoginManager, login_required, logout_user, current_user
+from app.model import image, user
 from app.forms import Createpost, Createlogin, catergoryFilter
-
-
-bcrypt = Bcrypt(flaskApp)
-
-login_manager = LoginManager()
-login_manager.init_app(flaskApp)
-login_manager.login_view = 'login'
-
-
-@login_manager.user_loader
-def load_user(user_id):
-    return user.query.get((user_id))
 
 #requred for the image upload
 import os
@@ -40,27 +22,14 @@ def home():
     return render_template("landingPg.html", top_images=top_images)
 
 #login page
-@flaskApp.route("/login", methods=['GET','POST'])
+@flaskApp.route("/login")
 def loginform():
-    form = LoginForm()
-    if form.validate_on_submit():
-        the_user = user.query.filter_by(id=form.id.data).first()
-        if the_user:
-            if bcrypt.check_password_hash(the_user.user_password, form.user_password.data):
-                login_user(the_user)
-                return redirect(('/findRequest'))
-
-
-    
-    return render_template("login.html", form=form)
-
+    form2 = Createlogin()
+    return render_template("login.html", form = form2)
 
 #find request page/ posts
-@flaskApp.route("/findRequest" , methods=['GET','POST'])
-#@login_required
-def posts(): 
-    if not current_user.is_authenticated:
-        return redirect("/login")
+@flaskApp.route("/findRequest")
+def posts():
     form = catergoryFilter()
     posts = image.query.all()
     return render_template("findRequest.html", images=posts, form = form)
@@ -103,10 +72,8 @@ def addstarvalue(post):
 ##rename images to createpost?
 @flaskApp.route("/createRequest")
 def images():
-        if not current_user.is_authenticated:
-            return redirect("/login")
-        form1 = Createpost()
-        return render_template("createRequest.html", form = form1)
+    form1 = Createpost()
+    return render_template("createRequest.html", form = form1)
 
 
 #adding submit point for posts
@@ -211,26 +178,5 @@ def find_user_exists(user_id:str):
     if username_not_exist: #if user i.e "user" exists willl be called
         flash(f'Username already exists: {user_id}', 'error')
     return username_not_exist #returns a None
-
-@flaskApp.route('/logout', methods=['GET', 'POST'])
-@login_required
-def logout():
-    logout_user()
-    return redirect('/login')
-
-
-@ flaskApp.route('/register', methods=['GET', 'POST'])
-def register():
-    form = RegisterForm()
-
-    if form.validate_on_submit():
-        hashed_password = bcrypt.generate_password_hash(form.user_password.data)
-        new_user = user(id=form.id.data, user_password=hashed_password)
-        db.session.add(new_user)
-        db.session.commit()
-        return render_template("findRequest.html", form=form)
-    
-    return render_template('register.html', form=form)
-
 
 
