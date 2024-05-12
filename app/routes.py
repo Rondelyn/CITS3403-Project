@@ -40,9 +40,6 @@ def home():
 
 
 
-
-
-
 #createResquest/ create posts
 @flaskApp.route("/createRequest")
 def images():
@@ -66,26 +63,30 @@ def save_image(image_file):
 #allows users to submit there posts
 @flaskApp.route('/submit', methods=['POST', 'GET'])
 def submit():
+    print("Inside submit function")  # Debug print
     form = Createpost()
     #validation
 
     if form.validate_on_submit():
+        print("Form data:", form.data)  # Debug print
         categories = ' '.join(form.catagories.data)
         image_file = save_image(request.files['image'])
         title = form.title.data
-        
+        user_id = current_user.id
+        print("User ID:", user_id)  # Debug print
+
         if image_file:
-            new_image = image(image_url=image_file, image_catagroy= categories, image_likes=0, title=title)
+            new_image = image(image_url=image_file, image_catagroy= categories, image_likes=0, title=title, user_id=user_id)
+            print("New Image Object:", new_image)  # Debug print
             db.session.add(new_image)
             db.session.commit()
             return redirect(url_for("posts"))
         else:
             flash("Failed to upload image", 'error')
+    else:
+        print("Form validation errors:", form.errors)  # Debug print
             
     return render_template('createRequest.html', form=form)
-
-
-
 
 ## feed page
 @flaskApp.route("/findRequest" , methods=['GET','POST'])
