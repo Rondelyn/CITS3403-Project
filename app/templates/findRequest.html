@@ -90,15 +90,15 @@
             {% for image in images %}            
             <div class="rating-box container-sm mb-3 pt-1 pb-3 bodyFormat">
               <br><br>
-              <img class = "d-block mx-auto feed_images" src="/static/image_uploads/{{image.image_url}}">
-
+              <img class = "d-block mx-auto feed_images img-fluid" src="/static/image_uploads/{{image.image_url}}">
                
 
               <header>
                 <form id = "{{image.image_url}}" action ="/submitstar/{{image.image_url}}" method="post">
+                  <br>
                   {{ form.hidden_tag() }}
                   {{ form.csrf_token }}
-                  {{ form.star(class="btn btn-primary")}}
+                  {{ form.star(class="btn btn-primary")}} 
                   {{ form.starvalue}}
                   
                 </form>

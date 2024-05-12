@@ -63,7 +63,7 @@ def save_image(picture_file):
 def submit():
     form = Createpost()
     #validation
-    
+
     if form.validate_on_submit():
             
             categoriy =  ' '.join(form.catagories.data)
@@ -139,6 +139,17 @@ def addstarvalue(post):
 @flaskApp.route("/login", methods=['GET','POST'])
 def loginform():
     form = LoginForm()
+    idcheck= user.query.get(form.id.data)
+
+
+    if request.method == "GET":
+        return render_template('login.html', form=form)
+
+    if not idcheck:
+        flash(f'username {form.id.data} dose not exists', 'error')
+        return redirect('/login')
+
+
     if form.validate_on_submit():
         the_user = user.query.filter_by(id=form.id.data).first()
         if the_user:
@@ -147,8 +158,7 @@ def loginform():
                 return redirect(('/findRequest'))
 
 
-    
-    return render_template("login.html", form=form)
+    return redirect('/login')
 
 
 @flaskApp.route('/logout', methods=['GET', 'POST'])
@@ -163,14 +173,24 @@ def register():
     form = RegisterForm()
     formpost = postform()
     formfilter = catergoryFilter() 
+    idcheck= user.query.get(form.id.data)
 
-    if form.validate_on_submit():
+
+    if request.method == "GET":
+        return render_template('register.html', form=form)
+
+    if idcheck:
+        flash(f'username {form.id.data} already exists', 'error')
+        return render_template('register.html', form=form)
+
+    if form.validate_on_submit() and not idcheck:
         hashed_password = bcrypt.generate_password_hash(form.user_password.data)
         new_user = user(id=form.id.data, user_password=hashed_password)
         db.session.add(new_user)
         db.session.commit()
-        return render_template("findRequest.html", form=formpost, formfilter = formfilter)
+        return redirect(('/findRequest'))
     
     return render_template('register.html', form=form)
+
 
 
