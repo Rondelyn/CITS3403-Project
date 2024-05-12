@@ -12,6 +12,7 @@ class image(db.Model):
     image_catagroy = db.Column(db.String, nullable=False)
     image_likes = db.Column(db.Integer)
     title = db.Column(db.String)
+    
 
     
 
@@ -28,9 +29,10 @@ class user(db.Model,UserMixin):
     #password_hash = db.Column(db.String(128), nullable = False)
 
     def __repr__(self) -> str:
-        return f'<image {self.user_id} {self.user_password}>' 
+        return f'<image {self.id} {self.user_password}>' 
 
 
     def is_authenticated(self):
         return self.authenticated
+
 

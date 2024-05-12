@@ -66,12 +66,12 @@
               <!--the form to select a filter for the feed images-->
               <form id="Request" action = "/submitfilter", method = "post">
 
-                {{ form.csrf_token }}
-                {{ form.hidden_tag() }}
-                {{ form.submitfilter(class="btn btn-primary") }}
-                {{ form.csrf_token }}
-                {{ form.filter.label(class_="form-label") }}
-                {{ form.filter}}
+                {{ formfilter.csrf_token }}
+                {{ formfilter.hidden_tag() }}
+                {{ formfilter.submitfilter(class="btn btn-primary") }}
+                {{ formfilter.csrf_token }}
+                {{ formfilter.filter.label(class_="form-label") }}
+                {{ formfilter.filter}}
 
 
                 </form>
@@ -79,9 +79,11 @@
         
                 <!--button to remove filters-->
                 <div class="col-md-12 text-center">
+                <form id = "Request" action = '/findRequest'>
                 <button class="btn btn-primary">
                   Clear Filter
                 </button>
+                </form>
                 <a href="{{url_for('logout')}}">Press here to logout</a>
                 
                 </div>
@@ -92,7 +94,7 @@
             <!--trying to change feed branch-->
             {% for image in images %}            
             <div class="rating-box container-sm mb-3 pt-1 pb-3 bodyFormat">
-              <p> Posted by: {{image.user_id}}</p>
+              <br><br>
               <img class = "d-block mx-auto feed_images" src="/static/image_uploads/{{image.image_url}}">
 
                
@@ -100,7 +102,7 @@
               <header>
                 <form id = "{{image.image_url}}" action ="/submitstar/{{image.image_url}}" method="post">
                   {{ form.hidden_tag() }}
-                  
+                  {{ form.csrf_token }}
                   {{ form.star(class="btn btn-primary")}}
                   {{ form.starvalue}}
                   
@@ -118,9 +120,6 @@
               {{ image.title }}
               
                 
-              
-
-
               
             </div>
 

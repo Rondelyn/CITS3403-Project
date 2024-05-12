@@ -63,14 +63,15 @@ def save_image(picture_file):
 def submit():
     form = Createpost()
     #validation
-
-    if not form.validate_on_submit():
+    
+    if form.validate_on_submit():
             
             categoriy =  ' '.join(form.catagories.data)
             print(categoriy)
             image_file = save_image(form.image.data)
             comment = form.title.data
-            new_image  = image(image_url= image_file, image_catagroy= categoriy, image_likes=0, title= comment) #need to change the hard code of the user_id to the user id once logged in
+            
+            new_image  = image(image_url= image_file, image_catagroy= categoriy, image_likes=0, title= comment)
             db.session.add(new_image)
             db.session.commit()
             return redirect(location=url_for("posts"))
@@ -83,43 +84,41 @@ def submit():
 
 
 
-
-
-
-
 ## feed page
 @flaskApp.route("/findRequest" , methods=['GET','POST'])
-
 def posts(): 
     if not current_user.is_authenticated:
         return redirect("/login")
-    form = catergoryFilter()
+    formpost = postform()
+    formfiter = catergoryFilter() 
     posts = image.query.all()
-    return render_template("findRequest.html", images=posts, form = form)
+    return render_template("findRequest.html", images=posts, form = formpost, formfilter = formfiter)
 
 #submits filter on feed page 
 @flaskApp.route('/submitfilter', methods = ["post", "get"])
 def submitfilter():
-    
-    form = catergoryFilter() 
-    print(form.errors)
-    if  form.validate_on_submit():
+    formpost = postform()
+    formfilter = catergoryFilter() 
+    print(formfilter.errors)
+    if  formfilter.validate_on_submit():
         print("qoqo")
-        filterSelected = form.filter.data
+        filterSelected = formfilter.filter.data
         posts =image.query.filter(image.image_catagroy.contains(filterSelected))
                 
-        return render_template("findRequest.html", images=posts, form = form)
+        return render_template("findRequest.html", images=posts, form=formpost, formfilter = formfilter)
     
     else:
         posts = image.query.all()
         print("ksksk")
         return redirect(location=url_for("posts"))
     
+  
+    
 ##adds star rating to db
 @flaskApp.route("/submitstar/<post>", methods = ["post", "get"])
 def addstarvalue(post):
     ## only works when button is clicked 
-    form = Createpost()
+    form = postform()
     print(form.starvalue.data)
     rating = int(form.starvalue.data)
     post_id = post
@@ -162,13 +161,15 @@ def logout():
 @ flaskApp.route('/register', methods=['GET', 'POST'])
 def register():
     form = RegisterForm()
+    formpost = postform()
+    formfilter = catergoryFilter() 
 
     if form.validate_on_submit():
         hashed_password = bcrypt.generate_password_hash(form.user_password.data)
         new_user = user(id=form.id.data, user_password=hashed_password)
         db.session.add(new_user)
         db.session.commit()
-        return render_template("findRequest.html", form=form)
+        return render_template("findRequest.html", form=formpost, formfilter = formfilter)
     
     return render_template('register.html', form=form)
 

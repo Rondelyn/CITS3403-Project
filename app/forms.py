@@ -27,9 +27,25 @@ class Createpost(FlaskForm):
                                              ('Cats', 'Cats')],
                                     render_kw = {'class':'form-check-input me-1'}
                                     )
+
+class postform(FlaskForm):
+    title = StringField("Post Title", render_kw = {'id': 'title'}, validators = [DataRequired()])
+    image = FileField('Upload Image', render_kw = {'id': "imgUpload"}, validators=[FileRequired('File missing'), FileAllowed(['jpg','png'])])
+    catagories =  MultiCheckboxField('Categories',
+                                    choices=[('Women', 'Women'), 
+                                             ('Mens', 'Mens'), 
+                                             ('Unisex', 'Unisex'), 
+                                             ('Vintage', 'Vintage'),
+                                             ('OfficeCore', 'Office Core'),
+                                             ('Y2K', 'Y2K'),
+                                             ('CottageCore', 'Cottage Core'),
+                                             ('GothCore', 'Goth Core'),
+                                             ('CyberPunk', 'CyberPunk'),
+                                             ('Dogs', 'Dogs'),
+                                             ('Cats', 'Cats')],
+                                    render_kw = {'class':'form-check-input me-1'}
+                                    )
     
-    
-    #submite stars 
     star = SubmitField("submit rating", render_kw={"onclick": "getrating()"})
     starvalue = SelectField("Category", choices = ['1', '2', '3', '4', '5'])
     
@@ -47,9 +63,7 @@ class catergoryFilter(FlaskForm):
                                              ('CyberPunk', 'CyberPunk'),
                                              ('Dogs', 'Dogs'),
                                              ('Cats', 'Cats')], )
-        #submite stars 
-    star = SubmitField("submit rating", render_kw={"onclick": "getrating()"})
-    starvalue = SelectField("Category", choices = ['1', '2', '3', '4', '5'])
+
 
 
 
@@ -61,6 +75,7 @@ class RegisterForm(FlaskForm):
                              InputRequired(), Length(min=8, max=20)], render_kw={"placeholder": "Password"})
 
     submit = SubmitField('Register')
+    checkbox = BooleanField(label='You agree not to post silly things', render_kw={'checked': False}, validators = [DataRequired()])
 
 
         
