@@ -16,89 +16,73 @@
         <!--Link to custom javascript-->
         <script src="/static/main.js"></script>
     </head>
-    <body>
-        <!--This is the navigation bar-->
-        <nav class="navbar navbar-expand-sm navbar-dark fixed-top rounded-bottom bg-colour">
-          <div class="container-fluid">
-            <a class="navbar-brand"  id="logo">Logo</a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#collapsibleNavbar">
-              <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse justify-content-end" id="collapsibleNavbar">
-              <ul class="navbar-nav">
-                <li class="nav-item pill">
-                  <a class="nav-link" href="landingPg"><i class="bi bi-house-fill"></i> Home</a>
-                </li>
-                <li class="nav-item pill">
-                  <a class="nav-link" href="findRequest">Feed</a>
-                </li>
-                <li class="nav-item pill">
-                  <a class="nav-link" href="createRequest">Post</a>
-                </li>    
-                <li class="nav-item pill">
-                  <a class="nav-link disabled" href="login">Login</a>
-                </li> 
-              </ul>
-            </div>
-          </div>
-        </nav>
-
-      <main>
-
-        <br>
-
-        <!--Content container that defines the white box area on site. Fills whole space on small devices-->
-        <div class="container-sm mt-5 mb-3 pt-1 pb-3 bodyFormat">
-
-          <!--This is the login form-->
-          <div id = 'login form' name = 'login form'>
-            <form id = 'login' method="POST" action="register" class="container-sm p-3 mb-0 m-auto lg-form">
-
-                <p> Sign Up </p>
-                {{ form.csrf_token }}
-                {{ form.hidden_tag() }}
-                {{ form.id (class="form-control")}} <br>
-                {{ form.user_password (class="form-control")}} <br>
-                {{ form.submit(class="btn btn-primary") }} <br>
-                
-                
-                {{ form.checkbox}}
-                {{ form.checkbox.label}}
-                
-
-              <br>
-              <!--This is the submit buttion-->
-              <!-- <button onclick = "validatelogin()" type="submit button" name = 'log-submit' id = 'log-submit' class="btn btn-primary container-sm">Login</button>  -->        
-
-            </form>
-            <!--This is the button to go to the creat user page-->
-            <a class="nav-link" href="login">Already have an account? Login</a>
-          </div>
-
-
-
-
-        
-              <br>
-              <!--This is the submit buttion-->
-              <!--<button onclick = "validatesignup()" type="submit button" name = 'sign-submit' id = 'sign-submit' class="btn btn-primary container-sm">Sign up</button> -->
-                
-            </form>
-            <!--This is the button to go to the login user page-->
-            <!--<p class="text-center">Already a member? <b onclick="showlogin()" role="button">Login</b></p>-->
-          </div>
+  <body class="d-flex flex-column min-vh-100">
+    <!--This is the navigation bar-->
+    <nav class="navbar navbar-expand-sm navbar-dark fixed-top rounded-bottom bg-colour">
+      <div class="container-fluid">
+        <a class="navbar-brand"  id="logo">Rate My Fit</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#collapsibleNavbar">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse justify-content-end" id="collapsibleNavbar">
+          <ul class="navbar-nav">
+            <li class="nav-item pill">
+              <a class="nav-link" href="landingPg"><i class="bi bi-house-fill"></i> Home</a>
+            </li>
+            <li class="nav-item pill">
+              <a class="nav-link" href="findRequest">Feed</a>
+            </li>
+            <li class="nav-item pill">
+              <a class="nav-link" href="createRequest">Post</a>
+            </li>    
+            <li class="nav-item pill">
+              <a class="nav-link disabled" href="login">Login</a>
+            </li> 
+          </ul>
         </div>
-      </main>
+      </div>
+    </nav>
 
-
-      <!--temp footer-->
-      <footer class="m-1 text-muted end-0 d-flex justify-content-end">
-      <small>&copy; 2024</small> 
-      </footer>
-
+    <main>
+      <br>
       
-      <!--This is the js used by bootstrap 5 and the ajax link. Please keep this at the bottom before /body-->
-      <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
-      <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    </body>
+      <!--Content container that defines the white box area on site. Fills whole space on small devices-->
+      <div class="container-sm mt-5 mb-3 pt-1 pb-3 bodyFormat">
+
+        <!--This is the login form-->
+        <div id = 'login form' name = 'login form'>
+          <form id = 'login' method="POST" action="register" class="container-sm p-3 mb-0 m-auto lg-form">
+            <br>
+            <p> Sign Up </p>
+            {{ form.csrf_token }}
+            {{ form.hidden_tag() }}
+            {{ form.id (class="form-control")}} <br>
+            {{ form.user_password (class="form-control")}} <br>
+            {{ form.submit(class="btn btn-primary container-sm") }} <br>
+            
+            
+            {{ form.checkbox}}
+            {{ form.checkbox.label}}
+              
+
+            <br>
+          </form>
+          <!--This is the button to go to the creat user page-->
+          <p class="d-flex justify-content-center">Already have an account? <a href="login" class="custom-link"><b>Login</b></a></p>
+        </div>      
+        <br>
+      </div>
+    </main>
+
+
+    <!--temp footer-->
+    <footer class="footer mt-auto py-3 d-flex justify-content-end">
+      <small>&copy; 2024</small> 
+    </footer>
+
+    
+    <!--This is the js used by bootstrap 5 and the ajax link. Please keep this at the bottom before /body-->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  </body>
 </html>
