@@ -10,7 +10,7 @@
 
 /* this is to define the space taken up by the logo to keep the navbar at a fixed height */
 #logo {
-    margin: 4px 2px;
+  margin: 4px 2px;
 }
 
 /* create Request styling */
@@ -18,38 +18,43 @@
   list-style-type: none;
 }
 
+.custom-link {
+  text-decoration: none;
+  color: inherit;
+}
+
 /* login form width control */
 .lg-form {
-    max-width: 500px;
+  max-width: 500px;
 }
 
 /* this is the main body container's styling */
 .bodyFormat {
-    background-color: white;
-    border-color: ghostwhite;
-    border-radius: 10px;
+  background-color: white;
+  border-color: ghostwhite;
+  border-radius: 10px;
 }
 
 /* Controls the background colour of the navigation bar */
 .bg-colour {
-    background-color: rgb(34, 34, 34);
+  background-color: rgb(34, 34, 34);
 }
 
 /* creates an invisible pill around the navigation bar buttons */
 .pill {
-    border: none;
-    color: black;
-    text-align: center;
-    text-decoration: none;
-    display: inline-block;
-    margin: 4px 2px;
-    cursor: pointer;
-    border-radius: 16px;
+  border: none;
+  color: black;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  margin: 4px 2px;
+  cursor: pointer;
+  border-radius: 16px;
 }
 
 /* changes the colour around the invisible pill on hover to highlight button */
 .pill:hover {
-    background-color: rgb(51, 51, 51);
+  background-color: rgb(51, 51, 51);
 }
 
 /* a tage that makes non-bold tag texts bolded */
@@ -71,9 +76,9 @@
 
 /* used to define the sizes of the images on the landing page's img gallery */
 .scaled-img {
-    border-radius: 3%;
-    height: 500px; 
-    object-fit: cover;
+  border-radius: 3%;
+  height: 500px; 
+  object-fit: cover;
 }
 
 .upload-img .container {
@@ -91,7 +96,6 @@
   position: absolute;
   top: 5px;
   right: 30px;
-  
 }
 
 .rating-box {
@@ -139,9 +143,9 @@
 }
 
 .postcss{
-    width: fit-content;
-    margin: auto;
-    padding-top: 15%;
+  width: fit-content;
+  margin: auto;
+  padding-top: 15%;
 }
 
 #Requeststar{
@@ -151,5 +155,5 @@
 }
 
 h1{
-    text-align: center;
+  text-align: center;
 }

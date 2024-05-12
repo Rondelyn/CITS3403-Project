@@ -107,5 +107,33 @@ document.addEventListener("DOMContentLoaded", function() {
   });
 }); 
 
+// Used for previewing images on the createRequest page
+document.addEventListener("DOMContentLoaded", function() {
+  // Check if the page is createRequest.html
+  if (document.title === "Rate My Fit - Post") {
+    // Function to handle image upload and preview
+    $("#imgUpload").change(function () {
+      // Remove previous image previews
+      $(".upload-img").empty();
+
+      // Loop through each uploaded file
+      for (let i = 0; i < this.files.length; i++) {
+        const file = this.files[i];
+
+        // Check if the uploaded file is an image
+        if (file && file.type.startsWith("image/")) {
+          const reader = new FileReader();
+
+          // Read the uploaded image file and display it as a preview
+          reader.onload = function(e) {
+            $(".upload-img").append('<img src="' + e.target.result + '" class="img-thumbnail" width="150" />');
+          }
+          reader.readAsDataURL(file);
+        }
+      }
+    });
+  }
+});
+
 
 
