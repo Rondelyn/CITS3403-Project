@@ -12,6 +12,7 @@ class MultiCheckboxField(SelectMultipleField):
 class Createpost(FlaskForm):
     title = StringField("Post Title", render_kw = {'id': 'title'}, validators = [DataRequired()])
     image = FileField('Upload Image', render_kw = {'id': "imgUpload"}, validators=[FileRequired('File missing'), FileAllowed(['jpg','png'])])
+    user_id = StringField("User ID", render_kw={'style': 'display:none'})
     submit = SubmitField("Create post")
     catagories =  MultiCheckboxField('Categories', 
                                     choices=[('Women', 'Women'), 
@@ -30,6 +31,7 @@ class Createpost(FlaskForm):
                                     )
 
 class postform(FlaskForm):
+    user_id = StringField("User ID", render_kw={'style': 'display:none'})
     title = StringField("Post Title", render_kw = {'id': 'title'}, validators = [DataRequired()])
     image = FileField('Upload Image', render_kw = {'id': "imgUpload"}, validators=[FileRequired('File missing'), FileAllowed(['jpg','png'])])
     catagories =  MultiCheckboxField('Categories',
@@ -49,6 +51,7 @@ class postform(FlaskForm):
     
     star = SubmitField("submit rating", render_kw={"onclick": "getrating()"})
     starvalue = SelectField("Category", choices = ['1', '2', '3', '4', '5'])
+    
     
 class catergoryFilter(FlaskForm):
     submitfilter = SubmitField("Filter Posts")
