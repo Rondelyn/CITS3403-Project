@@ -87,13 +87,16 @@
             
           <div class="feed"> 
             <!--trying to change feed branch-->
-            {% for image in images %}            
-            <div class="rating-box container-sm mb-3 pt-1 pb-3 bodyFormat">
-              <br><br>
+            {% for image in images %}
+                      
+            <div class="rating-box container-sm mb-3 pt-1 pb-3 bodyFormat">   
+              <br>
+              <p id="user-tag">@{{ image.user_id }}</p>
+              <hr>
+              <br>
               <img class = "d-block mx-auto feed_images img-fluid" src="/static/image_uploads/{{image.image_url}}">
-               
-
               <header>
+                
                 <form id = "{{image.image_url}}" action ="/submitstar/{{image.image_url}}" method="post">
                   <br>
                   {{ form.hidden_tag() }}
@@ -104,18 +107,8 @@
                 </form>
                 
               </header>
-              <div class="stars container-sm justify-content-center pb-2">
-                <span class="star" data-value="1"><i class="fas fa-star"></i></span>
-                <span class="star" data-value="2"><i class="fas fa-star"></i></span>
-                <span class="star" data-value="3"><i class="fas fa-star"></i></span>
-                <span class="star" data-value="4"><i class="fas fa-star"></i></span>
-                <span class="star" data-value="5"><i class="fas fa-star"></i></span> 
-                
-              </div>
+              <hr>
               {{ image.title }}
-              
-                
-              
             </div>
 
 
