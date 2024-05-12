@@ -25,7 +25,7 @@ class image(db.Model):
 #table with user data
 class user(db.Model,UserMixin):
     id = db.Column(db.String(10), primary_key=True)
-    user_password = db.Column(db.String (10), nullable=False)
+    user_password = db.Column(db.String (128), nullable=False)
     #password_hash = db.Column(db.String(128), nullable = False)
 
     def __repr__(self) -> str:
@@ -35,4 +35,10 @@ class user(db.Model,UserMixin):
     def is_authenticated(self):
         return self.authenticated
 
+    def set_password(self, password):
+        self.password_hash = generate_password_hash(password)
+
+    def check_password(self, password):
+        return check_password_hash(self.password_hash, password)
+    
 

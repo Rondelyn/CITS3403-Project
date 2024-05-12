@@ -13,7 +13,7 @@ class Createpost(FlaskForm):
     title = StringField("Post Title", render_kw = {'id': 'title'}, validators = [DataRequired()])
     image = FileField('Upload Image', render_kw = {'id': "imgUpload"}, validators=[FileRequired('File missing'), FileAllowed(['jpg','png'])])
     submit = SubmitField("Create post")
-    catagories =  MultiCheckboxField('Categories',
+    catagories =  MultiCheckboxField('Categories', 
                                     choices=[('Women', 'Women'), 
                                              ('Mens', 'Mens'), 
                                              ('Unisex', 'Unisex'), 
@@ -26,6 +26,7 @@ class Createpost(FlaskForm):
                                              ('Dogs', 'Dogs'),
                                              ('Cats', 'Cats')],
                                     render_kw = {'class':'form-check-input me-1'}
+                                    
                                     )
 
 class postform(FlaskForm):

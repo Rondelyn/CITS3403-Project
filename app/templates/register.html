@@ -48,6 +48,15 @@
       
       <!--Content container that defines the white box area on site. Fills whole space on small devices-->
       <div class="container-sm mt-5 mb-3 pt-1 pb-3 bodyFormat">
+        {% with messages = get_flashed_messages() %}
+        {% if messages %}
+        <ul>
+          {% for message in messages %}
+            <li> {{ message }} </li>
+          {% endfor %}
+        </ul>
+        {% endif %}
+        {% endwith %}
 
         <!--This is the login form-->
         <div id = 'login form' name = 'login form'>
