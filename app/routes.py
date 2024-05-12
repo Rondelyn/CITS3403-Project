@@ -95,21 +95,24 @@ def posts():
         return redirect("/login")
     formpost = postform()
     formfiter = catergoryFilter() 
+    formreport = deleate()
     posts = image.query.all()
-    return render_template("findRequest.html", images=posts, form = formpost, formfilter = formfiter)
+
+    return render_template("findRequest.html", images=posts, form = formpost, formfilter = formfiter, formreport=formreport)
 
 #submits filter on feed page 
 @flaskApp.route('/submitfilter', methods = ["post", "get"])
 def submitfilter():
     formpost = postform()
-    formfilter = catergoryFilter() 
+    formfilter = catergoryFilter()
+    formreport = deleate() 
     print(formfilter.errors)
     if  formfilter.validate_on_submit():
-        print("qoqo")
+        
         filterSelected = formfilter.filter.data
         posts =image.query.filter(image.image_catagroy.contains(filterSelected))
                 
-        return render_template("findRequest.html", images=posts, form=formpost, formfilter = formfilter)
+        return render_template("findRequest.html", images=posts, form=formpost, formfilter = formfilter, formreport=formreport)
     
     else:
         posts = image.query.all()
@@ -134,6 +137,41 @@ def addstarvalue(post):
     
     db.session.commit()
     return redirect(location=url_for("posts"))
+
+##deleates reported post 
+@flaskApp.route("/report/<post>", methods = ["post", "get"])
+def report(post):
+    post_id = post
+    formreport = deleate()
+    formpost = postform()
+    formfilter = catergoryFilter()
+    
+    
+    if  formreport.validate_on_submit():
+        filterSelected = formreport.reason.data
+        remove = resons(filterSelected)
+
+        if remove:
+            
+            user = image.query.get(post_id)
+            db.session.delete(user)
+            db.session.commit()
+            return redirect(location=url_for("posts"))
+        else:
+            flash("Not a vaild reason", 'error')           
+            return redirect(location=url_for("posts"))
+    
+    
+    return redirect(location=url_for("posts"))
+
+
+def resons(filterSelected):
+    validreasons = ["inappropriate", "stolen", "wrong category"]
+    print(filterSelected)
+    if filterSelected in validreasons:
+        return True
+    return False
+
 
 
 
