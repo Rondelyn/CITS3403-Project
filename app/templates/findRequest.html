@@ -14,75 +14,124 @@
       <link rel="stylesheet" href="/static/main.css">
       <!-- Fontawesome CDN Link -->
       <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css" />
-      <!--Link to custom javascript-->
-      <script src="/static/main.js"></script>
-  </head>
-  <body class="d-flex flex-column min-vh-100">
-    <!--This is the navigation bar-->
-    <nav class="navbar navbar-expand-sm navbar-dark fixed-top rounded-bottom bg-colour">
-      <div class="container-fluid">
-        <a class="navbar-brand" id="logo">Rate My Fit</a>
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#collapsibleNavbar">
-          <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse justify-content-end" id="collapsibleNavbar">
-          <ul class="navbar-nav">
-            <li class="nav-item pill">
-              <a class="nav-link" href="landingPg"><i class="bi bi-house-fill"></i> Home</a>
-            </li>
-            <li class="nav-item pill">
-              <a class="nav-link disabled" href="findRequest">Feed</a>
-            </li>
-            <li class="nav-item pill">
-              <a class="nav-link" href="createRequest">Post</a>
-            </li>    
-            <li class="nav-item pill">
-              <a class="nav-link" href="login">Login</a>
-            </li> 
-          </ul>
-        </div>
-      </div>
-    </nav>  
-        
-    <main class="flex-grow-1">    
-      
-      <!-- These are used for spacing beneath navbar-->
-      <br>  
-      <div class="container-sm mb-5"></div>
-        <!--Content container that defines the white box area on site. Fills whole space on small devices-->
-        <div class="feed"> 
-          <!--trying to change feed branch-->
-          {% for image in images %}            
-          <div class="rating-box container-sm mb-3 pt-1 pb-3 bodyFormat">
-            <p> {{image.user_id}}</p>
-            <img class = "d-block mx-auto feed_images" src="{{image.image_url}}"> <br>
-
-
-          
-            <header>Rate my fit !</header>
-            <div class="stars container-sm justify-content-center pb-2">
-              <span class="star" data-value="1"><i class="fas fa-star"></i></span>
-              <span class="star" data-value="2"><i class="fas fa-star"></i></span>
-              <span class="star" data-value="3"><i class="fas fa-star"></i></span>
-              <span class="star" data-value="4"><i class="fas fa-star"></i></span>
-              <span class="star" data-value="5"><i class="fas fa-star"></i></span>
+        <!--Link to custom javascript-->
+        <script src="/static/main.js"></script>
+    </head>
+    <body class="d-flex flex-column min-vh-100">
+        <!--This is the navigation bar-->
+        <nav class="navbar navbar-expand-sm navbar-dark fixed-top rounded-bottom bg-colour">
+          <div class="container-fluid">
+            <a class="navbar-brand" id="logo">Rate My Fit</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#collapsibleNavbar">
+              <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse justify-content-end" id="collapsibleNavbar">
+              <ul class="navbar-nav">
+                <li class="nav-item pill">
+                  <a class="nav-link" href="landingPg"><i class="bi bi-house-fill"></i> Home</a>
+                </li>
+                <li class="nav-item pill">
+                  <a class="nav-link disabled" href="findRequest">Feed</a>
+                </li>
+                <li class="nav-item pill">
+                  <a class="nav-link" href="createRequest">Post</a>
+                </li>    
+                <li class="nav-item pill">
+                  <a class="nav-link" href="login">Login</a>
+                </li> 
+              </ul>
             </div>
           </div>
+        </nav>  
+          
+      <main>    
+        
+        <!-- These are used for spacing beneath navbar-->
+        <br>  
+         
+        <div class="container-sm mb-5"></div>
 
 
-          <br>
-          {% endfor %}
+        <!--Content container that defines the white box area on site. Fills whole space on small devices-->
+          
+            <div class="rating-box container-sm mb-3 pt-1 pb-3 bodyFormat">
+             
+        
+              <div class="container-sm mb-5"></div>
+              <!--the form to select a filter for the feed images-->
+              <form id="Request" action = "/submitfilter", method = "post">
+
+                {{ formfilter.csrf_token }}
+                {{ formfilter.hidden_tag() }}
+                {{ formfilter.submitfilter(class="btn btn-primary") }}
+                {{ formfilter.csrf_token }}
+                {{ formfilter.filter.label(class_="form-label") }}
+                {{ formfilter.filter}}
 
 
+                </form>
+                <br>
+        
+                <!--button to remove filters-->
+                <div class="col-md-12 text-center">
+                <form id = "Request" action = '/findRequest'>
+                <button class="btn btn-primary">
+                  Clear Filter
+                </button>
+                </form>
+                <a href="{{url_for('logout')}}">Press here to logout</a>
+                
+                </div>
+                <br>
+              </div>
+            
+          <div class="feed"> 
+            <!--trying to change feed branch-->
+            {% for image in images %}            
+            <div class="rating-box container-sm mb-3 pt-1 pb-3 bodyFormat">
+              <br><br>
+              <img class = "d-block mx-auto feed_images" src="/static/image_uploads/{{image.image_url}}">
+
+               
+
+              <header>
+                <form id = "{{image.image_url}}" action ="/submitstar/{{image.image_url}}" method="post">
+                  {{ form.hidden_tag() }}
+                  {{ form.csrf_token }}
+                  {{ form.star(class="btn btn-primary")}}
+                  {{ form.starvalue}}
+                  
+                </form>
+                
+              </header>
+              <div class="stars container-sm justify-content-center pb-2">
+                <span class="star" data-value="1"><i class="fas fa-star"></i></span>
+                <span class="star" data-value="2"><i class="fas fa-star"></i></span>
+                <span class="star" data-value="3"><i class="fas fa-star"></i></span>
+                <span class="star" data-value="4"><i class="fas fa-star"></i></span>
+                <span class="star" data-value="5"><i class="fas fa-star"></i></span> 
+                
+              </div>
+              {{ image.title }}
+              
+                
+              
+            </div>
+
+
+            <br>
+            {% endfor %}
+
+
+          </div>
         </div>
-      </div>
 
-    </main>
-    <!--temp footer-->
-    <footer class="footer mt-auto py-3 d-flex justify-content-end">
-      <small>&copy; 2024</small> 
-    </footer>
-    <!--This is the js used by bootstrap 5. Please keep this at the bottom before /body-->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
-  </body>
+      </main>
+      <!--temp footer-->
+      <footer class="m-1 text-muted end-0 d-flex justify-content-end">
+        <small>&copy; 2024</small> 
+      </footer>
+      <!--This is the js used by bootstrap 5. Please keep this at the bottom before /body-->
+      <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+    </body>
 </html>

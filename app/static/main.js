@@ -10,29 +10,6 @@ function showLogin(){
     document.getElementById("signup form").style.display="none"; 
 }
 
-// Function to validate login criteria
-function validatelogin(){
-  event.preventDefault();
-  var username = $('#InputUsername').val();
-    var password = $('#Password').val();
-    var termsagreed = $('#termsandconditions').is(':checked');
-
-   
-    if (username === '' || password === ''){
-      alert("username or password is missing")
-      return;
-    }
-    
-    if (!termsagreed){
-      alert("agree to terms and conditions or else");
-      return;
-      
-    }
-    
-    alert("yay");
-    return;
-}
-
 // An event listener that takes place upon page load and sets the background of the page to the stored value otherwise sets it to alice blue by default 
 document.addEventListener('DOMContentLoaded', function() {
   const colorPicker = document.getElementById('myColor');
@@ -55,61 +32,6 @@ function handleColorPickerChange(event) {
   document.body.style.backgroundColor = selectedColor;
   localStorage.setItem('backgroundColor', selectedColor);
 }
-
-// Function to validate signup criteria 
-function validatesignup(){
-  event.preventDefault();
-  var username = $('#signInputUsername').val();
-    var password = $('#signPassword').val();
-    var termsagreed = $('#signtermsandconditions').is(':checked');
-
-   
-    if (username === '' || password === ''){
-      alert("username or password is missing")
-      return;
-    }
-
-    if (password.length <= 4){
-      alert("password must have more than 4 characters")
-      return;
-
-    }
-    
-
-    if (!termsagreed){
-      alert("agree to terms and conditions or else");
-      return;
-      
-    }
-    
-    showLogin();
-    return;
-}
-
-// this function is called to redirect to the signup view of the login page
-function redirectToSignup() {
-  window.location.href = "/login?signup=true"; 
-}
-
-// This function determines the view of the login page
-document.addEventListener("DOMContentLoaded", function() {
-  // Check if the current page URL contains "login.html"
-  if (window.location.pathname.includes("login")) {
-      var signup = document.body.getAttribute("data-signup");
-
-      function showSignupForm() {
-          if (signup === 'true') {
-              showSignup();
-          } else {
-              showLogin();
-          }
-      }
-
-      showSignupForm();
-  }
-});
-
-
 
 
 function imagePreview(input){
@@ -169,6 +91,14 @@ document.addEventListener("DOMContentLoaded", function() {
           const value = this.getAttribute("data-value");
           const imageId = this.closest(".rating-box").getAttribute("data-image-id");
 
+          // Send the rating to the server
+          // saveRating(imageId, value);
+
+          function getrating(){
+            return Int16Array(value)
+          }
+
+          // Update UI
           const container = this.closest(".stars");
           removeActiveStars(container);
           this.classList.add("active");
@@ -176,5 +106,6 @@ document.addEventListener("DOMContentLoaded", function() {
       });
   });
 }); 
+
 
 

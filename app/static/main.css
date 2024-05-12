@@ -131,10 +131,23 @@
 }
 
 
+#Request{
+  width: fit-content;
+  margin: auto;
+  padding-top: 0%;
+  
+}
+
 .postcss{
     width: fit-content;
     margin: auto;
     padding-top: 15%;
+}
+
+#Requeststar{
+  width: fit-content;
+  margin: auto;
+  padding-top: 2.5%;
 }
 
 h1{
