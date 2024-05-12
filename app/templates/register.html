@@ -55,22 +55,17 @@
             <form id = 'login' method="POST" action="register" class="container-sm p-3 mb-0 m-auto lg-form">
 
                 <p> Sign Up </p>
-
+                {{ form.csrf_token }}
                 {{ form.hidden_tag() }}
                 {{ form.id (class="form-control")}} <br>
-                   <br>
                 {{ form.user_password (class="form-control")}} <br>
-                {{ form.submit(class="btn btn-primary") }} <br>        
+                {{ form.submit(class="btn btn-primary") }} <br>
+                
+                
+                {{ form.checkbox}}
+                {{ form.checkbox.label}}
+                
 
-
-            
-
-              <!--This is the check box to agree to the terms of service-->
-              <div class="agreeterms">
-                <input type="checkbox" class="form-check-input" id="termsandconditions" aria-describedby="termsconditions">
-                <label class="form-check-label" for="termsandconditions">I agree to the terms of use</label>
-                <div id="termsconditions" class="form-text">You agree to only post pg things to the website or you get removed</div>
-              </div>
               <br>
               <!--This is the submit buttion-->
               <!-- <button onclick = "validatelogin()" type="submit button" name = 'log-submit' id = 'log-submit' class="btn btn-primary container-sm">Login</button>  -->        
