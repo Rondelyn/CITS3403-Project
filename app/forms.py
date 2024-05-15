@@ -96,7 +96,9 @@ class LoginForm(FlaskForm):
     def is_authenticated(self):
         return self.authenticated
     
-
+class deleate(FlaskForm):
+    reason = StringField("report reason", render_kw = {'id': 'reason'}, validators = [DataRequired()])
+    submitreason = SubmitField('report')
 
 
 
