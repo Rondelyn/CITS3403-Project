@@ -1,27 +1,17 @@
-
 # required classes
 from flask import render_template, redirect, request, url_for, flash
-from app import flaskApp, db
+from app import db, login_manager
+from app.controllers import *
 from app.model import image, user
 from app.forms import *
-from flask_bcrypt import Bcrypt
 from flask_login import UserMixin, login_user, LoginManager, login_required, logout_user, current_user
+from app.blueprints import main
 
 #requred for the image upload
 import os
 import uuid
 from flask import Flask
 app = Flask(__name__)
-
-from flask_sqlalchemy import SQLAlchemy
-
-
-
-bcrypt = Bcrypt(flaskApp)
-
-login_manager = LoginManager()
-login_manager.init_app(flaskApp)
-login_manager.login_view = 'login'
 
 
 @login_manager.user_loader
@@ -32,8 +22,8 @@ def load_user(user_id):
 
 #createing server connection to web pages so that you can click though them 
 #landing page
-@flaskApp.route("/")    
-@flaskApp.route("/landingPg")
+@main.route("/")    
+@main.route("/landingPg")
 def home():
     top_images = image.query.order_by(image.image_likes.desc()).limit(5).all()
     return render_template("landingPg.html", top_images=top_images)
@@ -41,7 +31,7 @@ def home():
 
 
 #createResquest/ create posts
-@flaskApp.route("/createRequest")
+@main.route("/createRequest")
 def images():
         if not current_user.is_authenticated:
             return redirect("/login")
@@ -61,7 +51,7 @@ def save_image(image_file):
 
 
 #allows users to submit there posts
-@flaskApp.route('/submit', methods=['POST', 'GET'])
+@main.route('/submit', methods=['POST', 'GET'])
 def submit():
     print("Inside submit function")  # Debug print
     form = Createpost()
@@ -75,21 +65,19 @@ def submit():
         user_id = current_user.id
         print("User ID:", user_id)  # Debug print
 
-        if image_file:
-            new_image = image(image_url=image_file, image_catagroy= categories, image_likes=0, title=title, user_id=user_id)
-            print("New Image Object:", new_image)  # Debug print
-            db.session.add(new_image)
-            db.session.commit()
-            return redirect(url_for("posts"))
-        else:
-            flash("Failed to upload image", 'error')
+        try:
+            added_image_db(image_file, categories, title, user_id)
+
+        except NewPostError as e:
+            flash(str(e), 'error')
+            
     else:
         print("Form validation errors:", form.errors)  # Debug print
             
     return render_template('createRequest.html', form=form)
 
 ## feed page
-@flaskApp.route("/findRequest" , methods=['GET','POST'])
+@main.route("/findRequest" , methods=['GET','POST'])
 def posts(): 
     if not current_user.is_authenticated:
         return redirect("/login")
@@ -101,138 +89,107 @@ def posts():
     return render_template("findRequest.html", images=posts, form = formpost, formfilter = formfiter, formreport=formreport)
 
 #submits filter on feed page 
-@flaskApp.route('/submitfilter', methods = ["post", "get"])
+@main.route('/submitfilter', methods = ["post", "get"])
 def submitfilter():
     formpost = postform()
     formfilter = catergoryFilter()
     formreport = deleate() 
-    print(formfilter.errors)
+    
     if  formfilter.validate_on_submit():
-        
         filterSelected = formfilter.filter.data
-        posts =image.query.filter(image.image_catagroy.contains(filterSelected))
-                
+        posts =image.query.filter(image.image_catagroy.contains(filterSelected))      
         return render_template("findRequest.html", images=posts, form=formpost, formfilter = formfilter, formreport=formreport)
     
     else:
         posts = image.query.all()
-        print("ksksk")
-        return redirect(location=url_for("posts"))
+        return redirect(location=url_for("main.posts"))
     
   
     
 ##adds star rating to db
-@flaskApp.route("/submitstar/<post>", methods = ["post", "get"])
+@main.route("/submitstar/<post>", methods = ["post", "get"])
 def addstarvalue(post):
     ## only works when button is clicked 
     form = postform()
-    print(form.starvalue.data)
     rating = int(form.starvalue.data)
     post_id = post
-    
-    rowd = image.query.filter_by(image_url = post_id)
-    row = image.query.get(post_id)
-    row.image_likes += rating
-    print(row)
-    
-    db.session.commit()
-    return redirect(location=url_for("posts"))
+    if form.validate_on_submit():
+            row = image.query.get(post_id)
+            row.image_likes += rating
+            db.session.commit()
+    return redirect(location=url_for("main.posts"))
 
 ##deleates reported post 
-@flaskApp.route("/report/<post>", methods = ["post", "get"])
+@main.route("/report/<post>", methods = ["post", "get"])
 def report(post):
     post_id = post
-    formreport = deleate()
-    formpost = postform()
-    formfilter = catergoryFilter()
-    
-    
-    if  formreport.validate_on_submit():
-        filterSelected = formreport.reason.data
-        remove = resons(filterSelected)
+    formreport = deleate()  
 
-        if remove:
-            
-            user = image.query.get(post_id)
-            db.session.delete(user)
-            db.session.commit()
-            return redirect(location=url_for("posts"))
-        else:
-            flash("Not a vaild reason", 'error')           
-            return redirect(location=url_for("posts"))
-    
-    
-    return redirect(location=url_for("posts"))
+    if not formreport.validate_on_submit():
+        return redirect(location=url_for("main.posts"))
+
+    #If vaild will check its a vaild reason
+    resongiven = formreport.reason.data
+    try:
+        reporting_post(post_id, resongiven)
+        flash('Thankyou for reporting :)', 'error')
+
+    except FeedpageUseError as e:
+        flash(str(e), 'error')
+        return redirect(location=url_for("main.posts"))
+
+    return redirect(location=url_for("main.posts"))
 
 
-def resons(filterSelected):
-    validreasons = ["inappropriate", "stolen", "wrong category"]
-    print(filterSelected)
-    if filterSelected in validreasons:
-        return True
-    return False
-
-
-
-
-##login form 
 
 #login page
-@flaskApp.route("/login", methods=['GET','POST'])
+@main.route("/login", methods=['GET','POST'])
 def loginform():
     form = LoginForm()
-    idcheck= user.query.get(form.id.data)
-
-
-    if request.method == "GET":
+    #On a GET request or if for not validate on submite renders login page 
+    if request.method == "GET" or not form.validate_on_submit():
         return render_template('login.html', form=form)
 
-    if not idcheck:
-        flash(f'username {form.id.data} dose not exists', 'error')
-        return redirect('/login')
+    idcheck= user.query.get(form.id.data) 
+
+    #trys to login user, if it fails returns to login page else to the post page
+    try:
+        the_user = login_the_user(idcheck, form.id.data, form.user_password.data)
+
+    except UserCreationError as e:
+        flash(str(e), 'error')
+        return redirect(location=url_for("main.loginform"))
+    
+    login_user(the_user)    
+    return redirect(location=url_for("main.posts"))
 
 
-    if form.validate_on_submit():
-        the_user = user.query.filter_by(id=form.id.data).first()
-        if the_user:
-            if bcrypt.check_password_hash(the_user.user_password, form.user_password.data):
-                login_user(the_user)
-                return redirect(('/findRequest'))
-
-
-    return redirect('/login')
-
-
-@flaskApp.route('/logout', methods=['GET', 'POST'])
+@main.route('/logout', methods=['GET', 'POST'])
 @login_required
 def logout():
     logout_user()
-    return redirect('/login')
+    return redirect(location=url_for("main.loginform"))
 
-
-@ flaskApp.route('/register', methods=['GET', 'POST'])
+#register page
+@main.route('/register', methods=['GET', 'POST'])
 def register():
     form = RegisterForm()
-    formpost = postform()
-    formfilter = catergoryFilter() 
+    #for get request and if form is not validate on submite renders register page
+    if request.method == "GET" or not form.validate_on_submit():
+        return render_template('register.html', form=form)
+    
+    #for POST request, trys to register user. If fails, sends them to register page else to the post page
     idcheck= user.query.get(form.id.data)
 
+    try:
+        registration(idcheck, form.id.data, form.user_password.data)
 
-    if request.method == "GET":
-        return render_template('register.html', form=form)
-
-    if idcheck:
-        flash(f'username {form.id.data} already exists', 'error')
-        return render_template('register.html', form=form)
-
-    if form.validate_on_submit() and not idcheck:
-        hashed_password = bcrypt.generate_password_hash(form.user_password.data)
-        new_user = user(id=form.id.data, user_password=hashed_password)
-        db.session.add(new_user)
-        db.session.commit()
-        return redirect(('/findRequest'))
+    except UserCreationError as e:
+        flash(str(e), 'error')
+        return redirect('register')
+       
+    return redirect('posts')
     
-    return render_template('register.html', form=form)
 
 
 

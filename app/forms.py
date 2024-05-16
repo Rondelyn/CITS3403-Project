@@ -1,8 +1,7 @@
 from wtforms import StringField, SubmitField, BooleanField, SelectField, PasswordField
 from flask_wtf import FlaskForm
-from wtforms.validators import DataRequired, InputRequired, Length, ValidationError
+from wtforms.validators import DataRequired, InputRequired, Length
 from flask_wtf.file import FileField, FileRequired, FileAllowed
-from app.model import image, user
 from wtforms import widgets, SelectMultipleField, SelectField
 
 class MultiCheckboxField(SelectMultipleField):
