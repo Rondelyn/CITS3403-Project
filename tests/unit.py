@@ -33,9 +33,27 @@ class BasicUnitTests(TestCase):
 
 
     def test_registration_of_user_that_exists(self):
-        print("kjsdhfkjahkdhfau")
         with self.assertRaises(UserCreationError):
-            registration('1234','1234')
+            registration("1234", '1234','1234')
+
+    
+    def test_login_user_does_not_exist(self):
+        with self.assertRaisesRegex(UserExistsError, "user id: 898989 dose not exist"):
+            login_the_user('898989', '12345678')
+
+
+    def test_login_password_is_wrong(self):
+        with self.assertRaisesRegex(UserExistsError, "password is incorrect" ):
+            login_the_user('12345678', '000000000')
+
+
+    def test_deleting_post_not_vaild(self):
+        with self.assertRaisesRegex(FeedpageUseError, "Not a vaild reason" ):
+            reporting_post('12345678', 'I dont like it!!!!!')
+
+    def test_adding_post_with_same_name_to_db(self):
+        with self.assertRaisesRegex(NewPostError, "Failed to upload image" ):
+            added_image_db('img1.jpg', 'Women', 'hi there', '12345678')
 
 
 

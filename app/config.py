@@ -11,5 +11,5 @@ class DeploymentConfig(Config):
     SQLALCHEMY_DATABASE_URI = "sqlite:///" + os.path.join(basedir, 'app.db')
 
 class TestConfig(Config):
-    SQLALCHEMY_DATABASE_URI = "sqlite:///:memory"
+    SQLALCHEMY_DATABASE_URI = "sqlite:///:memory:"
     
