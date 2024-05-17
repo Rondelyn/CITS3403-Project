@@ -15,6 +15,14 @@
 
 
 ## Instructions for use:
+Please install the following installs:
+
+pip install flask 
+pip install flask bi create 
+pip install Sqlalchemy 
+pip install Migrate 
+pip install Flasklogin 
+pip install Test 
 
 
 ## Instructions for tests:
