@@ -21,12 +21,8 @@ Feed and Post can only be accessed by logged-in users and will otherwise be redi
 ## Instructions for use:
 Please install the following installs:
 
-pip install flask 
-pip install flask bi create 
-pip install Sqlalchemy 
-pip install Migrate 
-pip install Flasklogin 
-pip install Test 
+Make a virtual enviroment and then install requirements.txt (using pip install -r requirements.txt) 
+When running flask run if it doesnt work use the command python -m flask run --debug
 
 
 ## Instructions for tests:
