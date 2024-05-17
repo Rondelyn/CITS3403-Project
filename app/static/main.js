@@ -56,57 +56,6 @@ function imagePreview(input){
   $('.upload-img').css('padding', "20px");
 }
 
-// Used to remove stars
-function removeActiveStars(container) {
-  const stars = container.querySelectorAll(".star");
-  stars.forEach(function(star) {
-      star.classList.remove("active");
-  });
-}
-
-// Used to light up stars behind the selected star
-function lightUpPreviousStars(star) {
-  const stars = star.parentNode.querySelectorAll(".star");
-  let selected = false;
-  for (let i = stars.length - 1; i >= 0; i--) {
-      const s = stars[i];
-      if (s === star) {
-          selected = true;
-      }
-      if (selected) {
-          s.classList.add("active");
-      } else {
-          s.classList.remove("active");
-      }
-  }
-}
-
-
-// Used to define star rating behaviours and call the other functions
-document.addEventListener("DOMContentLoaded", function() {
-  const stars = document.querySelectorAll(".star");
-
-  stars.forEach(function(star) {
-      star.addEventListener("click", function() {
-          const value = this.getAttribute("data-value");
-          const imageId = this.closest(".rating-box").getAttribute("data-image-id");
-
-          // Send the rating to the server
-          // saveRating(imageId, value);
-
-          function getrating(){
-            return Int16Array(value)
-          }
-
-          // Update UI
-          const container = this.closest(".stars");
-          removeActiveStars(container);
-          this.classList.add("active");
-          lightUpPreviousStars(this);
-      });
-  });
-}); 
-
 // Used for previewing images on the createRequest page
 document.addEventListener("DOMContentLoaded", function() {
   // Check if the page is createRequest.html
