@@ -1,5 +1,5 @@
 
-from app import db
+from app import db, bcrypt
 from app.model import *
 
 
@@ -7,9 +7,9 @@ from app.model import *
 print("test data reached")
 
 def add_test_users_to_db():
-    user1 = user(id = '12341234', user_password = '12341234')
-    user2 = user(id = '12345678', user_password = '12345678')
-    user3 = user(id = '1234321', user_password = '1234321')
+    user1 = user(id = '12341234', user_password = bcrypt.generate_password_hash('12341234'))
+    user2 = user(id = '12345678', user_password = bcrypt.generate_password_hash('12345678'))
+    user3 = user(id = '1234321', user_password = bcrypt.generate_password_hash('1234321'))
 
     db.session.add_all([user1,user2,user3])
     db.session.commit()

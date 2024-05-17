@@ -87,11 +87,14 @@ def reporting_post(post_id, resongiven):
 def added_image_db(image_file, categories, title, user_id):
         
         if image_file:
+            if db.session.get(image, image_file):
+                message = "Image with that name already uploaded" 
+                raise NewPostError(message)
+
             new_image = image(image_url=image_file, image_catagroy= categories, image_likes=0, title=title, user_id=user_id)
             print("New Image Object:", new_image)  # Debug print
             db.session.add(new_image)
-            db.session.commit()
-            
+            db.session.commit()           
         
         else:
             message = "Failed to upload image" 

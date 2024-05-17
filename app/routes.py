@@ -54,8 +54,8 @@ def save_image(image_file):
 def submit():
     print("Inside submit function")  # Debug print
     form = Createpost()
+    
     #validation
-
     if form.validate_on_submit():
         print("Form data:", form.data)  # Debug print
         categories = ' '.join(form.catagories.data)
@@ -186,5 +186,5 @@ def register():
         flash(str(e), 'error')
         return redirect('register')
        
-    return redirect('posts')
+    return redirect(location=url_for("main.posts"))
     
