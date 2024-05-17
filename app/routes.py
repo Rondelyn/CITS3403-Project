@@ -149,11 +149,10 @@ def loginform():
     if request.method == "GET" or not form.validate_on_submit():
         return render_template('login.html', form=form)
 
-    idcheck= user.query.get(form.id.data) 
 
     #trys to login user, if it fails returns to login page else to the post page
     try:
-        the_user = login_the_user(idcheck, form.id.data, form.user_password.data)
+        the_user = login_the_user(form.id.data, form.user_password.data)
 
     except UserCreationError as e:
         flash(str(e), 'error')
@@ -178,10 +177,10 @@ def register():
         return render_template('register.html', form=form)
     
     #for POST request, trys to register user. If fails, sends them to register page else to the post page
-    idcheck= user.query.get(form.id.data)
+    
 
     try:
-        registration(idcheck, form.id.data, form.user_password.data)
+        registration(form.id.data, form.user_password.data)
 
     except UserCreationError as e:
         flash(str(e), 'error')
