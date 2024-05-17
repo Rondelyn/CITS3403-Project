@@ -1,12 +1,12 @@
 // Used to toggle the login page to the signup view 
 function showSignup(){
     document.getElementById('signup form').style.display="block";
-    document.getElementById('login form').style.display="none"; 
+    document.getElementById('login_form').style.display="none"; 
 }
   
 // Used to toggle the login page to the login view 
 function showLogin(){
-    document.getElementById('login form').style.display="block";
+    document.getElementById('login_form').style.display="block";
     document.getElementById("signup form").style.display="none"; 
 }
 

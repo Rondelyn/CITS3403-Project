@@ -75,6 +75,7 @@
           <div class="carousel-indicators mx-auto">
               {% for i in range(top_images|length) %}
                   <button type="button" data-bs-target="#examples" data-bs-slide-to="{{ i }}" {% if loop.first %} class="active" {% endif %}></button>
+                  
               {% endfor %}
           </div>
       
