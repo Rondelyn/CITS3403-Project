@@ -59,8 +59,8 @@
         <br>
 
         <!--This is the login form-->
-        <div id = 'login form' name = 'login form'>
-          <form id = 'login' method="POST" action="" class="container-sm p-3 mb-0 m-auto lg-form">
+        <div id = 'login_form' data-name = 'login form'>
+          <form id = 'login' method="POST" class="container-sm p-3 mb-0 m-auto lg-form">
             <p> Login </p>
             {{ form.csrf_token }}
             {{ form.hidden_tag() }}
@@ -74,6 +74,7 @@
           <!--This is the button to go to the creat user page-->
           <p class="d-flex justify-content-center">Don't have an account? <a href="{{ url_for('register') }}" class="custom-link"><b>Sign Up</b></a></p>
          <br>
+       </div>
       </div>
     </main>
     <!--temp footer-->
