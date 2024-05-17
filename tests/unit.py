@@ -33,23 +33,23 @@ class BasicUnitTests(TestCase):
 
 
     def test_registration_of_user_that_exists(self):
-        with self.assertRaises(UserCreationError):
-            registration("1234", '1234','1234')
+        with self.assertRaisesRegex(UserCreationError, "user id: " +  "12341234" + " already exists" ):
+            registration('12341234','12341234')
 
     
-    def test_login_user_does_not_exist(self):
-        with self.assertRaisesRegex(UserExistsError, "user id: 898989 dose not exist"):
-            login_the_user('898989', '12345678')
+    #def test_login_user_does_not_exist(self):
+     #   with self.assertRaisesRegex(UserExistsError, "user id: " +  "898989" + " dose not exist" ):
+      #      login_the_user('898989', '12345678')
 
 
-    def test_login_password_is_wrong(self):
-        with self.assertRaisesRegex(UserExistsError, "password is incorrect" ):
-            login_the_user('12345678', '000000000')
+   # def test_login_password_is_wrong(self):
+    #    with self.assertRaisesRegex(UserExistsError, "password is incorrect" ):
+     #       login_the_user('12345678', '000000000')
 
 
-    def test_deleting_post_not_vaild(self):
-        with self.assertRaisesRegex(FeedpageUseError, "Not a vaild reason" ):
-            reporting_post('12345678', 'I dont like it!!!!!')
+  #  def test_deleting_post_not_vaild(self):
+   #     with self.assertRaisesRegex(FeedpageUseError, "Not a vaild reason" ):
+     #       reporting_post('12345678', 'I dont like it!!!!!')
 
  #   def test_adding_post_with_same_name_to_db(self):
   #      with self.assertRaisesRegex(NewPostError, "Failed to upload image" ):

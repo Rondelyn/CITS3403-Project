@@ -57,7 +57,7 @@ def login_the_user(username, password):
     #if username dossn't exist  
     if not idcheck:
         message = "user id: " +  username + " dose not exist" 
-        raise UserCreationError(message)
+        raise UserExistsError(message)
 
     #checks the password is correct
     the_user = user.query.filter_by(id=username).first()
