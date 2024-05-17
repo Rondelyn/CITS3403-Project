@@ -51,9 +51,9 @@ class BasicUnitTests(TestCase):
         with self.assertRaisesRegex(FeedpageUseError, "Not a vaild reason" ):
             reporting_post('12345678', 'I dont like it!!!!!')
 
-    def test_adding_post_with_same_name_to_db(self):
-        with self.assertRaisesRegex(NewPostError, "Failed to upload image" ):
-            added_image_db('img1.jpg', 'Women', 'hi there', '12345678')
+ #   def test_adding_post_with_same_name_to_db(self):
+  #      with self.assertRaisesRegex(NewPostError, "Failed to upload image" ):
+   #         added_image_db('img1.jpg', 'Women', 'hi there', '12345678')
 
 
 

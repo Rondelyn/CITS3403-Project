@@ -16,11 +16,11 @@ class NewPostError(Exception):
     pass
 
 
-
-
-##for the signup page, registers the user
-def registration(idcheck, username, password):
+#for the signup page, registers the user
+def registration(username, password):
     #checks the username dosn't already exists
+    idcheck = db.session.get(user, username) 
+    
     if idcheck:
         message = "user id: " +  username + " already exists" 
         raise UserCreationError(message)
@@ -34,7 +34,8 @@ def registration(idcheck, username, password):
 
 
 ##for the login page, checks user unputs
-def login_the_user(idcheck, username, password):
+def login_the_user(username, password):
+    idcheck = db.session.get(user, username) 
 
     #if username dossn't exist  
     if not idcheck:
