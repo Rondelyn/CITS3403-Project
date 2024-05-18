@@ -5,3 +5,4 @@ deliverables/deliverable-02.mp4
 env/
 **/__pycache__/
 *.db 
+*.mp4
