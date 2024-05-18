@@ -43,6 +43,7 @@ typing_extensions==4.11.0
 To install make a virtual enviroment and then install requirements.txt (using pip install -r requirements.txt) 
 When running flask run if it doesnt run if you use the command python -m flask run
 To run it successfully you need to type: flask --app YOUR_WORKING_DIRECTRY_TO_PROJECTIFY.PY run. To do this right click on the projectify.py file and click copy path, use this path in the command in the termainal.  
-
+Before you run the applicaiton discovery must be set to find the secret key. From this link it will tell you which commad you should us for your computer https://flask.palletsprojects.com/en/1.1.x/cli/. 
+Replace the FLASK_APP with RATE_MY_FIT_SECRET_KEY_12 when you run. 
 ## Instructions for tests:
 To run the tests run the command in the terminal: python -m unittest tests/unit.py. This will run the unit tests automatically using a data base created in the memory. 
