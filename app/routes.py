@@ -69,11 +69,11 @@ def submit():
 
         except NewPostError as e:
             flash(str(e), 'error')
-            
+            return redirect(location=url_for("main.images"))  
     else:
         print("Form validation errors:", form.errors)  # Debug print
-            
-    return render_template('createRequest.html', form=form)
+    return redirect(location=url_for("main.posts"))        
+  
 
 ## feed page
 @main.route("/findRequest" , methods=['GET','POST'])
@@ -168,6 +168,7 @@ def logout():
     logout_user()
     return redirect(location=url_for("main.loginform"))
 
+
 #register page
 @main.route('/register', methods=['GET', 'POST'])
 def register():
@@ -178,13 +179,13 @@ def register():
     
     #for POST request, trys to register user. If fails, sends them to register page else to the post page
     
-
     try:
-        registration(form.id.data, form.user_password.data)
+        newuser = registration(form.id.data, form.user_password.data)
 
     except UserCreationError as e:
         flash(str(e), 'error')
         return redirect('register')
-       
+    
+    login_user(newuser)  
     return redirect(location=url_for("main.posts"))
     

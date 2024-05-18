@@ -19,7 +19,7 @@ from flask_bcrypt import Bcrypt
 from app import db, bcrypt
 from app.model import image, user
 
-print("controlers file nnnnn")
+
 
 class UserCreationError(Exception):
     pass
@@ -41,13 +41,15 @@ def registration(username, password):
     if idcheck:
         message = "user id: " +  username + " already exists" 
         raise UserCreationError(message)
-        
+    #returns the user to be logied in 
     else:
         print("submited new user")
         hashed_password = bcrypt.generate_password_hash(password)
         new_user = user(id=username, user_password=hashed_password)
         db.session.add(new_user)
         db.session.commit()
+        the_user = user.query.filter_by(id=username).first()
+        return the_user
 
 
 ##for the login page, checks user unputs
