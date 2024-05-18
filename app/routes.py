@@ -66,13 +66,16 @@ def submit():
 
         try:
             added_image_db(image_file, categories, title, user_id)
+            return redirect(location=url_for("main.posts"))  
 
         except NewPostError as e:
             flash(str(e), 'error')
             return redirect(location=url_for("main.images"))  
     else:
         print("Form validation errors:", form.errors)  # Debug print
-    return redirect(location=url_for("main.posts"))        
+    
+    flash("wrong file type inputed must be of type: jpg, png, jpeg ", 'error')
+    return redirect(location=url_for("main.images"))        
   
 
 ## feed page
