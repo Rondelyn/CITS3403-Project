@@ -27,13 +27,11 @@ class BasicUnitTests(TestCase):
 
     #execption is thrown when registering with used username
     def test_registration_of_user_that_exists(self):
-        print("111111")
         with self.assertRaisesRegex(UserCreationError, "user id: " +  "12341234" + " already exists" ):
             registration('12341234','12341234')
     
     #exception thrown when logging in with unknown username
     def test_login_user_does_not_exist(self):
-       print("33333333")
        with self.assertRaisesRegex(UserExistsError, "user id: " +  "898989" + " dose not exist" ):
            login_the_user('898989', '12345678')
        
@@ -49,9 +47,9 @@ class BasicUnitTests(TestCase):
              
     #exception thrown when report message is not a valid reason    
     def test_deleting_post_not_vaild(self):
-        print("2222222")
         with self.assertRaisesRegex(FeedpageUseError, "Not a vaild reason" ):
             reporting_post('12345678', 'I dont like it!!!!!')
+
 
     #exception thrown when a image being uploaded has the same name as already uploaded image
     def test_adding_post_with_same_name_to_db(self):

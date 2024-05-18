@@ -80,17 +80,16 @@ def submit():
 def posts(): 
     if not current_user.is_authenticated:
         return redirect("/login")
-    formpost = postform()
+    formpost = ratingform()
     formfiter = catergoryFilter() 
     formreport = deleate()
     posts = image.query.all()
-
     return render_template("findRequest.html", images=posts, form = formpost, formfilter = formfiter, formreport=formreport)
 
 #submits filter on feed page 
 @main.route('/submitfilter', methods = ["post", "get"])
 def submitfilter():
-    formpost = postform()
+    formpost = ratingform()
     formfilter = catergoryFilter()
     formreport = deleate() 
     
@@ -109,12 +108,14 @@ def submitfilter():
 @main.route("/submitstar/<post>", methods = ["post", "get"])
 def addstarvalue(post):
     ## only works when button is clicked 
-    form = postform()
+    form = ratingform()
     rating = int(form.starvalue.data)
     post_id = post
     if form.validate_on_submit():
             row = image.query.get(post_id)
+            print(row)
             row.image_likes += rating
+            print(rating)
             db.session.commit()
     return redirect(location=url_for("main.posts"))
 
@@ -154,7 +155,7 @@ def loginform():
     try:
         the_user = login_the_user(form.id.data, form.user_password.data)
 
-    except UserCreationError as e:
+    except UserExistsError as e:
         flash(str(e), 'error')
         return redirect(location=url_for("main.loginform"))
     

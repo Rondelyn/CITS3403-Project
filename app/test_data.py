@@ -4,8 +4,6 @@ from app.model import *
 
 
 
-print("test data reached")
-
 def add_test_users_to_db():
     user1 = user(id = '12341234', user_password = bcrypt.generate_password_hash('12341234'))
     user2 = user(id = '12345678', user_password = bcrypt.generate_password_hash('12345678'))

@@ -118,8 +118,8 @@
               </header>
               <hr>
               <form id = "{{image.image_url}}" action ="/report/{{image.image_url}}" method="post">
-                {{ form.hidden_tag() }}
-                {{ form.csrf_token }}
+                {{ formreport.hidden_tag() }}
+                {{ formreport.csrf_token }}
                 {{formreport.reason (placeholder="Reason") }}
                 {{formreport.submitreason (class="btn btn-primary")}}
               </form>

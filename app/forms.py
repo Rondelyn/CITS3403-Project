@@ -30,25 +30,7 @@ class Createpost(FlaskForm):
                                     
                                     )
 
-class postform(FlaskForm):
-    user_id = StringField("User ID", render_kw={'style': 'display:none'})
-    title = StringField("Post Title", render_kw = {'id': 'title'}, validators = [DataRequired()])
-    image = FileField('Upload Image', render_kw = {'id': "imgUpload"}, validators=[FileRequired('File missing'), FileAllowed(['jpg','png','jpeg'])])
-    catagories =  MultiCheckboxField('Categories',
-                                    choices=[('Women', 'Women'), 
-                                             ('Mens', 'Mens'), 
-                                             ('Unisex', 'Unisex'), 
-                                             ('Vintage', 'Vintage'),
-                                             ('OfficeCore', 'Office Core'),
-                                             ('Y2K', 'Y2K'),
-                                             ('CottageCore', 'Cottage Core'),
-                                             ('GothCore', 'Goth Core'),
-                                             ('CyberPunk', 'CyberPunk'),
-                                             ('Dogs', 'Dogs'),
-                                             ('Cats', 'Cats')],
-                                    render_kw = {'class':'form-check-input me-1'}
-                                    )
-    
+class ratingform(FlaskForm):
     star = SubmitField("submit rating", render_kw={"onclick": "getrating()"})
     starvalue = SelectField("Category", choices = ['1', '2', '3', '4', '5'])
     
